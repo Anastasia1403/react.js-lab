@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,36 +8,70 @@
     <link rel="stylesheet" href="./css/style.css">
     <title>Sign Up</title>
 </head>
-<body class="start-page">
-    <section class="enter-panel enter-panel_sign-up">
-         
-        <header class="header">
-            <h1 class="header__title">Sign Up</h1>
-        </header>
-        <main class="main">
-            <form class="form">            
-                <input class="form-input" type="text" name="fname" placeholder="First Name">
-                <input class="form-input" type="text" name="lname" placeholder="Last Name">
-                <input class="form-input" type="email" name="email" placeholder="Email">
-    
-                <div class="input-wrapper">
-                    <input class="form-input" type="password" name="password" placeholder="Password">
-                    <button class="show-password"> </button>
-                </div>
-    
-                <div class="input-wrapper">
-                    <input class="form-input form-input_confirm-password" type="password" name="password" placeholder="Confirm Password">
-                    <button class="show-password"> </button>
-                </div>
-               
-                <button class="submit" type="submit">Sign Up</button>
-            </form>
-        </main>
-        
-        <footer class="enter-panel__footer">
-            Already have an account? <a class="link enter-panel__footer-link" href="#!">Sign in</a>
-        </footer>
 
-    </section>
+<body class="start-page">
+    <main class="enter-panel enter-panel_sign-up">
+
+        <h1 class="title">Sign Up</h1>
+
+        <form class="form">
+
+            <div class="form__input-wrapper">
+                <div class="form__icon-wrapper">
+                    <img src="img/svg/user.svg" alt="first name" class="icon">
+                </div>
+                <input class="form__input" type="text" name="fname" placeholder="First Name">
+            </div>
+
+            <div class="form__input-wrapper">
+                <div class="form__icon-wrapper">
+                    <img src="img/svg/user.svg" alt="last name" class="icon">
+                </div>
+                <input class="form__input" type="text" name="lname" placeholder="Last Name">
+            </div>
+
+            <div class="form__input-wrapper">
+                <div class="form__icon-wrapper">
+                    <img src="img/svg/email.svg" alt="email" class="icon">
+                </div>
+                <input class="form__input" type="email" name="email" placeholder="Email">
+            </div>
+
+            <div class="form__input-wrapper">
+                <div class="form__icon-wrapper">
+                    <img src="img/svg/lock.svg" alt="password" class="icon">
+                </div>
+                <input class="form__input" type="password" name="password" placeholder="Password">
+                <button class="form__show-password">
+                    <img src="img/svg/eye-crossed-out.svg" alt="password" class="icon">
+                </button>
+            </div>
+
+            <div class="form__input-wrapper">
+                <div class="form__icon-wrapper">
+                    <img src="img/svg/check.svg" alt="confirm password" class="icon">
+                </div>
+                <input class="form__input form__input_confirm-password" type="password" name="password"
+                    placeholder="Confirm Password">
+                    <button class="form__show-password">
+                        <img src="img/svg/eye-crossed-out.svg" alt="password" class="icon">
+                    </button>
+            </div>
+
+            <button class="submit" type="submit">
+                <div>Sign Up</div>                
+                <div class="sibmit__icon-wrapper">
+                    <img src="img/svg/angle-right-b.svg" alt="arrow" class="icon">
+                </div>
+            </button>
+
+        </form>
+    
+        <section class="footer">
+            Already have an account? <a class="link footer__link" href="#!">Sign in</a>
+        </section>
+
+    </main>
 </body>
+
 </html>

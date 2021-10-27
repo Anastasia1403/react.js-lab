@@ -10,35 +10,46 @@
 </head>
 
 <body class="start-page">
-    <section class="enter-panel">
+    <main class="enter-panel">
 
-        <header class="header">
-            <h1 class="header__title">Sign In</h1>
-        </header>
+        <h1 class="title">Sign In</h1>
+        <form class="form">
 
-        <main class="main">
-            <form class="form">
-                <div class="input-wrapper input-wrapper_error">
-                    <input class="form-input" type="email" name="email" placeholder="Email">
-                    <div class="error-message">Email not found. Please check the spelling</div>
+            <div class="form__input-wrapper form__input-wrapper_error">
+                <div class="form__icon-wrapper">
+                    <img src="img/svg/email.svg" alt="email" class="icon">
                 </div>
+                <input class="form__input" type="email" name="email" placeholder="Email">
+                <div class="error-message">Email not found. Please check the spelling</div>
+            </div>
 
-                <div class=" input-wrapper input-wrapper_error">
-                    <input class="form-input" type="password" name="password" placeholder="Password">
-                    <button class="show-password"> </button>
-                    <div class="error-message">Password contain unsupported characters</div>
+            <div class="form__input-wrapper form__input-wrapper_error">
+                <div class="form__icon-wrapper">
+                    <img src="img/svg/lock.svg" alt="password" class="form__input-icon">
                 </div>
+                <input class="form__input" type="password" name="password" placeholder="Password">
+                <button class="form__show-password">
+                    <img src="img/svg/eye-crossed-out.svg" alt="password" class="icon">
+                </button>
+                <div class="error-message">Password contain unsupported characters</div>
+            </div>
 
-                <button class="submit" type="submit">Sign In</button>
-            </form>
-            <a class="link forgot-password" href="#!">Forgot Password?</a>
-        </main>
-        
-        <footer class="enter-panel__footer">
-            Don’t have an account? <a class="link enter-panel__footer-link" href="#!">Sign up</a>
-        </footer>
+            <button class="submit" type="submit">
+                <div>Sign Up</div>
+                <div class="sibmit__icon-wrapper">
+                    <img src="img/svg/angle-right-b.svg" alt="arrow" class="icon">
+                </div>
+            </button>
 
-    </section>
+        </form>
+
+        <a class="link" href="#!">Forgot Password?</a>
+
+        <section class="footer">
+            Don’t have an account? <a class="link footer__link" href="#!">Sign up</a>
+        </section>
+
+    </main>
 </body>
 
 </html>
