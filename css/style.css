@@ -117,6 +117,18 @@
 
 }
 
+.form__input_valid {
+    border: 1px solid green;
+}
+
+.form__input_invalid {
+    border: 1px solid red;
+}
+.error-mes {
+    font-size: 13px;
+    color: red;
+}
+
 .submit {
     position: relative;
     display: -webkit-box;
@@ -140,6 +152,7 @@
     transition: .2s;
     font-size: var(--font-size);
 }
+
 
 
 .submit__icon-wrapper {   

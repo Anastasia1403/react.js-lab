@@ -1,6 +1,7 @@
 class Model {
   constructor() {
     this.getData();
+    this.patients = {};
   }
 
   getData = (data) => {
@@ -35,7 +36,7 @@ class View {
     this._deletedPatient;
     this._editedText;
 
-    this.createSettingsWindow();
+    this.settingsDropdown();
     this._initLocalListeners();
   }
   settingButtonListener = () => {
@@ -48,9 +49,9 @@ class View {
     }
   };
 
-  createSettingsWindow = () => {
+  settingsDropdown = () => {
     this.windowSettings = this.createElement("div", "patient-card__settings");
-    this.windowSettings.classList.add("window-close");
+    this.windowSettings.classList.add("hidden");
     this.windowSettings.innerHTML = `<button class="patient-card__settings-button edit">Edit a resolution</button> 
         <button class="patient-card__settings-button">Edit an appontment</button> 
         <button class="patient-card__settings-button delete">Delete</button>`;
@@ -59,11 +60,11 @@ class View {
   };
 
   togglerSettingsWindow = (id) => {
-    if (this.windowSettings.classList.contains("window-close")) {
+    if (this.windowSettings.classList.contains("hidden")) {
       document.getElementById(id).append(this.windowSettings);
     }
 
-    this.windowSettings.classList.toggle("window-close");
+    this.windowSettings.classList.toggle("hidden");
   };
 
   _initLocalListeners() {
@@ -138,16 +139,17 @@ class View {
         const patientCard = this.createElement("li", "patient-card");
         patientCard.id = patients[patient].id;
         let status;
-        let indicatorColor;
+        let indicatorColorClass;
         if (patients[patient].appointmentStatus === "confirm") {
           status = "Appointment is confirmed";
-          indicatorColor = "#34C197";
+          indicatorColorClass = "patient-card__status-indicator_confirmed";
         } else if (patients[patient].appointmentStatus === "waiting") {
           status = "Waiting for confirmation... ";
-          indicatorColor = "#7297FF";
+          indicatorColorClass = 'patient-card__status-indicator_waiting';
         } else if (patients[patient].appointmentStatus === "canceled") {
           status = "Appointment is canceled";
-          indicatorColor = "#FF2567";
+          indicatorColorClass = 'patient-card__status-indicator_cancelled';
+
 
         }
         patientCard.innerHTML = `<header class="patient-card__header">
@@ -157,7 +159,7 @@ class View {
           <div class="patient-card__headline">
               <h3 class="patient-card__name">${patients[patient].firstName} ${patients[patient].lastName}</h3>
               <div class="patient-card__status"> 
-              <div class="patient-card__status-indicator" style="background-color: ${indicatorColor}"> </div>
+              <div class="patient-card__status-indicator ${indicatorColorClass}"> </div>
               <div class="patient-card__status-text">${status}</div></div>
               
           </div>

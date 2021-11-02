@@ -5,14 +5,20 @@
 :root {
     --solid-grey: #DCE0EC; 
     --medium-grey: #A1ABC9;
+    --light-grey: #E4EBFF;
+    --almost-white: #F9FAFF;
+    --red: #FF2567;
+    --green: #34C197;
+    --blue: #7297FF;
+    --white: #FFF;
 }
 
 .editable {
-    background: #F9FAFF;
-    border: 1px solid #989ead;
+    background: var(--solid-grey);
+    border: 1px solid var(--medium-grey);
 }
 body {
-    background-color: #E4EBFF;
+    background-color: var(--light-grey);
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
@@ -56,14 +62,14 @@ body {
     width: 11px;
     height: 11px;
 border-radius: 50%;
-background-color: #34C197;
-border: 3px solid #E4EBFF
+background-color: var(--green);
+border: 3px solid var(--light-grey)
 }
 
 
 .main {
     border-radius: 16px 16px 0px 0px;
-    background-color: #F9FAFF;
+    background-color: var(--almost-white);
     padding: 40px 24px 0;
     height: calc(100% - 72px);
 }
@@ -78,13 +84,13 @@ border: 3px solid #E4EBFF
     padding: 12px 5px;
     border-radius: 8px;
     width: 120px;
-    background-color: #fff;
-    color: #7297FF;
+    background-color: var(--almost-white);
+    color: var(--blue);
 }
 
 .button-display_active {
-    color: #fff;
-    background-color: #7297FF;
+    color: var(--white);
+    background-color:var(--blue);
 
 }
 
@@ -147,7 +153,7 @@ border: 3px solid #E4EBFF
 .patient-card {
     position: relative;
     border-radius: 12px;
-    background-color: #fff;
+    background-color: var(--white);
     padding: 16px 40px 24px;
     min-width: 270px;
     justify-self: start;
@@ -190,7 +196,18 @@ border: 3px solid #E4EBFF
     width: 8px;
     height: 8px;
     border-radius: 50%;
+}
 
+.patient-card__status-indicator_confirmed {
+    background-color: var(--green);
+}
+
+.patient-card__status-indicator_waiting {
+    background-color: var(--blue);
+}
+
+.patient-card__status-indicator_cancelled {
+    background-color: var(--red);
 }
 
 .patient-card__edit {
@@ -223,7 +240,7 @@ border: 3px solid #E4EBFF
     position: absolute;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
-    background-color: #fff;
+    background-color: var(--white);
     height: 128px;
     width: 272px;
     top: 72px;
@@ -233,7 +250,7 @@ border: 3px solid #E4EBFF
     padding: 4px;
 }
 
-.window-close {
+.hidden {
     display: none
 }
 
@@ -246,11 +263,11 @@ text-align: start;
 }
 
 .patient-card__settings-button.delete {
-    color: #FF2567;
+    color: var(--red);
 }
 
 .patient-card__settings-button:hover, .patient-card__settings-button:active, .patient-card__settings-button:focus {
-    background: #F9FAFF;
+    background: var(--almost-white);
 }
 
 /* media queries */

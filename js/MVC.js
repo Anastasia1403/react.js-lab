@@ -1,108 +1,44 @@
 class Model {
-  constructor() {}
+  constructor() {
+    this.registeredUser = {};
+    this.savedUser = {}
+  }
+
+  signUp = (inputs) => {
+    let userData = {};
+    for (let input of inputs) {
+     userData[input.name] = input.value;
+    }
+    localStorage.setItem(userData.email, JSON.stringify(userData))
+    console.log( userData)
+console.log('Your registration is completed successfully!')
+  }
+    
+  signIn = (inputs) => {
+  
+    let login;
+    let confirmToEnter;
+    for (let input of inputs) {
+      if (input.name === "email") login = input.value
+    }
+    let userData =JSON.parse(localStorage.getItem(login));
+    if (!userData) {
+     console.log('You are not registered yet.') 
+    } else {
+      confirmToEnter = Object.values(inputs).every( input =>  { return userData[input.name] == input.value} );
+      confirmToEnter ? window.open('doctor-view.html') : console.log('Password is wrong. Please check the spelling')     
+    } 
+     
+  }
 }
 
 class View {
   constructor() {
     this.main = this.getElement(".enter-panel");
     this.routes = {
-      "sign-up" : `<h1 class="title">Sign Up</h1>
-
-      <form class="form">
-    
-          <div class="form__input-wrapper">
-              <img src="img/svg/user.svg" alt="first name" class="icon form__input-icon">
-              <input class="form__input" type="text" name="fname" placeholder="First Name">
-          </div>
-    
-          <div class="form__input-wrapper">
-              <img src="img/svg/user.svg" alt="last name" class="icon form__input-icon">
-              <input class="form__input" type="text" name="lname" placeholder="Last Name">
-          </div>
-    
-          <div class="form__input-wrapper">
-              <img src="img/svg/email.svg" alt="email" class="icon form__input-icon">
-              <input class="form__input" type="email" name="email" placeholder="Email">
-          </div>
-    
-          <div class="form__input-wrapper">
-              <img src="img/svg/lock.svg" alt="password" class="icon form__input-icon">
-              <input class="form__input" type="password" name="password" placeholder="Password">
-              <button class=" toggler-display-password show-password">
-                  <img src="img/svg/eye-crossed-out.svg" alt="password" class="icon">
-              </button>
-          </div>
-    
-          <div class="form__input-wrapper">
-              <img src="img/svg/check.svg" alt="confirm password" class="icon form__input-icon">
-              <input class="form__input form__input_confirm-password" type="password" name="password"
-                  placeholder="Confirm Password">
-                  <button class="toggler-display-password show-password">
-                      <img src="img/svg/eye-crossed-out.svg" alt="password" class="icon">
-                      
-                  </button>
-          </div>
-    
-          <button class="submit" type="submit">
-              <span>Sign Up</span>
-              <img src="img/svg/angle-right-b.svg" alt="arrow" class="icon">
-          </button>
-    
-      </form>
-    
-      <section class="footer">
-          Already have an account? <a class="link footer__link" href="sign-in">Sign in</a>
-      </section>  `,
-      "sign-in" : ` <h1 class="title">Sign In</h1>
-
-      <form class="form">
-    
-          <div class="form__input-wrapper">
-                  <img src="img/svg/email.svg" alt="email" class="icon form__input-icon">
-              <input class="form__input" type="email" name="email" placeholder="Email">
-          </div>
-    
-          <div class="form__input-wrapper">
-              <img src="img/svg/lock.svg" alt="password" class="icon form__input-icon">
-              <input class="form__input" type="password" name="password" placeholder="Password">
-              <button class="toggler-display-password show-password">
-                  <img src="img/svg/eye-crossed-out.svg" alt="password" class="icon">
-              </button>
-          </div>
-    
-          <button class="submit" type="submit">
-              <span>Sign In</span>
-              <img src="img/svg/angle-right-b.svg" alt="arrow" class="icon">
-          </button>
-    
-      </form>
-    
-      <a class="link" href="restore-password">Forgot Password?</a>
-    
-      <section class="footer">
-          Don’t have an account? <a class="link footer__link" href="sign-up">Sign up</a>
-      </section>`,
-      "restore-password" :  `<h1 class="title title_go-back">
-      <a class="link title__go-back-link" href="back">
-          <img src="img/svg/angle-left-b.svg" alt="go back" class="icon" >
-      </a>
-      <span>Restore Password</span>
-    </h1>
-    <form class="form">
-      <p class="form__note">Please use your email address, and we’ll send you the link to
-          reset your password
-      </p>
-          <div class="form__input-wrapper">
-              <img src="img/svg/email.svg" alt="email" class=" icon form__input-icon">
-              <input class="form__input" type="email" name="email" placeholder="Email">
-          </div>
-    
-      <button class="submit" type="submit">
-          <span>Send Reset Link</span>
-              <img src="img/svg/angle-right-b.svg" alt="arrow" class="icon">
-      </button>
-      
-    </form>`
+      "sign-up" : signUp,
+      "sign-in" : signIn,
+      "restore-password" :  restorePassword
     }
   }
 
@@ -117,26 +53,19 @@ class View {
   };
   displayFirstPage = () => {
 
-    let state = { page: "sign-in" };
+    let state = { page: "sign-up" };
   window.history.replaceState(state, "", state.page);
-this.displayPage(state.page);
-    this.findElements();
-    this.inputListeners();
-    this.goToListener();
-    this.togglerListener();
-    this.submitListener()
-    
-  };
-  displayPage = (href) => {
+  this.displayPage(state.page);
+      };
 
+  displayPage = () => {
     this.main.innerHTML = "";
     if (!window.history.state) return;  
     this.main.innerHTML = this.routes[window.history.state.page];
-    this.findElements();
-    this.inputListeners();
+     this.findElements();
+    this.inputSetup();
     this.goToListener();
     this.togglerListener();
-    this.submitListener()
   };
   findElements = () => {
     this.linksNode = document.querySelectorAll(".link");
@@ -145,16 +74,22 @@ this.displayPage(state.page);
     this.passwordInputsNode = document.querySelectorAll(`[name = 'password']`);
     this.form = document.querySelector(".form");
     this.togglersNode = document.querySelectorAll(".toggler-display-password");
-    this.submit.setAttribute("disabled", true);
   };
 
   //validating methods
 
   markInput = (input, valid) => {
-    if (valid) input.style = "border: 1px solid green;";
-    if (!valid) input.style = "border: 1px solid red;";
+    if (valid) {
+      input.classList.add('form__input_valid');
+      return true
+    }
+    if (!valid) {
+      input.classList.add('form__input_invalid');    
+      return false
+    }
   };
-  inputListeners = () => {
+
+  inputSetup = () => {
     for (let input of this.inputsNode) {
       input.setAttribute("required", true);
       if (input.name === "password" || input.name === "email") {
@@ -163,49 +98,39 @@ this.displayPage(state.page);
       if (input.name === "fname" || input.name === "lname") {
         input.setAttribute("minlength", "2");
       }
-      input.addEventListener("blur", (event) => {
-        this.validateInput(event);
-        this.checkValidityForm(this.form);
-      });
-
-      if (this.passwordInputsNode.length > 1) {
-        for (let passwordInput of this.passwordInputsNode) {
-          passwordInput.addEventListener("input", () =>
-            this.checkPasswordValidity(this.passwordInputsNode)
-          );
-        }
-      }
     }
-  };
-  validateInput = (event) => {
-    let input = event.target;
-    this.markInput(input, input.validity.valid);
-  };  
+  }
+
   checkPasswordValidity = (node) => {
-    if(node[0].value === node[1].value && node[0].value) {
-       this.markInput(node[1], true)
-        return true
-    } else if (node[1].value) {
-       this.markInput(node[1], false);
-       return false
+    if (document.querySelector('.error-mes')) document.querySelector('.error-mes').remove();
+    const [passwordStep1, passwordStep2] = node;
+    if(passwordStep1.value === passwordStep2.value && passwordStep1.value) {
+      return this.markInput(passwordStep2, true)
+    } else if (passwordStep2.value) {
+      const error = this.createElement("div", "error-mes");
+      error.innerHTML = 'Passwords are not equal. Please check the spelling'
+      passwordStep2.parentElement.append(error);
+       return this.markInput(passwordStep2, false);
+       
     }
    }
-  checkValidityForm = (form) => {
-    const inputs = form.querySelectorAll("input");
-    let res = true;
-    for (let input of inputs) {
-      if (!input.checkValidity()) {
-        res = false;
-        break;
-      }
-      if (input.name === "password" && this.passwordInputsNode.length > 1) {
-        res = this.checkPasswordValidity(this.passwordInputsNode);
-      }
+
+  checkValidityForm = () => {
+   
+    for (let input of this.inputsNode) {
+      this.removeValidateClasses(input)
     }
-    res ? (this.submit.disabled = false) : (this.submit.disabled = true);
-  };
+    let isFormValid;
 
-
+    isFormValid = Object.values(this.inputsNode).every(input => {
+      if (input === this.passwordInputsNode[1]) {
+        return this.checkPasswordValidity(this.passwordInputsNode)
+      }
+       return this.markInput(input, input.checkValidity()) 
+      })
+      return isFormValid;
+      }
+      
   //routing methods
 
   goToListener = () => {
@@ -215,6 +140,7 @@ this.displayPage(state.page);
       });
     }
   };
+
   goTo = (event) => {
     event.preventDefault();
     let state;
@@ -227,23 +153,44 @@ this.displayPage(state.page);
   }
   this.displayPage(state.page);
   };
+
   onPopStateListener = () => {    
   window.addEventListener('popstate', () => this.displayPage(window.history.state.page))
   }
 
 
   //submit methods
-  submitListener = () => {
+  bindSubmitListener = (handler1, handler2) => {
     
-this.submit.addEventListener("click", (event) => {    
-  this.submitForm(event)
+this.main.addEventListener("click", (event) => { 
+  if (event.target.classList.contains('submit-sign-up') || event.target.parentElement.classList.contains('submit-sign-up'))  {
+    event.preventDefault();
+    this.checkValidityForm() ? handler1(event) : this.resetFormListeners(event)   
+
+} else if (event.target.classList.contains('submit-sign-in') || event.target.parentElement.classList.contains('submit-sign-in'))  {
+  event.preventDefault();
+  
+  this.checkValidityForm() ? handler2(event) : this.resetFormListeners(event)
+  } else if (event.target.classList.contains('submit') || event.target.parentElement.classList.contains('submit')) {
+event.preventDefault();
+  }
 })
+}
+
+removeValidateClasses = (input) => {
+    input.classList.contains('form__input_valid') ? input.classList.remove('form__input_valid') : null;
+    input.classList.contains('form__input_invalid') ? input.classList.remove('form__input_invalid') : null;
+    
   }
 
-  submitForm = (event) => {
-  event.preventDefault();
-    console.log('submit');
-    window.open('doctor-view.html')
+  resetFormListeners = (event) => {
+
+    for (let input of this.inputsNode) {
+      input.addEventListener('change', () => {
+        this.removeValidateClasses(input)
+      }, true
+        )
+    }
   }
 
 //displaying password methods
@@ -279,7 +226,15 @@ class Controller {
     this.view = view;
     this.view.displayFirstPage();
     this.view.onPopStateListener();
+    this.view.bindSubmitListener(this.handleSignUp, this.handleSignIn)
   }
+
+  handleSignUp = () => {
+this.model.signUp(this.view.inputsNode)
+  }
+  handleSignIn = () => {
+        this.model.signIn(this.view.inputsNode)
+      }
 }
 
 const app = new Controller(new Model(), new View());
