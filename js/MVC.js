@@ -11,7 +11,8 @@ class Model {
     }
     localStorage.setItem(userData.email, JSON.stringify(userData))
     console.log( userData)
-console.log('Your registration is completed successfully!')
+console.log('Your registration is completed successfully!');
+alert('Your registration is completed successfully!')
   }
     
   signIn = (inputs) => {
@@ -19,15 +20,31 @@ console.log('Your registration is completed successfully!')
     let login;
     let confirmToEnter;
     for (let input of inputs) {
-      if (input.name === "email") login = input.value
+      if (input.name === "email") {
+        login = input.value
+      } 
     }
     let userData =JSON.parse(localStorage.getItem(login));
+    let errorMessage;
     if (!userData) {
-     console.log('You are not registered yet.') 
-    } else {
-      confirmToEnter = Object.values(inputs).every( input =>  { return userData[input.name] == input.value} );
-      confirmToEnter ? window.open('doctor-view.html') : console.log('Password is wrong. Please check the spelling')     
-    } 
+      errorMessage = 'You are not registered yet.'
+      return errorMessage
+    }
+    confirmToEnter = Object.values(inputs).every( input =>  { return userData[input.name] == input.value} );
+     if (confirmToEnter) {
+      // window.open('doctor-view.html')
+      const Doctor = new ControllerDoctor(new ModelDoctor(), new ViewDoctor());
+     } else {
+      errorMessage = 'Password is wrong. Please check the spelling'
+      return errorMessage
+     } 
+      // console.log('Password is wrong. Please check the spelling')
+    // if (userData) {
+    //   confirmToEnter = Object.values(inputs).every( input =>  { return userData[input.name] == input.value} );
+    //   confirmToEnter ? window.open('doctor-view.html') : console.log('Password is wrong. Please check the spelling')
+    // } else {
+    //   console.log('You are not registered yet.')
+    // } 
      
   }
 }
@@ -51,9 +68,9 @@ class View {
     if (className) element.classList.add(className);
     return element;
   };
-  displayFirstPage = () => {
+  changePage = (page) => {
 
-    let state = { page: "sign-up" };
+    let state = { page: page };
   window.history.replaceState(state, "", state.page);
   this.displayPage(state.page);
       };
@@ -70,7 +87,7 @@ class View {
   findElements = () => {
     this.linksNode = document.querySelectorAll(".link");
     this.inputsNode = document.querySelectorAll("input");
-    this.submit = document.querySelector(".submit");
+    // this.submit = document.querySelector(".submit");
     this.passwordInputsNode = document.querySelectorAll(`[name = 'password']`);
     this.form = document.querySelector(".form");
     this.togglersNode = document.querySelectorAll(".toggler-display-password");
@@ -79,14 +96,18 @@ class View {
   //validating methods
 
   markInput = (input, valid) => {
-    if (valid) {
-      input.classList.add('form__input_valid');
-      return true
-    }
-    if (!valid) {
-      input.classList.add('form__input_invalid');    
-      return false
-    }
+    // if (valid) {
+    //   input.classList.add('form__input_valid');
+    //   return true
+    // }
+    // if (!valid) {
+    //   input.classList.add('form__input_invalid');    
+    //   return false
+    // }
+    
+    const validationClass = valid ? 'form__input_valid' : 'form__input_invalid';
+  
+    input.classList.add(validationClass);
   };
 
   inputSetup = () => {
@@ -101,32 +122,40 @@ class View {
     }
   }
 
+  createErrorMessage = (text, parentElement) => {
+    const error = this.createElement("div", "error-message");
+    error.innerHTML = text;
+    parentElement.append(error);
+  }
+
   checkPasswordValidity = (node) => {
-    if (document.querySelector('.error-mes')) document.querySelector('.error-mes').remove();
+    // if (document.querySelector('.error-message')) document.querySelector('.error-message').remove();
     const [passwordStep1, passwordStep2] = node;
+    let isValid;
     if(passwordStep1.value === passwordStep2.value && passwordStep1.value) {
-      return this.markInput(passwordStep2, true)
+      this.markInput(passwordStep2, true)
+      isValid = true;
     } else if (passwordStep2.value) {
-      const error = this.createElement("div", "error-mes");
-      error.innerHTML = 'Passwords are not equal. Please check the spelling'
-      passwordStep2.parentElement.append(error);
-       return this.markInput(passwordStep2, false);
-       
+      const errorMessage = 'Passwords are not equal. Please check the spelling'
+      this.createErrorMessage(errorMessage, passwordStep2.parentElement);
+      this.markInput(passwordStep2, false);
+      isValid = false;
     }
+    return isValid
    }
 
   checkValidityForm = () => {
-   
+    if (document.querySelector('.error-message')) document.querySelector('.error-message').remove();
     for (let input of this.inputsNode) {
       this.removeValidateClasses(input)
     }
-    let isFormValid;
-
-    isFormValid = Object.values(this.inputsNode).every(input => {
+    const isFormValid = Object.values(this.inputsNode).every(input => {
       if (input === this.passwordInputsNode[1]) {
         return this.checkPasswordValidity(this.passwordInputsNode)
       }
-       return this.markInput(input, input.checkValidity()) 
+      const isValid = input.checkValidity();
+      this.markInput(input, isValid) 
+       return isValid
       })
       return isFormValid;
       }
@@ -163,23 +192,28 @@ class View {
   bindSubmitListener = (handler1, handler2) => {
     
 this.main.addEventListener("click", (event) => { 
-  if (event.target.classList.contains('submit-sign-up') || event.target.parentElement.classList.contains('submit-sign-up'))  {
-    event.preventDefault();
-    this.checkValidityForm() ? handler1(event) : this.resetFormListeners(event)   
+  const targetClass = event.target.classList;
+  const buttonClass = event.target.parentElement.classList;
 
-} else if (event.target.classList.contains('submit-sign-in') || event.target.parentElement.classList.contains('submit-sign-in'))  {
-  event.preventDefault();
+  if (!(targetClass.contains('submit') || buttonClass.contains('submit'))) return;
+    event.preventDefault();
+    const isFormValid = this.checkValidityForm();
+    this.resetFormListeners(event);
+    let handler;
   
-  this.checkValidityForm() ? handler2(event) : this.resetFormListeners(event)
-  } else if (event.target.classList.contains('submit') || event.target.parentElement.classList.contains('submit')) {
-event.preventDefault();
+  if (targetClass.contains('submit-sign-up') || buttonClass.contains('submit-sign-up'))  {    
+    handler =  handler1;
+    }
+  if (targetClass.contains('submit-sign-in') || buttonClass.contains('submit-sign-in'))  {
+    handler =  handler2;
   }
+  isFormValid ? handler(event) : null;
 })
 }
 
 removeValidateClasses = (input) => {
-    input.classList.contains('form__input_valid') ? input.classList.remove('form__input_valid') : null;
-    input.classList.contains('form__input_invalid') ? input.classList.remove('form__input_invalid') : null;
+    input.classList.contains('form__input_valid') && input.classList.remove('form__input_valid');
+    input.classList.contains('form__input_invalid') && input.classList.remove('form__input_invalid')
     
   }
 
@@ -224,16 +258,24 @@ class Controller {
   constructor(model, view) {
     this.model = model;
     this.view = view;
-    this.view.displayFirstPage();
+    this.view.changePage("sign-up");
     this.view.onPopStateListener();
     this.view.bindSubmitListener(this.handleSignUp, this.handleSignIn)
   }
 
   handleSignUp = () => {
-this.model.signUp(this.view.inputsNode)
+this.model.signUp(this.view.inputsNode);
+this.view.changePage("sign-in");
+
   }
   handleSignIn = () => {
-        this.model.signIn(this.view.inputsNode)
+        const errorMessage = this.model.signIn(this.view.inputsNode);
+         if (errorMessage) {
+           const passwordInput = this.view.passwordInputsNode[0]
+          this.view.createErrorMessage(errorMessage, passwordInput.parentElement);
+          this.view.markInput(passwordInput, false);
+         }
+        
       }
 }
 

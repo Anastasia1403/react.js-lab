@@ -124,10 +124,6 @@
 .form__input_invalid {
     border: 1px solid red;
 }
-.error-mes {
-    font-size: 13px;
-    color: red;
-}
 
 .submit {
     position: relative;
@@ -198,6 +194,7 @@
 .link {
     color: var(--blue);
     font-weight: 500;
+    width: fit-content;
 }
 .toggler-display-password {
     background: transparent;
@@ -207,9 +204,7 @@
     right: 16px;
     top: var(--input-gap);
 }
-/* .form__show-password {
-    
-} */
+
 
 
 /* sign in */
@@ -248,7 +243,7 @@
     }
     .start-page {
         background-size: auto;
-        padding-top: 0;
+        padding: 0;
     }
     .enter-panel {        
         width: 560px;       

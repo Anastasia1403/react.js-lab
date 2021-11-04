@@ -1,4 +1,4 @@
-class Model {
+class ModelDoctor {
   constructor() {
     this.getData();
     this.patients = {};
@@ -29,9 +29,13 @@ class Model {
   }
 }
 
-class View {
+class ViewDoctor {
   constructor() {
     this.main = this.getElement(".my-patients");
+    this.body = this.getElement("body");
+    this.createDoctorPage();
+    
+
 
     this._deletedPatient;
     this._editedText;
@@ -48,6 +52,12 @@ class View {
       });
     }
   };
+  createDoctorPage = () => {
+    this.body.classList.remove('start-page');
+    this.body.classList.add('doctor-page');
+    this.body.innerHTML = doctorPage;
+    this.main = this.getElement(".my-patients");
+  }
 
   settingsDropdown = () => {
     this.windowSettings = this.createElement("div", "patient-card__settings");
@@ -186,7 +196,7 @@ class View {
   };
 }
 
-class Controller {
+class ControllerDoctor {
   constructor(model, view) {
     this.model = model;
     this.view = view;
@@ -305,4 +315,4 @@ class Controller {
   };
 }
 
-const app = new Controller(new Model(), new View());
+// const Doctor;

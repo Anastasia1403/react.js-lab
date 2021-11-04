@@ -17,7 +17,7 @@
     background: var(--solid-grey);
     border: 1px solid var(--medium-grey);
 }
-body {
+.doctor-page {
     background-color: var(--light-grey);
     font-family: 'Poppins';
     font-style: normal;
@@ -275,7 +275,7 @@ text-align: start;
 @media screen and (min-width: 600px) {
     
 
-    body {
+    .doctor-page {
         padding: 0 64px 48px;
     }
 
