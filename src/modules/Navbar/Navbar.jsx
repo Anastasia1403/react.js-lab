@@ -20,9 +20,11 @@ const NavButton = styled.button`
   color: ${(props) => props.textColor};
 `;
 
-function Navbar(props) {
   const white = "#FFF";
   const blue = "#7297FF";
+
+function Navbar() {
+  
   return (
     <StyledNavbar>
       <NavButton textColor={white} bgColor={blue}>

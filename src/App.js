@@ -1,8 +1,8 @@
 // import "./App.css";
 import { Route } from "react-router-dom";
 import { useEffect } from "react";
-import SignIn from "./pages/SignIn/SignIn";
 import SignUp from "./pages/SignUp/SignUp";
+import SignIn from "./pages/SignIn/SignIn";
 import RestorePassword from "./pages/RestorePassword/RestorePassword";
 import DoctorView from "./pages/DoctorView/DoctorView";
 
@@ -10,7 +10,7 @@ import DoctorView from "./pages/DoctorView/DoctorView";
 function App() {
   useEffect(() => {
         if (document.location.pathname === "/") {
-      document.location.pathname = "/sign-in";
+      document.location.pathname = "/sign-up";
     }
   }, []);
 

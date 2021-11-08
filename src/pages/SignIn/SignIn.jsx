@@ -1,28 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import StyledLink from "../../components/StyledLink/StyledLink";
 import Title from "../../components/Title/Title";
 import BottomSection from "../../modules/BottomSection/BottomSection";
 import FormikSignIn from "../../modules/FormikSignIn/FormikSignIn";
 import { EnterPanel, StartPage } from "../../modules/StartPage/StartPage";
 
-
 const SignIn = (props) => {
-  
   return (
     <StartPage>
       <EnterPanel>
-        <Title>Sign In</Title>
-        <FormikSignIn history={props.history}/>
+        <Title> Sign In</Title>
+        <FormikSignIn history={props.history} />
 
-        <Link to="/restore-password">
+        <StyledLink to="/restore-password">
           Forgot Password?
-        </Link>
+        </StyledLink>
 
         <BottomSection>
-          Don’t have an account?
-          <Link to="/sign-up">
-            Sign up
-          </Link>
+          Already have an account? <StyledLink to="/sign-up">Sign up</StyledLink>
         </BottomSection>
       </EnterPanel>
     </StartPage>
