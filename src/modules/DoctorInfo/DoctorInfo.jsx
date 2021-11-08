@@ -42,16 +42,16 @@ const AvatarWrap = styled.div`
   }
 `;
 
-function DoctorInfo(props) {
+function DoctorInfo() {
   return (
     <Doctor>
       <Info>
         <Name>Miranda Nelson</Name>
-        <Prof class="doctor__prof">Doctor</Prof>
+        <Prof>Doctor</Prof>
       </Info>
 
       <AvatarWrap>
-        <img class=" avatar doctor__avatar" src={avatar} alt="doctor" />
+        <img src={avatar} alt="doctor" />
       </AvatarWrap>
     </Doctor>
   );

@@ -42,10 +42,9 @@ const RestorePassword = (props) => {
       <EnterPanel>
         <Title>
           <BackButton
-            className="link title__go-back-link"
             onClick={() => props.history.goBack()}
           >
-            <img src={arrow} alt="go back" className="icon" />
+            <img src={arrow} alt="go back"/>
           </BackButton>
           Restore Password
         </Title>

@@ -18,24 +18,24 @@ function PatientCard(props) {
   return (
     <StyledPatientCard>
       <PatientHeader>
-        <AvatarWrap class="avatar-wrapper">
+        <AvatarWrap>
           <img src={props.patient.imageUrl} alt="avatar" />
         </AvatarWrap>
-        <PatientHeadline class="patient-card__headline">
-          <h3 class="patient-card__name">
+        <PatientHeadline>
+          <h3>
             {props.patient.firstName} {props.patient.lastName}
           </h3>
-          <Status class="patient-card__status">
+          <Status>
             <StatusIndicator
               appointmentStatus={props.patient.appointmentStatus}
             >
               {" "}
             </StatusIndicator>
-            <StatusText class="patient-card__status-text">{status}</StatusText>
+            <StatusText>{status}</StatusText>
           </Status>
         </PatientHeadline>
         <EditButton>
-          <img class="icon" src={edit} alt="" />
+          <img src={edit} alt="" />
         </EditButton>
       </PatientHeader>
 
@@ -46,7 +46,7 @@ function PatientCard(props) {
         </PatientInfoItem>
         <PatientInfoItem>
           <img src={resolution} alt="resolution" />
-          <div class="patient-card__resolution">{props.patient.resolution}</div>
+          <div>{props.patient.resolution}</div>
         </PatientInfoItem>
       </PatientInfo>
     </StyledPatientCard>

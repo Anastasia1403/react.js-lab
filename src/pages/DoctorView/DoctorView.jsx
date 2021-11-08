@@ -14,6 +14,7 @@ const StyledDoctorView = styled.div`
   line-height: 1.6;
   font-size: 15px;
   max-height: 100%;
+  min-width: 380px;
 
   @media screen and (min-width: 600px) {
     padding: 0 64px 48px;
@@ -39,7 +40,7 @@ const DoctorMain = styled.main`
 
   @media screen and (min-width: 600px) {
     border-radius: 16px;
-    padding: 40px 60px 0;
+    padding: 40px 16px 0 48px;
     height: calc(100vh - 72px - 48px);
   }
 `;
@@ -49,7 +50,7 @@ function DoctorView() {
     <StyledDoctorView>
 
       <MainHeader>
-        <a href="#!" class="logo">
+        <a href="#!">
           <img src={logo} alt="palm clinic logo"/>
         </a>
         <DoctorInfo />

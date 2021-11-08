@@ -24,8 +24,8 @@ function DisplayPasswordToggler(props) {
     props.togglerPassword();
   };
   return (
-    <StyledToggler onClick={toggler} className="toggler-display-password">
-      <img src={icon} alt={props.name} className="icon" />
+    <StyledToggler onClick={toggler}>
+      <img src={icon} alt={props.name}/>
     </StyledToggler>
   );
 }

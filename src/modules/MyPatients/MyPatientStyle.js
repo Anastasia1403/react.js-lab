@@ -23,6 +23,8 @@ export const PatientsList = styled.ul`
   height: calc(100% - 45px);
   overflow-y: auto;
   align-content: start;
+  padding-right: 12px;
+
 
   &::-webkit-scrollbar {
     width: 12px;
@@ -37,12 +39,12 @@ export const PatientsList = styled.ul`
 
   @media screen and (min-width: 600px) {
     margin-top: 32px;
+    padding-right: 32px;
   }
 
   @media screen and (min-width: 1000px) {
     grid-template-columns: 1fr 1fr;
     column-gap: 20px;
-    margin-top: 32px;
   }
 
   @media screen and (min-width: 1300px) {

@@ -30,9 +30,9 @@ const StyledButton = styled.button`
 
 function ButtonSubmit(props) {
   return (
-    <StyledButton className="submit">
+    <StyledButton>
       <span>{props.text}</span>
-      <img src={arrow} alt="arrow" className="icon" />
+      <img src={arrow} alt="arrow"/>
     </StyledButton>
   );
 }
