@@ -2,6 +2,7 @@ import React from "react";
 import { useFormik } from "formik";
 import Form from "../../components/Form/Form";
 import Input from "../../components/Input/Input";
+import arrow from "./img/angle-right-b.svg";
 import ButtonSubmit from "../../components/ButtonSubmit/ButtonSubmit";
 
 function FormikSignUp(props) {
@@ -107,7 +108,10 @@ function FormikSignUp(props) {
         error={formik.errors.confirmPassword}
       />
 
-      <ButtonSubmit text="Sign In" type="submit" />
+      <ButtonSubmit type="submit" margin="8px 0 32px">
+      <span>Sign In</span>
+      <img src={arrow} alt="arrow"/> 
+      </ButtonSubmit>
     </Form>
   );
 }

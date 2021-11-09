@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
-export const StyledPatientCard = styled.li`
+export const StyledCard = styled.li`
   position: relative;
   list-style: none;
   border-radius: 12px;
@@ -22,7 +22,7 @@ export const AvatarWrap = styled.div`
   height: 40px;
   `
 
-export const PatientHeader = styled.header`
+export const CardHeader = styled.header`
   display: flex;
   position: relative;
   padding-bottom: 16px;
@@ -48,31 +48,19 @@ export const EditButton = styled.button`
     background: transparent;
 `
 
-export const PatientHeadline = styled.div`
+export const Headline = styled.div`
 flex-grow: 1;
 `
-export const Status = styled.div` 
+export const Subtitle = styled.div` 
     display: flex;
     gap: 8px;
     align-items: center;
+    color: #a1abc9;
+font-size: 13px;
 `
 
-export const StatusText = styled.div`
-    color: #A1ABC9;
-    font-size: 13px;
-`
 
-export const StatusIndicator = styled.div`
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: ${props => {if(props.appointmentStatus === "confirm") return '#34C197';
-    if(props.appointmentStatus === "waiting") return '#7297FF';
-    if(props.appointmentStatus === "canceled") return '#FF2567'}
-    };
-    `
-
-export const PatientInfo = styled.div`
+export const Info = styled.div`
     padding-top: 16px;
     display: flex;
     flex-direction: column;
@@ -80,7 +68,7 @@ export const PatientInfo = styled.div`
 `
 
 
-export const PatientInfoItem = styled.div`
+export const InfoItem = styled.div`
     display: flex;
     gap: 16px;
     align-items: flex-start;

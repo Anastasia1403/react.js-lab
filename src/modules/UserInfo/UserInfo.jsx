@@ -1,8 +1,7 @@
 import React from "react";
-import avatar from "./img/avatar.png";
 import styled from "styled-components";
 
-const Doctor = styled.div`
+const User = styled.div`
   display: flex;
   gap: 16px;
 `;
@@ -20,7 +19,7 @@ const Info = styled.div`
 const Name = styled.div`
   font-weight: 600;
 `;
-const Prof = styled.div`
+const Role = styled.div`
   font-size: 13px;
   color: #a1abc9;
 `;
@@ -42,19 +41,19 @@ const AvatarWrap = styled.div`
   }
 `;
 
-function DoctorInfo() {
+function UserInfo({name, role, avatar}) {
   return (
-    <Doctor>
+    <User>
       <Info>
-        <Name>Miranda Nelson</Name>
-        <Prof>Doctor</Prof>
+        <Name>{name}</Name>
+        <Role>{role}</Role>
       </Info>
 
       <AvatarWrap>
         <img src={avatar} alt="doctor" />
       </AvatarWrap>
-    </Doctor>
+    </User>
   );
 }
 
-export default DoctorInfo;
+export default UserInfo;
