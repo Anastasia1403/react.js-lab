@@ -3,13 +3,12 @@ import styled from "styled-components";
 import logo from "./img/palm-clinic-logo.png";
 import Navbar from "../../modules/Navbar/Navbar";
 import NavButton from "../../modules/NavButton/NavButton";
-import patients from "./patients";
+import appointments from "./appointments";
 import UserInfo from "../../modules/UserInfo/UserInfo";
 import avatar from "./img/avatar.png";
 import TabSection from "../../modules/TabSection/TabSection";
 import { MainHeader } from "../../modules/MainHeader/MainHeader";
 import { UserMain } from "../../modules/UserMain/UserMain";
-
 
 
 const StyledUserView = styled.div`
@@ -29,10 +28,9 @@ const StyledUserView = styled.div`
 
 
 
-function DoctorView() {
+function UserView() {
 
-  const [patientsList, setPatients] = useState(patients)
-
+  const [appoitmentsList, setAppoitments] = useState(appointments)
 
   return (
     <StyledUserView>
@@ -40,24 +38,27 @@ function DoctorView() {
         <a href="#!">
           <img src={logo} alt="palm clinic logo" />
         </a>
-        <UserInfo name="Miranda Nelson" role="Doctor" avatar={avatar} />
+        <UserInfo name="Larry Prinston" role="Patient" avatar={avatar} />
+
       </MainHeader>
 
       <UserMain>
         <Navbar>
+          <NavButton>
+            Profile
+          </NavButton>
           <NavButton active>
-            Patients
+            Appointments
           </NavButton>
           <NavButton>
             Resolutions
           </NavButton>
         </Navbar>
 
-        <TabSection title="My patients" dataList={patientsList} content="patients" setPatients={setPatients}/>
-
+        <TabSection title="My Appountments" dataList={appoitmentsList} content="appointments" setAppointments={setAppoitments}/>
       </UserMain>
     </StyledUserView>
   );
 }
 
-export default DoctorView;
+export default UserView;

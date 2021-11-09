@@ -1,14 +1,13 @@
 import React from "react";
-import arrow from "./img/angle-right-b.svg";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
   position: relative;
   display: flex;
   align-items: center;
-  margin-bottom: 32px;
+  gap: 12px;
+  margin: ${props => props.margin ? props.margin : 0};
   width: fit-content;
-  margin-top: 8px;
   padding: 12px 16px;
   vertical-align: middle;
   border-radius: 8px;
@@ -26,13 +25,16 @@ const StyledButton = styled.button`
   @media screen and (min-width: 560px) {
     font-size: 17px;
   }
+
+  
 `;
+
+
 
 function ButtonSubmit(props) {
   return (
-    <StyledButton>
-      <span>{props.text}</span>
-      <img src={arrow} alt="arrow"/>
+    <StyledButton margin={props.margin}>
+      {props.children}
     </StyledButton>
   );
 }
