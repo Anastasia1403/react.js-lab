@@ -1,56 +1,65 @@
-import React, { useState } from "react";
-import DisplayPasswordToggler from "./DisplayPasswordToggler/DisplayPasswordToggler.jsx";
-import { inputSettings } from "./InputSettings.js";
+import React, { useState, useMemo } from 'react';
+import ShowPasswordIcon from './ShowPasswordIcon/ShowPasswordIcon';
 import {
   ErrorMessage,
-  Icon,
+  IconWrapper,
   StyledInput,
   StyledInputWrapper,
-} from "./InputStyle";
+} from './InputStyle';
+import inputSettings from './InputSettings';
 
+const Input = function ({
+  name, handleChange, handleBlur, value, error, touched,
+}) {
+  const [isPasswordVisible, setPasswordDisplay] = useState(false);
 
-function Input(props) {
-  const [passwordDisplay, setPasswordDisplay] = useState("false");
+  const isPasswordField = (name === 'password' || name === 'confirmPassword');
 
-  const togglerPassword = () => {
-    setPasswordDisplay(!passwordDisplay);
+  const type = useMemo(() => {
+    if (isPasswordField) {
+      return (isPasswordVisible ? 'text' : 'password');
+    }
+    if (name === 'email') return 'email';
+    return 'text';
+  }, [name, isPasswordVisible]);
+
+  const onToggle = () => {
+    setPasswordDisplay(!isPasswordVisible);
   };
 
-  let svg = inputSettings[props.name].img
-  let placeholder = inputSettings[props.name].placeholder;
+  const svg = inputSettings[name].img;
 
-  let type = "text";
-  if (props.name === "password" || props.name === "confirmPassword") {
-    type = passwordDisplay ? "password" : "text";
-  }
-  if (props.name === "email") type = "email";
+  const { placeholder } = inputSettings[name];
 
   return (
     <StyledInputWrapper>
-      <Icon src={svg} alt={props.name} />
+      <IconWrapper>
+        {svg}
+      </IconWrapper>
 
       <StyledInput
-        onChange={props.handleChange}
-        onBlur={props.handleBlur}
-        value={props.value}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={value}
         type={type}
-        name={props.name}
+        name={name}
         placeholder={placeholder}
-        error={props.error}
-        touched={props.touched}
+        error={error}
+        touched={touched}
       />
 
-      {props.name === "password" || props.name === "confirmPassword" ? (
-        <DisplayPasswordToggler
-          togglerPassword={togglerPassword}
-          passwordDisplay={passwordDisplay}
+      {(isPasswordField)
+        && (
+        <ShowPasswordIcon
+          onToggle={onToggle}
+          isPasswordVisible={isPasswordVisible}
         />
-      ) : null}
-      {props.touched && props.error ? (
-        <ErrorMessage>{props.error}</ErrorMessage>
-      ) : null}
+        )}
+      {(touched && error) && (
+        <ErrorMessage>{error}</ErrorMessage>
+      )}
     </StyledInputWrapper>
   );
-}
+};
 
 export default Input;

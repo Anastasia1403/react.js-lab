@@ -1,7 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-
-export const UserMain = styled.main`
+const UserMain = styled.main`
 border-radius: 16px 16px 0px 0px;
 background-color: #f9faff;
 padding: 40px 24px 0;
@@ -15,3 +14,5 @@ flex-direction: column;
   height: calc(100vh - 72px - 48px);
 }
 `;
+
+export default UserMain;

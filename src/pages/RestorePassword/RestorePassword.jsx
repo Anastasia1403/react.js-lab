@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import arrow from "./img/angle-left-b.svg";
-import FormikRestorePassword from "../../modules/FormikRestorePassword/FormikRestorePassword";
-import { EnterPanel, StartPage } from "../../modules/StartPage/StartPage";
-
-
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import RestorePasswordForm from '../../modules/RestorePasswordForm/RestorePasswordForm';
+import { EnterPanel, StartPage } from '../../modules/StartPage/StartPage';
+import { ReactComponent as BackArrowIcon } from './img/angle-left-b.svg';
 
 const BackButton = styled.button`
   background: transparent;
@@ -29,12 +27,12 @@ const Title = styled.h1`
     @media screen and (min-width: 560px) {
     margin-bottom: 32px;
   }
-  `
-const RestorePassword = (props) => {
-  const [email, setEmail] = useState("");
+  `;
+const RestorePassword = function ({ history }) {
+  const [email, setEmail] = useState('');
 
-  const resetPassword = (email) => {
-    setEmail(email);
+  const resetPassword = (emailAddress) => {
+    setEmail(emailAddress);
   };
 
   return (
@@ -42,16 +40,18 @@ const RestorePassword = (props) => {
       <EnterPanel>
         <Title>
           <BackButton
-            onClick={() => props.history.goBack()}
+            onClick={() => history.goBack()}
           >
-            <img src={arrow} alt="go back"/>
+            <BackArrowIcon alt="arrow" />
           </BackButton>
           Restore Password
         </Title>
 
         {email ? (
           <Text>
-            An email has been sent to <a href="#!">{email}</a>. Check your
+            An email has been sent to
+            <a href="#!">{email}</a>
+            . Check your
             inbox, and click the reset link provided.
           </Text>
         ) : (
@@ -60,7 +60,7 @@ const RestorePassword = (props) => {
               Please use your email address, and we’ll send you the link to
               reset your password
             </Text>
-            <FormikRestorePassword resetPassword={resetPassword} />
+            <RestorePasswordForm resetPassword={resetPassword} />
           </>
         )}
       </EnterPanel>

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const Navbar = styled.nav`
   display: flex;
@@ -10,6 +10,5 @@ const Navbar = styled.nav`
     gap: 12px;
   }
 `;
-
 
 export default Navbar;

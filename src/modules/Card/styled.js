@@ -1,5 +1,4 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 export const StyledCard = styled.li`
   position: relative;
@@ -20,7 +19,7 @@ export const AvatarWrap = styled.div`
   position: relative;
   width: 40px;
   height: 40px;
-  `
+  `;
 
 export const CardHeader = styled.header`
   display: flex;
@@ -46,34 +45,32 @@ export const CardHeader = styled.header`
 
 export const EditButton = styled.button`
     background: transparent;
-`
+`;
 
 export const Headline = styled.div`
 flex-grow: 1;
-`
+`;
 export const Subtitle = styled.div` 
     display: flex;
     gap: 8px;
     align-items: center;
     color: #a1abc9;
 font-size: 13px;
-`
-
+`;
 
 export const Info = styled.div`
     padding-top: 16px;
     display: flex;
     flex-direction: column;
     gap: 24px;
-`
-
+`;
 
 export const InfoItem = styled.div`
     display: flex;
     gap: 16px;
     align-items: flex-start;
-`
+`;
 
 export const Time = styled.div`
     font-weight: 600;
-`
+`;

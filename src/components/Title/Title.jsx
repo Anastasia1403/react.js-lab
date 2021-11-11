@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 const Title = styled.h1`
   max-width: 368px;
     font-size: 20px;
@@ -10,6 +9,5 @@ const Title = styled.h1`
     @media screen and (min-width: 560px) {
     margin-bottom: 40px;
   }
-  `
-
+  `;
 export default Title;

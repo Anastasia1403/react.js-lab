@@ -1,39 +1,20 @@
-import styled from "styled-components";
+import React, { useMemo } from 'react';
+import { StatusIndicator, StatusText } from './styled';
 
-export const StatusText = styled.div`
-  color: #a1abc9;
-  font-size: 13px;
-`;
-
-export const StatusIndicator = styled.div`
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: ${(props) => {
-    if (props.appointmentStatus === "confirm") return "#34C197";
-    if (props.appointmentStatus === "waiting") return "#7297FF";
-    if (props.appointmentStatus === "canceled") return "#FF2567";
-  }};
-`;
-
-function Status({ appointmentStatus }) {
-  let status;
-  if (appointmentStatus === "confirm") {
-    status = "Appointment is confirmed";
-  }
-  if (appointmentStatus === "waiting") {
-    status = "Waiting for confirmation... ";
-  }
-  if (appointmentStatus === "canceled") {
-    status = "Appointment is canceled";
-  }
+const Status = function ({ appointmentStatus }) {
+  const status = useMemo(() => {
+    if (appointmentStatus === 'canceled') return 'Appointment is canceled';
+    if (appointmentStatus === 'confirm') return 'Appointment is confirmed';
+    if (appointmentStatus === 'waiting') return 'Waiting for confirmation...';
+    return null;
+  }, [appointmentStatus]);
 
   return (
     <>
-      <StatusIndicator appointmentStatus={appointmentStatus}></StatusIndicator>
+      <StatusIndicator appointmentStatus={appointmentStatus} />
       <StatusText>{status}</StatusText>
     </>
   );
-}
+};
 
 export default Status;

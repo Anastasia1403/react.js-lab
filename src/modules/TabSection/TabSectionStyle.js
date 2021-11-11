@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import med from "./img/medical-history.svg";
+import styled from 'styled-components';
+import med from './img/medical-history.svg';
 
 export const StyledTabSection = styled.section`
   height: calc(100% - 84px);
@@ -70,4 +70,3 @@ export const ListEmpty = styled.div`
   padding-top: 37vh;
   text-align: center;
 `;
-

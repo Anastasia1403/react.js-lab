@@ -1,6 +1,5 @@
-import styled from "styled-components";
-
-import bg from "./img/bg.png";
+import styled from 'styled-components';
+import bg from './img/bg.png';
 
 export const StartPage = styled.div`
   background: url(${bg}) top left / contain no-repeat;

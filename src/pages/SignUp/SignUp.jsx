@@ -1,18 +1,16 @@
-import React from "react";
-import StyledLink from "../../components/StyledLink/StyledLink";
-import Title from "../../components/Title/Title";
-import BottomSection from "../../modules/BottomSection/BottomSection";
-import FormikSignUp from "../../modules/FormikSignUp/FormikSignUp";
-import { EnterPanel, StartPage } from "../../modules/StartPage/StartPage";
+import React from 'react';
+import StyledLink from '../../components/StyledLink/StyledLink';
+import Title from '../../components/Title/Title';
+import BottomSection from '../../modules/BottomSection/BottomSection';
+import SignUpForm from '../../modules/SignUpForm/SignUpForm';
+import { EnterPanel, StartPage } from '../../modules/StartPage/StartPage';
 
-
-const SignUp = (props) => {
-  
+const SignUp = function ({ history }) {
   return (
     <StartPage>
       <EnterPanel>
         <Title>Sign Up</Title>
-        <FormikSignUp history={props.history}/>
+        <SignUpForm history={history} />
 
         <StyledLink to="/restore-password">
           Forgot Password?
