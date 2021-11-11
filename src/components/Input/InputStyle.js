@@ -1,6 +1,4 @@
-import styled from "styled-components";
-
-
+import styled from 'styled-components';
 
 export const StyledInputWrapper = styled.div`
   position: relative;
@@ -8,9 +6,9 @@ export const StyledInputWrapper = styled.div`
 
 export const StyledInput = styled.input`
   height: 40px;
-  padding: ${props => (props.name==='password' || props.name==='confirmPassword') ? "8px 48px" : "8px 8px 8px 48px"};
+  padding: ${(props) => ((props.name === 'password' || props.name === 'confirmPassword') ? '8px 48px' : '8px 8px 8px 48px')};
   border-radius: 8px;
-  border: ${props => props.error && props.touched ? "1px solid #F6657F" : "1px solid #dce0ec"};
+  border: ${(props) => (props.error && props.touched ? '1px solid #F6657F' : '1px solid #dce0ec')};
   color: #202225;
   font-size: 15px;
   width: 100%;
@@ -21,12 +19,12 @@ export const StyledInput = styled.input`
   }
   @media screen and (min-width: 560px) {
     height: 56px;
-    padding: ${props => (props.name==='password' || props.name==='confirmPassword') ? "16px 64px" : "16px 16px 16px 64px"};
+    padding: ${(props) => ((props.name === 'password' || props.name === 'confirmPassword') ? '16px 64px' : '16px 16px 16px 64px')};
     font-size: 17px;
   }
 `;
 
-export const Icon = styled.img`
+export const IconWrapper = styled.div`
   position: absolute;
     top: 8px;
     left: 16px;
@@ -37,7 +35,7 @@ export const Icon = styled.img`
     
         top: 16px;
     }
-`
+`;
 
 export const ErrorMessage = styled.div`
   margin-top: 16px;
@@ -49,5 +47,4 @@ export const ErrorMessage = styled.div`
   margin-top: 8px;
 
   }
-  `
-
+  `;

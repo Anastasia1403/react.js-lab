@@ -1,9 +1,8 @@
-import React from "react";
-import edit from "./img/more-vertical.svg";
-import clock from "./img/clock-three.svg";
-import resolution from "./img/clipboard-blank.svg";
-import heart from "./img/heart.svg";
-
+import React from 'react';
+import { ReactComponent as HeartIcon } from './img/heart.svg';
+import { ReactComponent as EditIcon } from './img/more-vertical.svg';
+import { ReactComponent as ClockIcon } from './img/clock-three.svg';
+import { ReactComponent as ResolutionIcon } from './img/clipboard-blank.svg';
 import {
   AvatarWrap,
   CardHeader,
@@ -14,63 +13,62 @@ import {
   StyledCard,
   Subtitle,
   Time,
-} from "./CardStyles";
-import Status from "../Status/Status";
+} from './styled';
+import Status from '../Status/Status';
 
-function Card(props) {
- 
-   return (
+const Card = function ({ listItem, content }) {
+  return (
     <StyledCard>
       <CardHeader>
         <AvatarWrap>
-          <img src={props.listItem.imageUrl} alt="avatar" />
+          <img src={listItem.imageUrl} alt="avatar" />
         </AvatarWrap>
         <Headline>
           <h3>
-            {props.listItem.firstName} {props.listItem.lastName}
+            {listItem.firstName}
+            {listItem.lastName}
           </h3>
 
           <Subtitle>
-            {props.content === "appointments"
-              ? props.listItem.profession
-              : null}
+            {content === 'appointments'
+            && listItem.profession}
 
-            {props.content === "patients" ? (
-              <Status appointmentStatus={props.listItem.appointmentStatus}/>             
-            ) : null}
+            {content === 'patients'
+              && <Status appointmentStatus={listItem.appointmentStatus} />}
 
           </Subtitle>
         </Headline>
         <EditButton>
-          <img src={edit} alt="" />
+          <EditIcon alt="edit" />
         </EditButton>
       </CardHeader>
 
       <Info>
         <InfoItem>
-          <img src={clock} alt="clock" />
-          <Time>{props.listItem.appointmentDate}</Time>
+          <ClockIcon alt="clock" />
+          <Time>{listItem.appointmentDate}</Time>
         </InfoItem>
 
         <InfoItem>
-          {props.content === "appointments" ? (
+          {content === 'appointments'
+            && (
             <>
-              <img src={heart} alt="heart" />
-              <div>{props.listItem.appointmentReason}</div>
+              <HeartIcon alt="heart" />
+              <div>{listItem.appointmentReason}</div>
             </>
-          ) : null}
+            )}
 
-          {props.content === "patients" ? (
+          {content === 'patients' && (
             <>
-              <img src={resolution} alt="resolution" />
-              <div>{props.listItem.resolution}</div>{" "}
+              <ResolutionIcon alt="" />
+              <div>{listItem.resolution}</div>
             </>
-          ) : null}
+          )}
         </InfoItem>
 
       </Info>
     </StyledCard>
   );
-}
+};
 
 export default Card;

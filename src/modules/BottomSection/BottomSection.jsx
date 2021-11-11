@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const BottomSection = styled.section`
   position: absolute;
@@ -13,7 +13,6 @@ const BottomSection = styled.section`
     left: 96px;
   flex-direction: row;
   gap: 12px;
-
   }
 `;
 
