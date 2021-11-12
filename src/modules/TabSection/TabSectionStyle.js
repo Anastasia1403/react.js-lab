@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import med from './img/medical-history.svg';
+import { ReactComponent as SettingIcon } from './img/settings.svg';
 
 export const StyledTabSection = styled.section`
   height: calc(100% - 84px);
@@ -16,8 +17,6 @@ export const Title = styled.h1`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-
 `;
 
 export const List = styled.ul`
@@ -43,7 +42,6 @@ export const List = styled.ul`
   }
 
   @media screen and (min-width: 600px) {
-    /* margin-top: 32px; */
     padding-right: 32px;
   }
 
@@ -60,6 +58,12 @@ export const List = styled.ul`
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 `;
+
+export const StyledSettingIcon = styled(SettingIcon)`
+    display: block;
+  @media screen and (min-width: 900px) {
+    display: none;
+  }`;
 
 export const ListEmpty = styled.div`
   color: #a1abc9;

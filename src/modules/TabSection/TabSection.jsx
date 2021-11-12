@@ -1,21 +1,27 @@
 import React from 'react';
 import {
-  ListEmpty, List, StyledTabSection, Title,
+  ListEmpty, List, StyledTabSection, Title, StyledSettingIcon,
 } from './TabSectionStyle';
 import Card from '../Card/Card';
-import ButtonSubmit from '../../components/ButtonSubmit/ButtonSubmit';
+import { ButtonNew } from '../../components/ButtonSubmit/styled';
 import { ReactComponent as PlusIcon } from './img/plus.svg';
 
 const TabSection = function ({ title, content, dataList }) {
+  // console.log(title, content, dataList);
+  // // eslint-disable-next-line
+  // debugger;
   return (
     <StyledTabSection>
       <Title>
         {title}
-        {content === 'appointments' && (
-          <ButtonSubmit>
-            <PlusIcon alt="plus" />
-            <span>Create an appointment</span>
-          </ButtonSubmit>
+        {content === 'Appointments' && (
+          <div>
+            <ButtonNew>
+              <PlusIcon alt="plus" />
+              <span>Create an appointment</span>
+            </ButtonNew>
+            <StyledSettingIcon alt="settings" />
+          </div>
         )}
       </Title>
 

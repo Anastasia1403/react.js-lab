@@ -1,6 +1,10 @@
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import Navbar from '../Navbar/Navbar';
+import NavButton from '../NavButton/NavButton';
+import TabSection from '../TabSection/TabSection';
 
-const UserMain = styled.main`
+const StyledUserMain = styled.main`
 border-radius: 16px 16px 0px 0px;
 background-color: #f9faff;
 padding: 40px 24px 0;
@@ -14,5 +18,32 @@ flex-direction: column;
   height: calc(100vh - 72px - 48px);
 }
 `;
+const UserMain = function ({ tabsInfo, defaultTabActive }) {
+  const [tabActive, setTabActive] = useState(defaultTabActive);
+
+  const onChangeTabActive = (item) => {
+    setTabActive(item);
+  };
+
+  const infoTabActive = tabsInfo.find((item) => item.tab === tabActive);
+
+  return (
+    <StyledUserMain>
+      <Navbar>
+        {tabsInfo.map((item) => (
+          <NavButton onClick={() => onChangeTabActive(item.tab)} active={tabActive === item.tab}>
+            {item.tab}
+          </NavButton>
+        ))}
+      </Navbar>
+
+      <TabSection
+        title={infoTabActive.title}
+        dataList={infoTabActive.dataList}
+        content={infoTabActive.tab}
+      />
+    </StyledUserMain>
+  );
+};
 
 export default UserMain;

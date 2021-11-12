@@ -30,10 +30,10 @@ const Card = function ({ listItem, content }) {
           </h3>
 
           <Subtitle>
-            {content === 'appointments'
+            {content === 'Appointments'
             && listItem.profession}
 
-            {content === 'patients'
+            {content === 'Patients'
               && <Status appointmentStatus={listItem.appointmentStatus} />}
 
           </Subtitle>
@@ -50,7 +50,7 @@ const Card = function ({ listItem, content }) {
         </InfoItem>
 
         <InfoItem>
-          {content === 'appointments'
+          {content === 'Appointments'
             && (
             <>
               <HeartIcon alt="heart" />
@@ -58,7 +58,7 @@ const Card = function ({ listItem, content }) {
             </>
             )}
 
-          {content === 'patients' && (
+          {content === 'Patients' && (
             <>
               <ResolutionIcon alt="" />
               <div>{listItem.resolution}</div>

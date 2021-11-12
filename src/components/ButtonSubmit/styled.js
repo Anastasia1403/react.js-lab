@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const StyledButton = styled.button`
+export const sharedStyleButton = css`
   position: relative;
   display: flex;
   align-items: center;
@@ -24,6 +24,19 @@ const StyledButton = styled.button`
   @media screen and (min-width: 560px) {
     font-size: 17px;
   }  
+`;
+
+const StyledButton = styled.button`
+${sharedStyleButton}`;
+
+export const ButtonNew = styled.div`
+  ${sharedStyleButton}
+  display: none;
+  @media screen and (min-width: 900px) {
+  display: flex;
+    
+  }
+  /* some non-shared styles */
 `;
 
 export default StyledButton;
