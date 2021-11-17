@@ -7,6 +7,7 @@ export const sharedStyleButton = css`
   gap: 12px;
   margin: ${(props) => (props.margin ? props.margin : 0)};
   width: fit-content;
+  height: fit-content;
   padding: 12px 16px;
   vertical-align: middle;
   border-radius: 8px;
@@ -14,6 +15,7 @@ export const sharedStyleButton = css`
   color: #ffffff;
   transition: 0.2s;
   font-size: 15px;
+  
 
   &:hover,
   &:active,
@@ -29,14 +31,29 @@ export const sharedStyleButton = css`
 const StyledButton = styled.button`
 ${sharedStyleButton}`;
 
-export const ButtonNew = styled.div`
+export const ButtonNew = styled.button`
   ${sharedStyleButton}
   display: none;
   @media screen and (min-width: 900px) {
-  display: flex;
-    
+  display: flex;    
   }
-  /* some non-shared styles */
+`;
+
+export const GridButton = styled.button`
+  ${sharedStyleButton}
+  justify-self: end;
+  align-self: flex-end;
+  &:disabled {
+    background: #DCE0EC;
+  }
+  
+  @media screen and (min-width: 1500px) {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+  }
+
 `;
 
 export default StyledButton;

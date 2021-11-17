@@ -1,47 +1,35 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
-import NavButton from '../NavButton/NavButton';
 import TabSection from '../TabSection/TabSection';
+import StyledUserMain from './styled';
 
-const StyledUserMain = styled.main`
-border-radius: 16px 16px 0px 0px;
-background-color: #f9faff;
-padding: 40px 24px 0;
-height: calc(100vh - 72px);
-display: flex;
-flex-direction: column;
-
-@media screen and (min-width: 600px) {
-  border-radius: 16px;
-  padding: 40px 16px 0 48px;
-  height: calc(100vh - 72px - 48px);
-}
-`;
-const UserMain = function ({ tabsInfo, defaultTabActive }) {
-  const [tabActive, setTabActive] = useState(defaultTabActive);
-
-  const onChangeTabActive = (item) => {
-    setTabActive(item);
-  };
-
-  const infoTabActive = tabsInfo.find((item) => item.tab === tabActive);
-
+const UserMain = function ({
+  tabsInfo, dataList, activeTab, setActiveTab, defaultTab,
+}) {
   return (
     <StyledUserMain>
-      <Navbar>
-        {tabsInfo.map((item) => (
-          <NavButton onClick={() => onChangeTabActive(item.tab)} active={tabActive === item.tab}>
-            {item.tab}
-          </NavButton>
-        ))}
-      </Navbar>
 
-      <TabSection
-        title={infoTabActive.title}
-        dataList={infoTabActive.dataList}
-        content={infoTabActive.tab}
-      />
+      <Navbar tabsInfo={tabsInfo} activeTab={activeTab} setActiveTab={setActiveTab} />
+
+      <Switch>
+        <Route exact path="/user-view">
+          <Redirect to={`/user-view${defaultTab.path}`} />
+        </Route>
+
+        {tabsInfo.map((item) => (
+          <Route
+            path={`/user-view${item.path}`}
+            render={() => (
+              <TabSection
+                title={item.title}
+                content={item.tab}
+                dataList={dataList}
+              />
+            )}
+          />
+        ))}
+      </Switch>
     </StyledUserMain>
   );
 };

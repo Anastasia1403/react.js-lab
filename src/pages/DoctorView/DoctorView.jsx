@@ -1,6 +1,5 @@
 import React from 'react';
 import logo from './img/palm-clinic-logo.png';
-
 import patients from './patients';
 import UserInfo from '../../modules/UserInfo/UserInfo';
 import avatar from './img/avatar.png';

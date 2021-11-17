@@ -23,7 +23,7 @@ const SignInForm = function ({ history }) {
         alert('wrong password');
         return;
       }
-      history.push('/doctor-view');
+      history.push('/user-view');
     },
   });
 

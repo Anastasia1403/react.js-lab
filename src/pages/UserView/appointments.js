@@ -1,22 +1,20 @@
-const appointments = {
-  appointment1: {
+const appointments = [
+  {
     id: 1,
-    firstName: 'Jane',
-    lastName: 'Cooper',
-    profession: 'Therapist',
-    imageUrl: './img/avatar-patient-1.png',
-    appointmentDate: 'Thu Sept 10, 2021 4 pm – 5 pm',
-    appointmentReason: 'Headache, pant',
+    doctor: 'Jane Cooper',
+    occupation: 'Therapist',
+    imageUrl: '/img/avatar.png',
+    date: 'Thu Sept 10, 2021 4 pm – 5 pm',
+    reason: 'Headache, pant',
   },
-  appointment2: {
+  {
     id: 2,
-    firstName: 'Jane',
-    lastName: 'Cooper',
-    profession: 'Therapist',
-    imageUrl: './img/avatar-patient-1.png',
-    appointmentDate: 'Thu Sept 10, 2021 4 pm – 5 pm',
-    appointmentReason: 'Headache, pant',
+    doctor: 'Jane Cooper',
+    occupation: 'Therapist',
+    imageUrl: '/img/avatar.png',
+    date: 'Thu Sept 10, 2021 4 pm – 5 pm',
+    reason: 'Headache, pant',
   },
-};
+];
 
 export default appointments;

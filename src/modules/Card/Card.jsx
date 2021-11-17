@@ -25,13 +25,12 @@ const Card = function ({ listItem, content }) {
         </AvatarWrap>
         <Headline>
           <h3>
-            {listItem.firstName}
-            {listItem.lastName}
+            {listItem.doctor}
           </h3>
 
           <Subtitle>
             {content === 'Appointments'
-            && listItem.profession}
+            && listItem.occupation}
 
             {content === 'Patients'
               && <Status appointmentStatus={listItem.appointmentStatus} />}
@@ -46,7 +45,7 @@ const Card = function ({ listItem, content }) {
       <Info>
         <InfoItem>
           <ClockIcon alt="clock" />
-          <Time>{listItem.appointmentDate}</Time>
+          <Time>{listItem.date}</Time>
         </InfoItem>
 
         <InfoItem>
@@ -54,7 +53,7 @@ const Card = function ({ listItem, content }) {
             && (
             <>
               <HeartIcon alt="heart" />
-              <div>{listItem.appointmentReason}</div>
+              <div>{listItem.reason}</div>
             </>
             )}
 

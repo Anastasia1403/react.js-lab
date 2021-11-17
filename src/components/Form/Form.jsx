@@ -5,7 +5,10 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  width: 100%
-  `;
+  width: 100%;
+  @media screen and (min-width: 560px) {
+    gap: 40px;
+  }
+`;
 
 export default Form;
