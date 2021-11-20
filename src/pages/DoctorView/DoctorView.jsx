@@ -1,36 +1,35 @@
-import React from 'react';
-import logo from './img/palm-clinic-logo.png';
-import patients from './patients';
-import UserInfo from '../../modules/UserInfo/UserInfo';
+import React, { useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import avatar from './img/avatar.png';
 import MainHeader from '../../modules/MainHeader/MainHeader';
 import UserMain from '../../modules/UserMain/UserMain';
 import StyledUserView from '../../modules/StyledUserView/StyledUserView';
-
-const doctorTabsInfo = [
-  {
-    tab: 'Patients',
-    title: 'My Patients',
-    dataList: patients,
-  },
-  {
-    tab: 'Resolutions',
-    title: 'My Resolutions',
-    dataList: {},
-  },
-];
+import doctorTabsInfo from './tabsInfo';
+import patients from './patients';
 
 const DoctorView = function () {
+  const tabsInfo = doctorTabsInfo;
+  const defaultTab = tabsInfo[1];
+  const [activeTab, setActiveTab] = useState(defaultTab.tab);
+
   return (
     <StyledUserView>
-      <MainHeader>
-        <a href="#!">
-          <img src={logo} alt="palm clinic logo" />
-        </a>
-        <UserInfo name="Miranda Nelson" userRole="Doctor" avatar={avatar} />
-      </MainHeader>
 
-      <UserMain tabsInfo={doctorTabsInfo} defaultTabActive="Patients" />
+      <MainHeader name="Larry Prinston" userRole="Doctor" avatar={avatar} />
+      <Switch>
+        <Route
+          path="/doctor-view"
+          render={() => (
+            <UserMain
+              tabsInfo={tabsInfo}
+              dataList={patients}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+              defaultTab={defaultTab}
+            />
+          )}
+        />
+      </Switch>
 
     </StyledUserView>
   );

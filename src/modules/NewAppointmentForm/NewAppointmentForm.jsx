@@ -1,24 +1,21 @@
 import React from 'react';
 import SelectDoctor from '../SelectDoctor/SelectDoctor';
-import { GridButton } from '../../components/ButtonSubmit/styled';
 import StyledCalendar from '../StyledCalendar/StyledCalendar';
 import {
-  StyledNewAppointmentForm, Stage,
+  StyledNewAppointmentForm, Stage, ButtonSubmit,
 } from './styled';
 import TableTime from '../TableTime/TableTime';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
+import getUnavailibleTime from './utils';
 
-const NewAppointmentForm = function ({
-  formik, getUnavailibleTime, DoctorList, TimeList,
-}) {
-  getUnavailibleTime(formik.values.doctor, formik.values.date);
+const NewAppointmentForm = function ({ formik }) {
   return (
 
     <StyledNewAppointmentForm onSubmit={formik.handleSubmit}>
       <section>
         <Stage>1. Select a doctor and define the reason of your visit</Stage>
 
-        <SelectDoctor formik={formik} DoctorList={DoctorList} />
+        <SelectDoctor formik={formik} />
       </section>
 
       <section>
@@ -42,13 +39,12 @@ const NewAppointmentForm = function ({
           <ErrorMessage>{formik.errors.time}</ErrorMessage>)}
 
         <TableTime
-          TimeList={TimeList}
           formik={formik}
           blockedTime={getUnavailibleTime(formik.values.doctor, formik.values.date)}
           blocked={!(formik.values.doctor && formik.values.occupation)}
         />
       </section>
-      <GridButton type="submit" disabled={!formik.isValid}>Submit</GridButton>
+      <ButtonSubmit type="submit" disabled={!formik.isValid}>Submit</ButtonSubmit>
     </StyledNewAppointmentForm>
 
   );

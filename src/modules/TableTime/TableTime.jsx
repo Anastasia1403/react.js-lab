@@ -1,12 +1,13 @@
 import React from 'react';
+import { timeList } from '../NewAppointment/services';
 import { Radiobutton, RadiobuttonLabel, StyledTableTime } from './styled';
 
 const TableTime = function ({
-  formik, TimeList, blocked, blockedTime,
+  formik, blocked, blockedTime,
 }) {
   return (
     <StyledTableTime role="group" blocked={blocked}>
-      {TimeList.map(
+      {timeList.map(
         (timeItem) => (
 
           <RadiobuttonLabel

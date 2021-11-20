@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { sharedStyleButton } from '../../components/ButtonSubmit/styled';
 import med from './img/medical-history.svg';
 import { ReactComponent as SettingIcon } from './img/settings.svg';
 
@@ -65,7 +66,7 @@ export const StyledSettingIcon = styled(SettingIcon)`
     display: none;
   }`;
 
-export const ListEmpty = styled.div`
+export const ListEmptyBlock = styled.div`
   color: #a1abc9;
   background: url(${med}) center / 120px no-repeat;
   text-align: center;
@@ -73,4 +74,14 @@ export const ListEmpty = styled.div`
   min-height: 400px;
   padding-top: 37vh;
   text-align: center;
+`;
+
+export const Button = styled.button`
+  ${sharedStyleButton}
+  display: none;
+  @media screen and (min-width: 900px) {
+  display: flex;
+  height: 48px;
+
+  }
 `;

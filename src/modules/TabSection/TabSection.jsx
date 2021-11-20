@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {
-  ListEmpty, List, StyledTabSection, Title, StyledSettingIcon,
-} from './TabSectionStyle';
-import Card from '../Card/Card';
-import { ButtonNew } from '../../components/ButtonSubmit/styled';
+  ListEmptyBlock, List, StyledTabSection, Title, StyledSettingIcon, Button,
+} from './styled';
 import { ReactComponent as PlusIcon } from './img/plus.svg';
+import AppointmentCard from '../Card/AppointmentCard';
+import PatientCard from '../Card/PatientCard';
 
 const TabSection = function ({ title, content, dataList }) {
   return (
@@ -15,10 +15,10 @@ const TabSection = function ({ title, content, dataList }) {
         {content === 'Appointments' && (
           <div>
             <Link to="/user-view/new-appointment">
-              <ButtonNew>
+              <Button>
                 <PlusIcon alt="plus" />
                 <span>Create an appointment</span>
-              </ButtonNew>
+              </Button>
             </Link>
 
             <StyledSettingIcon alt="settings" />
@@ -29,17 +29,24 @@ const TabSection = function ({ title, content, dataList }) {
       {dataList.length
         ? (
           <List>
-            {dataList.map((listItem) => (
-              <Card key={listItem.id} listItem={listItem} content={content} />
-            ))}
+            {content === 'Appointments' && (
+              dataList.map((listItem) => (
+                <AppointmentCard key={listItem.id} listItem={listItem} content={content} />
+              ))
+            ) }
+            {content === 'Patients' && (
+              dataList.map((listItem) => (
+                <PatientCard key={listItem.id} listItem={listItem} content={content} />
+              ))
+            ) }
           </List>
         ) : (
-          <ListEmpty>
+          <ListEmptyBlock>
             You have no patients yet.
             <br />
             To create a patient profile, please contact your administrator.
 
-          </ListEmpty>
+          </ListEmptyBlock>
         )}
     </StyledTabSection>
   );

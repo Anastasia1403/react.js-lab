@@ -74,3 +74,8 @@ export const InfoItem = styled.div`
 export const Time = styled.div`
     font-weight: 600;
 `;
+
+export const IconWrapper = styled.div`
+width: 24px;
+height: 24px;
+`;

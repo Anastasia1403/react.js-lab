@@ -1,5 +1,7 @@
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import {
+  Route, Switch, Redirect, useRouteMatch,
+} from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import TabSection from '../TabSection/TabSection';
 import StyledUserMain from './styled';
@@ -7,19 +9,21 @@ import StyledUserMain from './styled';
 const UserMain = function ({
   tabsInfo, dataList, activeTab, setActiveTab, defaultTab,
 }) {
+  const match = useRouteMatch();
+
   return (
     <StyledUserMain>
 
       <Navbar tabsInfo={tabsInfo} activeTab={activeTab} setActiveTab={setActiveTab} />
 
       <Switch>
-        <Route exact path="/user-view">
-          <Redirect to={`/user-view${defaultTab.path}`} />
+        <Route exact path={`${match.url}`}>
+          <Redirect to={`${match.url}${defaultTab.path}`} />
         </Route>
 
         {tabsInfo.map((item) => (
           <Route
-            path={`/user-view${item.path}`}
+            path={`${match.url}${item.path}`}
             render={() => (
               <TabSection
                 title={item.title}

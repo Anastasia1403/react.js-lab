@@ -1,5 +1,4 @@
 import React from 'react';
-import { ReactComponent as HeartIcon } from './img/heart.svg';
 import { ReactComponent as EditIcon } from './img/more-vertical.svg';
 import { ReactComponent as ClockIcon } from './img/clock-three.svg';
 import { ReactComponent as ResolutionIcon } from './img/clipboard-blank.svg';
@@ -8,6 +7,7 @@ import {
   CardHeader,
   EditButton,
   Headline,
+  IconWrapper,
   Info,
   InfoItem,
   StyledCard,
@@ -16,7 +16,7 @@ import {
 } from './styled';
 import Status from '../Status/Status';
 
-const Card = function ({ listItem, content }) {
+const PatientCard = function ({ listItem }) {
   return (
     <StyledCard>
       <CardHeader>
@@ -25,15 +25,11 @@ const Card = function ({ listItem, content }) {
         </AvatarWrap>
         <Headline>
           <h3>
-            {listItem.doctor}
+            {`${listItem.firstName} ${listItem.lastName}`}
           </h3>
 
           <Subtitle>
-            {content === 'Appointments'
-            && listItem.occupation}
-
-            {content === 'Patients'
-              && <Status appointmentStatus={listItem.appointmentStatus} />}
+            <Status appointmentStatus={listItem.appointmentStatus} />
 
           </Subtitle>
         </Headline>
@@ -44,25 +40,18 @@ const Card = function ({ listItem, content }) {
 
       <Info>
         <InfoItem>
-          <ClockIcon alt="clock" />
+          <IconWrapper>
+            <ClockIcon alt="clock" />
+          </IconWrapper>
           <Time>{listItem.date}</Time>
         </InfoItem>
 
         <InfoItem>
-          {content === 'Appointments'
-            && (
-            <>
-              <HeartIcon alt="heart" />
-              <div>{listItem.reason}</div>
-            </>
-            )}
+          <IconWrapper>
+            <ResolutionIcon alt="resolution" />
+          </IconWrapper>
+          <div>{listItem.resolution}</div>
 
-          {content === 'Patients' && (
-            <>
-              <ResolutionIcon alt="" />
-              <div>{listItem.resolution}</div>
-            </>
-          )}
         </InfoItem>
 
       </Info>
@@ -70,4 +59,4 @@ const Card = function ({ listItem, content }) {
   );
 };
 
-export default Card;
+export default PatientCard;

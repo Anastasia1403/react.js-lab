@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { sharedStyledLink } from '../../components/StyledLink/StyledLink';
 
 export const StyledMain = styled.main`
 border-radius: 16px 16px 0px 0px;
@@ -19,8 +21,14 @@ gap: 8px;
 font-size: 17px;
 `;
 
-export const Stage = styled.h3`
+export const Step = styled.p`
 color: #A1ABC9;
 font-size: 17px;
 margin-bottom: 40px;
+`;
+
+export const StyledLink = styled(Link)`
+${sharedStyledLink}
+text-decoration: none;
+font-size: 17px;
 `;

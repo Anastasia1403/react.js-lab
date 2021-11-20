@@ -1,8 +1,8 @@
-export const TimeList = [
+export const timeList = [
   '12:00 am', '1:00 pm', '2:00 pm', '3:00 pm', '4:00 pm', '5:00 pm', '6:00 pm', '7:00 pm', '8:00 pm',
 ];
 
-export const DoctorList = [
+export const doctorList = [
   {
     id: 1,
     imageUrl: '/img/avatar.png',
@@ -218,7 +218,9 @@ export const DoctorList = [
 ];
 
 export const occupations = [];
-DoctorList.map((doctor) => {
+doctorList.map((doctor) => {
   if (!occupations.includes(doctor.occupation)) occupations.push(doctor.occupation);
   return null;
 });
+
+export const doctorsNameInitial = doctorList.map((doctor) => `${doctor.firstName} ${doctor.lastName}`);

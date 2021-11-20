@@ -7,6 +7,7 @@ display: grid;
 grid-template-columns: repeat(4, 1fr);
 gap: 16px;
 pointer-events: ${(props) => (props.blocked ? 'none' : 'auto')};
+opacity: ${(props) => (props.blocked ? 0.4 : 1)};;
 `;
 
 export const RadiobuttonLabel = styled.label`

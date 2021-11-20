@@ -1,7 +1,6 @@
 import appointments from './appointments';
-import patients from './patients';
 
-export const userTabsInfo = [
+const userTabsInfo = [
   {
     tab: 'Profile',
     title: 'My Profile',
@@ -24,15 +23,4 @@ export const userTabsInfo = [
   },
 ];
 
-export const doctorTabsInfo = [
-  {
-    tab: 'Patients',
-    title: 'My Patients',
-    dataList: patients,
-  },
-  {
-    tab: 'Resolutions',
-    title: 'My Resolutions',
-    dataList: {},
-  },
-];
+export default userTabsInfo;

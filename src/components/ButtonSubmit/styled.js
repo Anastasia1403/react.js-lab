@@ -29,31 +29,8 @@ export const sharedStyleButton = css`
 `;
 
 const StyledButton = styled.button`
-${sharedStyleButton}`;
-
-export const ButtonNew = styled.button`
-  ${sharedStyleButton}
-  display: none;
-  @media screen and (min-width: 900px) {
-  display: flex;    
-  }
-`;
-
-export const GridButton = styled.button`
-  ${sharedStyleButton}
-  justify-self: end;
-  align-self: flex-end;
-  &:disabled {
-    background: #DCE0EC;
-  }
-  
-  @media screen and (min-width: 1500px) {
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row-start: 2;
-    grid-row-end: 3;
-  }
-
+${sharedStyleButton};
+  height: 56px;
 `;
 
 export default StyledButton;

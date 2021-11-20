@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import styled from 'styled-components';
 import NavButton from '../NavButton/NavButton';
 
@@ -15,10 +15,12 @@ const StyledNavbar = styled.nav`
 `;
 
 const Navbar = function ({ tabsInfo, activeTab, setActiveTab }) {
+  const match = useRouteMatch();
+
   return (
     <StyledNavbar>
       {tabsInfo.map((item) => (
-        <Link to={`/user-view${item.path}`}>
+        <Link to={`${match.url}${item.path}`}>
           <NavButton active={activeTab === item.tab} onClick={() => setActiveTab(item.tab)}>
             {item.tab}
           </NavButton>

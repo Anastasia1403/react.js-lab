@@ -1,38 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import CustomSelect from '../../components/Select/Select';
-import { occupations } from '../NewAppointment/services';
+import findDoctorByName from '../../utils/findDoctorByName';
+import { doctorList, doctorsNameInitial, occupations } from '../NewAppointment/services';
 import { StyledLabel, StyledSelectDoctor, StyledTextarea } from './styled';
 
-const createOptionsArrayForSelect = (optionsArr) => {
-  const optionsArrayForSelect = [];
-  optionsArr.map((item) => {
-    const obj = { value: item, label: item };
-    optionsArrayForSelect.push(obj);
-    return null;
-  });
-  return optionsArrayForSelect;
-};
+const createOptionsArrayForSelect = (optionsArr) => optionsArr
+  .map((item) => ({ value: item, label: item }));
 
-const SelectDoctor = function ({ formik, DoctorList }) {
-  // create list of doctors according to choosen occupation
-  const doctorsArray = [];
+const SelectDoctor = function ({ formik }) {
+  const [doctorsArray, setDoctorsArray] = useState(doctorsNameInitial);
 
-  DoctorList.map((doctor) => {
-    if (doctor.occupation === formik.values.occupation || !formik.values.occupation) {
-      const name = `${doctor.firstName} ${doctor.lastName}`;
-      doctorsArray.push(name);
-    }
-    return null;
-  });
-
-  // function for set occupation if doctor name chose before occupation
-  const findOccupationForDoctor = (nameDoctor, doctorArr) => {
-    if (!nameDoctor) return null;
-    const doctor = doctorArr.find((item) => {
-      const name = `${item.firstName} ${item.lastName}`;
-      return name === nameDoctor;
+  useEffect(() => {
+    const doctors = [];
+    doctorList.map((doctor) => {
+      if (doctor.occupation === formik.values.occupation || !formik.values.occupation) {
+        const name = `${doctor.firstName} ${doctor.lastName}`;
+        doctors.push(name);
+      } return doctors;
     });
+    setDoctorsArray(doctors);
+  }, [formik.values.occupation]);
+
+  const onChangeName = (value) => {
+    formik.setFieldValue('doctor', value.value);
+    if (formik.values.occupation) return null;
+    // set occupation if doctor name chose before occupation
+    const doctor = findDoctorByName(value.value);
     formik.setFieldValue('occupation', doctor.occupation);
     return doctor.occupation;
   };
@@ -43,13 +37,12 @@ const SelectDoctor = function ({ formik, DoctorList }) {
     <StyledSelectDoctor>
 
       <StyledLabel htmlFor="occupation">
-        Occupation
+        Occupation*
         <CustomSelect
           name="occupation"
           id="occupation"
           placeholder="Choose doctor`s occupation"
-          value={formik.values.occupation
-          || findOccupationForDoctor(formik.values.doctor, DoctorList)}
+          value={formik.values.occupation}
           onChange={(value) => formik.setFieldValue('occupation', value.value)}
           onBlur={() => formik.setFieldTouched('occupation', true)}
           touched={formik.touched.occupation}
@@ -61,13 +54,13 @@ const SelectDoctor = function ({ formik, DoctorList }) {
       </StyledLabel>
 
       <StyledLabel htmlFor="doctor-name">
-        Doctor`s Name
+        Doctor`s Name*
         <CustomSelect
           id="doctor-name"
           name="doctor"
           placeholder="Choose doctor"
           value={formik.values.doctor}
-          onChange={(value) => formik.setFieldValue('doctor', value.value)}
+          onChange={onChangeName}
           options={optionsDoctors}
           onBlur={() => formik.setFieldTouched('doctor', true)}
           touched={formik.touched.doctor}
@@ -78,7 +71,7 @@ const SelectDoctor = function ({ formik, DoctorList }) {
       </StyledLabel>
 
       <StyledLabel htmlFor="reason">
-        Reason for the visit
+        Reason for the visit*
         <StyledTextarea
           id="reason"
           name="reason"
