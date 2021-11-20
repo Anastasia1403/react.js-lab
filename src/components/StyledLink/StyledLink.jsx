@@ -9,6 +9,7 @@ export const sharedStyledLink = css`
 const StyledLink = styled(Link)`
 ${sharedStyledLink}
 font-weight: 600;
+
 `;
 
 export default StyledLink;

@@ -7,7 +7,6 @@ export const sharedStyleButton = css`
   gap: 12px;
   margin: ${(props) => (props.margin ? props.margin : 0)};
   width: fit-content;
-  height: fit-content;
   padding: 12px 16px;
   vertical-align: middle;
   border-radius: 8px;
@@ -15,7 +14,6 @@ export const sharedStyleButton = css`
   color: #ffffff;
   transition: 0.2s;
   font-size: 15px;
-  
 
   &:hover,
   &:active,

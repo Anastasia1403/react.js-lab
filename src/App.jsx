@@ -15,10 +15,8 @@ const App = function () {
       <Route path="/sign-in" component={SignIn} />
       <Route path="/sign-up" component={SignUp} />
       <Route path="/restore-password" component={RestorePassword} />
-
       <Route path="/doctor-view" component={DoctorView} />
       <Route path="/user-view" component={UserView} />
-
     </Switch>
   );
 };

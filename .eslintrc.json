@@ -21,6 +21,10 @@
         "func-names": "off",
         "react/prop-types": "off",
         "react/jsx-filename-extension": "off",
-        "react/jsx-props-no-spreading": "off"
+        "react/jsx-props-no-spreading": "off",
+        "linebreak-style": "off"
+
+
+
         }
 }
