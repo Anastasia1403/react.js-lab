@@ -22,6 +22,12 @@ export const Role = styled.div`
   font-size: 13px;
   color: #a1abc9;
 `;
+
+export const Avatar = styled.img`
+width: 100%;
+object-fit: cover;
+`;
+
 export const AvatarWrap = styled.div`
   position: relative;
   width: 40px;

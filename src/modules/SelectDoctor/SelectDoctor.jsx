@@ -1,38 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import CustomSelect from '../../components/Select/Select';
-import findDoctorByName from '../../utils/findDoctorByName';
-import { doctorList, doctorsNameInitial, occupations } from '../NewAppointment/services';
+import doctorsList from '../../redux/getDoctors/selectors';
+import { getDoctors } from '../../redux/getDoctors/slice';
+import doctorsSpec from '../../redux/getSpec/selectors';
+import { getSpec } from '../../redux/getSpec/slice';
 import { StyledLabel, StyledSelectDoctor, StyledTextarea } from './styled';
 
-const createOptionsArrayForSelect = (optionsArr) => optionsArr
-  .map((item) => ({ value: item, label: item }));
+const createOptionsArrayForSelect = (optionsArr, keyField1, keyField2) => optionsArr
+  .map((item) => {
+    const val = keyField2 === undefined ? item[keyField1] : `${item[keyField1]} ${item[keyField2]}`;
+    return ({
+      value: item.id,
+      label: val,
+    });
+  });
 
 const SelectDoctor = function ({ formik }) {
-  const [doctorsArray, setDoctorsArray] = useState(doctorsNameInitial);
+  const specializations = useSelector(doctorsSpec);
+  const doctors = useSelector(doctorsList);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const doctors = [];
-    doctorList.map((doctor) => {
-      if (doctor.occupation === formik.values.occupation || !formik.values.occupation) {
-        const name = `${doctor.firstName} ${doctor.lastName}`;
-        doctors.push(name);
-      } return doctors;
-    });
-    setDoctorsArray(doctors);
-  }, [formik.values.occupation]);
+    dispatch(getSpec());
+  }, []);
 
-  const onChangeName = (value) => {
-    formik.setFieldValue('doctor', value.value);
-    if (formik.values.occupation) return null;
-    // set occupation if doctor name chose before occupation
-    const doctor = findDoctorByName(value.value);
-    formik.setFieldValue('occupation', doctor.occupation);
-    return doctor.occupation;
+  const onSpecChange = (value) => {
+    formik.setFieldValue('occupation', value.value);
+    dispatch(getDoctors(value.value));
   };
 
-  const optionsDoctors = createOptionsArrayForSelect(doctorsArray);
-  const optionsOccupations = createOptionsArrayForSelect(occupations);
+  const optionsDoctors = createOptionsArrayForSelect(doctors, 'first_name', 'last_name');
+  const optionsOccupations = createOptionsArrayForSelect(specializations, 'specialization_name');
+
   return (
     <StyledSelectDoctor>
 
@@ -43,7 +45,7 @@ const SelectDoctor = function ({ formik }) {
           id="occupation"
           placeholder="Choose doctor`s occupation"
           value={formik.values.occupation}
-          onChange={(value) => formik.setFieldValue('occupation', value.value)}
+          onChange={(value) => onSpecChange(value)}
           onBlur={() => formik.setFieldTouched('occupation', true)}
           touched={formik.touched.occupation}
           options={optionsOccupations}
@@ -60,7 +62,7 @@ const SelectDoctor = function ({ formik }) {
           name="doctor"
           placeholder="Choose doctor"
           value={formik.values.doctor}
-          onChange={onChangeName}
+          onChange={(value) => formik.setFieldValue('doctor', value.value)}
           options={optionsDoctors}
           onBlur={() => formik.setFieldTouched('doctor', true)}
           touched={formik.touched.doctor}

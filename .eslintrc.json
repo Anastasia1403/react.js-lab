@@ -22,7 +22,8 @@
         "react/prop-types": "off",
         "react/jsx-filename-extension": "off",
         "react/jsx-props-no-spreading": "off",
-        "linebreak-style": "off"
+        "linebreak-style": "off",
+        "no-param-reassign": "off"
 
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  AvatarWrap, Info, Name, Role, User,
+  AvatarWrap, Avatar, Info, Name, Role, User,
 } from './styled';
 
 const UserInfo = function ({ name, userRole, avatar }) {
@@ -12,7 +12,7 @@ const UserInfo = function ({ name, userRole, avatar }) {
       </Info>
 
       <AvatarWrap>
-        <img src={avatar} alt="doctor" />
+        <Avatar src={avatar} alt="doctor" />
       </AvatarWrap>
     </User>
   );

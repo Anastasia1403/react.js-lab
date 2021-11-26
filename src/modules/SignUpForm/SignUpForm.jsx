@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
 import Form from '../../components/Form/Form';
 import Input from '../../components/Input/Input';
 import ButtonSubmit from '../../components/ButtonSubmit/ButtonSubmit';
 import { ReactComponent as ArrowIcon } from './img/angle-right-b.svg';
 import validationSchema from './validationSchema';
+import { registration } from '../../redux/registration/slice';
+import { error, status } from '../../redux/registration/selectors';
 
 const SignUpForm = function ({ history }) {
+  const errorMessage = useSelector(error);
+  const statusText = useSelector(status);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (statusText === 'Created') {
+      history.push('/sign-in');
+    }
+  }, [statusText]);
+
   const formik = useFormik({
     initialValues: {
       firstName: '',
@@ -17,8 +31,13 @@ const SignUpForm = function ({ history }) {
     },
     validationSchema,
     onSubmit: (values) => {
-      localStorage.setItem(values.email, JSON.stringify(values));
-      history.push('/sign-in');
+      const userData = {
+        userName: values.email,
+        password: values.password,
+        firstName: values.firstName,
+        lastName: values.lastName,
+      };
+      dispatch(registration(userData));
     },
   });
   return (
@@ -67,7 +86,7 @@ const SignUpForm = function ({ history }) {
         value={formik.values.confirmPassword}
         error={formik.errors.confirmPassword}
       />
-
+      {errorMessage && <div>{errorMessage}</div>}
       <ButtonSubmit type="submit" margin="8px 0 32px">
         <span>Sign Up</span>
         <ArrowIcon alt="arrow" />
