@@ -15,7 +15,7 @@ export const RadiobuttonLabel = styled.label`
 border-radius: 8px;
 padding: 8px 16px;
 cursor: pointer;
-pointer-events: ${(props) => (props.disabled ? 'none' : 'auto')};
+pointer-events: ${(props) => (props.disabled || props.blocked ? 'none' : 'auto')};
 font-weight: 600;
 
 background-color: ${(props) => (props.disabled ? '#DCE0EC' : '#fff')};
@@ -29,10 +29,6 @@ color: ${(props) => {
     if (props.disabled) return '#F9FAFF';
     return props.checked ? '#7297FF' : '#202225';
   }};
-  
-pointer-events: ${(props) => (props.blocked ? 'none' : 'auto')};
-
-
 `;
 
 export const Radiobutton = styled.input`

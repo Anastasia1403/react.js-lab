@@ -4,6 +4,7 @@ import { ReactComponent as ClockIcon } from './img/clock-three.svg';
 import { ReactComponent as ResolutionIcon } from './img/clipboard-blank.svg';
 import {
   AvatarWrap,
+  Avatar,
   CardHeader,
   EditButton,
   Headline,
@@ -21,15 +22,15 @@ const PatientCard = function ({ listItem }) {
     <StyledCard>
       <CardHeader>
         <AvatarWrap>
-          <img src={listItem.imageUrl} alt="avatar" />
+          <Avatar src={listItem.patient.photo} alt="avatar" />
         </AvatarWrap>
         <Headline>
           <h3>
-            {`${listItem.firstName} ${listItem.lastName}`}
+            {`${listItem.patient.first_name} ${listItem.patient.last_name}`}
           </h3>
 
           <Subtitle>
-            <Status appointmentStatus={listItem.appointmentStatus} />
+            <Status status={listItem.status} />
 
           </Subtitle>
         </Headline>
@@ -43,7 +44,7 @@ const PatientCard = function ({ listItem }) {
           <IconWrapper>
             <ClockIcon alt="clock" />
           </IconWrapper>
-          <Time>{listItem.date}</Time>
+          <Time>{listItem.visit_date}</Time>
         </InfoItem>
 
         <InfoItem>

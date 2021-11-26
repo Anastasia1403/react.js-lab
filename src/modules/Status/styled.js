@@ -10,9 +10,9 @@ export const StatusIndicator = styled.div`
   height: 8px;
   border-radius: 50%;
   background-color: ${(props) => {
-    if (props.appointmentStatus === 'confirm') return '#34C197';
-    if (props.appointmentStatus === 'waiting') return '#7297FF';
-    if (props.appointmentStatus === 'canceled') return '#FF2567';
+    if (props.status === 'confirmed') return '#34C197';
+    if (props.status === 'waiting') return '#7297FF';
+    if (props.status === 'canceled') return '#FF2567';
     return null;
   }};
 `;

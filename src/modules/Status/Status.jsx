@@ -1,18 +1,26 @@
 import React, { useMemo } from 'react';
 import { StatusIndicator, StatusText } from './styled';
 
-const Status = function ({ appointmentStatus }) {
-  const status = useMemo(() => {
-    if (appointmentStatus === 'canceled') return 'Appointment is canceled';
-    if (appointmentStatus === 'confirm') return 'Appointment is confirmed';
-    if (appointmentStatus === 'waiting') return 'Waiting for confirmation...';
-    return null;
-  }, [appointmentStatus]);
+const Status = function ({ status }) {
+  const statusText = useMemo(() => {
+    switch (status) {
+      case 'canceled': {
+        return 'Appointment is canceled';
+      }
+      case 'confirmed': {
+        return 'Appointment is confirmed';
+      }
+      case 'waiting': {
+        return 'Waiting for confirmation...';
+      }
+      default: return null;
+    }
+  }, [status]);
 
   return (
     <>
-      <StatusIndicator appointmentStatus={appointmentStatus} />
-      <StatusText>{status}</StatusText>
+      <StatusIndicator status={status} />
+      <StatusText>{statusText}</StatusText>
     </>
   );
 };

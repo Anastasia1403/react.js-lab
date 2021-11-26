@@ -15,6 +15,11 @@ export const StyledCard = styled.li`
   }
 `;
 
+export const Avatar = styled.img`
+width: 100%;
+object-fit: cover;
+`;
+
 export const AvatarWrap = styled.div`
   position: relative;
   width: 40px;
