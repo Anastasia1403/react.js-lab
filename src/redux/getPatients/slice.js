@@ -1,19 +1,8 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import api from '../../api/api';
+import { createSlice } from '@reduxjs/toolkit';
+import { getPatients } from './thunk';
 
-export const getPatients = createAsyncThunk(
-  'doctor/getPatients',
-  () => {
-    try {
-      return api.getPatients();
-    } catch (error) {
-      return error;
-    }
-  },
-);
-
-const getPatientsSlice = createSlice({
-  name: 'getPatients',
+const patientsSlice = createSlice({
+  name: 'patients',
   initialState: {
     loading: false,
     patients: [],
@@ -37,4 +26,4 @@ const getPatientsSlice = createSlice({
   },
 });
 
-export default getPatientsSlice.reducer;
+export default patientsSlice.reducer;

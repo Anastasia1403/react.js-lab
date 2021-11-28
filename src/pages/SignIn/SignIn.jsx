@@ -5,12 +5,12 @@ import BottomSection from '../../modules/BottomSection/BottomSection';
 import SignInForm from '../../modules/SignInForm/SignInForm';
 import { EnterPanel, StartPage } from '../../modules/StartPage/StartPage';
 
-const SignIn = function ({ history }) {
+const SignIn = function () {
   return (
     <StartPage>
       <EnterPanel>
         <Title> Sign In</Title>
-        <SignInForm history={history} />
+        <SignInForm />
 
         <StyledLink to="/restore-password">
           Forgot Password?

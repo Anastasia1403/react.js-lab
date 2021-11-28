@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Title from '../../components/Title/Title';
 import {
   Step, StyledLink, StyledMain, StyledNav,
@@ -10,10 +10,17 @@ import { userProfile } from '../../redux/getProfile/selectors';
 import StyledUserView from '../../modules/StyledUserView/StyledUserView';
 import MainHeader from '../../modules/MainHeader/MainHeader';
 import NewAppointmentForm from '../../modules/NewAppointmentForm/NewAppointmentForm';
+import getProfile from '../../redux/getProfile/thunk';
 
-const NewAppointment = function ({ history }) {
+const NewAppointment = function () {
   const profile = useSelector(userProfile);
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!Object.keys(profile).length) {
+      dispatch(getProfile());
+    }
+  }, []);
   return (
     <StyledUserView>
       <MainHeader name={`${profile.first_name} ${profile.last_name}`} userRole={profile.role_name} avatar={profile.photo} />
@@ -25,9 +32,7 @@ const NewAppointment = function ({ history }) {
 
         </StyledNav>
         <Title>Make an appointment</Title>
-        <NewAppointmentForm
-          history={history}
-        />
+        <NewAppointmentForm />
 
       </StyledMain>
     </StyledUserView>

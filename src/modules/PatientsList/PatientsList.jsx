@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import List from './styled';
-import { getPatients } from '../../redux/getPatients/slice';
 import PatientCard from '../Card/PatientCard';
 import { patientsList, loadingStatus } from '../../redux/getPatients/selectors';
+import { getPatients } from '../../redux/getPatients/thunk';
 
 const PatientsList = function () {
   const patients = useSelector(patientsList);
