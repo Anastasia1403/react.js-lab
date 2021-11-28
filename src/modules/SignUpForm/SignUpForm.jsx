@@ -1,22 +1,25 @@
 import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import Form from '../../components/Form/Form';
 import Input from '../../components/Input/Input';
 import ButtonSubmit from '../../components/ButtonSubmit/ButtonSubmit';
 import { ReactComponent as ArrowIcon } from './img/angle-right-b.svg';
 import validationSchema from './validationSchema';
-import { registration } from '../../redux/registration/slice';
 import { error, status } from '../../redux/registration/selectors';
+import registration from '../../redux/registration/thunk';
 
-const SignUpForm = function ({ history }) {
+const SignUpForm = function () {
   const errorMessage = useSelector(error);
   const statusText = useSelector(status);
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (statusText === 'Created') {
+      alert('You are registered successfully');
       history.push('/sign-in');
     }
   }, [statusText]);

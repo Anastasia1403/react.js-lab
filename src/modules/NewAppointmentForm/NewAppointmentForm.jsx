@@ -2,22 +2,23 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { format } from 'date-fns';
 import { useFormik } from 'formik';
+import { useHistory } from 'react-router-dom';
 import SelectDoctor from '../SelectDoctor/SelectDoctor';
 import StyledCalendar from '../StyledCalendar/StyledCalendar';
 import {
   StyledNewAppointmentForm, Stage, ButtonSubmit,
 } from './styled';
 import TableTime from '../TableTime/TableTime';
-import { getFreeTime } from '../../redux/getFreeTime/slice';
-import { addAppointment } from '../../redux/addAppointment/slice';
 import validationSchema from './validationSchema';
+import { error, status } from '../../redux/addNewAppointment/selectors';
+import addNewAppointment from '../../redux/addNewAppointment/thunk';
+import getFreeTime from '../../redux/getFreeTime/thunk';
 
-import { error, status } from '../../redux/addAppointment/selectors';
-
-const NewAppointmentForm = function ({ history }) {
+const NewAppointmentForm = function () {
   const dispatch = useDispatch();
   const statusText = useSelector(status);
   const errorMessage = useSelector(error);
+  const history = useHistory();
 
   useEffect(() => {
     if (statusText === 'Created') history.push('/user-view/appointments');
@@ -30,7 +31,7 @@ const NewAppointmentForm = function ({ history }) {
       note: values.note,
       doctorID: values.doctor,
     };
-    dispatch(addAppointment(formattedValues));
+    dispatch(addNewAppointment(formattedValues));
   };
   const formik = useFormik({
     initialValues: {

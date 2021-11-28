@@ -18,21 +18,22 @@ import {
 } from './styled';
 
 const AppointmentCard = function ({ listItem }) {
+  const { doctor, reason, visit_date: visitDate } = listItem;
   return (
     <StyledCard>
       <CardHeader>
         <AvatarWrap>
-          <Avatar src={listItem.doctor.photo} alt="avatar" />
+          <Avatar src={doctor.photo} alt="avatar" />
         </AvatarWrap>
         <Headline>
           <h3>
-            {listItem.doctor.first_name}
+            {doctor.first_name}
             {' '}
-            {listItem.doctor.last_name}
+            {doctor.last_name}
           </h3>
 
           <Subtitle>
-            {listItem.doctor.specialization_name}
+            {doctor.specialization_name}
           </Subtitle>
         </Headline>
         <EditButton>
@@ -45,14 +46,14 @@ const AppointmentCard = function ({ listItem }) {
           <IconWrapper>
             <ClockIcon alt="clock" />
           </IconWrapper>
-          <Time>{listItem.visit_date}</Time>
+          <Time>{visitDate}</Time>
         </InfoItem>
 
         <InfoItem>
           <IconWrapper>
             <HeartIcon alt="heart" />
           </IconWrapper>
-          <div>{listItem.reason}</div>
+          <div>{reason}</div>
 
         </InfoItem>
 

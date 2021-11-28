@@ -1,19 +1,8 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import api from '../../api/api';
+import { createSlice } from '@reduxjs/toolkit';
+import getProfile from './thunk';
 
-export const getProfile = createAsyncThunk(
-  'auth/profile',
-  () => {
-    try {
-      return api.getProfile();
-    } catch (error) {
-      return error;
-    }
-  },
-);
-
-const getProfileSlice = createSlice({
-  name: 'getProfile',
+const profileSlice = createSlice({
+  name: 'profile',
   initialState: {
     loading: false,
     profile: {},
@@ -38,4 +27,4 @@ const getProfileSlice = createSlice({
   },
 });
 
-export default getProfileSlice.reducer;
+export default profileSlice.reducer;

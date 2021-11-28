@@ -18,19 +18,23 @@ import {
 import Status from '../Status/Status';
 
 const PatientCard = function ({ listItem }) {
+  const {
+    patient, status, resolution, visit_date: visitDate,
+  } = listItem;
+
   return (
     <StyledCard>
       <CardHeader>
         <AvatarWrap>
-          <Avatar src={listItem.patient.photo} alt="avatar" />
+          <Avatar src={patient.photo} alt="avatar" />
         </AvatarWrap>
         <Headline>
           <h3>
-            {`${listItem.patient.first_name} ${listItem.patient.last_name}`}
+            {`${patient.first_name} ${patient.last_name}`}
           </h3>
 
           <Subtitle>
-            <Status status={listItem.status} />
+            <Status status={status} />
 
           </Subtitle>
         </Headline>
@@ -44,14 +48,14 @@ const PatientCard = function ({ listItem }) {
           <IconWrapper>
             <ClockIcon alt="clock" />
           </IconWrapper>
-          <Time>{listItem.visit_date}</Time>
+          <Time>{visitDate}</Time>
         </InfoItem>
 
         <InfoItem>
           <IconWrapper>
             <ResolutionIcon alt="resolution" />
           </IconWrapper>
-          <div>{listItem.resolution}</div>
+          <div>{resolution}</div>
 
         </InfoItem>
 

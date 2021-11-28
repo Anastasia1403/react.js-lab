@@ -1,19 +1,8 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import api from '../../api/api';
+import { createSlice } from '@reduxjs/toolkit';
+import getFreeTime from './thunk';
 
-export const getFreeTime = createAsyncThunk(
-  'time',
-  ({ doctorId, date }) => {
-    try {
-      return api.getFreeTime({ doctorId, date });
-    } catch (error) {
-      return error;
-    }
-  },
-);
-
-const getFreeTimeSlice = createSlice({
-  name: 'getDoctors',
+const freeTimeSlice = createSlice({
+  name: 'freeTime',
   initialState: {
     loading: false,
     time: [],
@@ -38,4 +27,4 @@ const getFreeTimeSlice = createSlice({
   },
 });
 
-export default getFreeTimeSlice.reducer;
+export default freeTimeSlice.reducer;

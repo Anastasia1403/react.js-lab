@@ -1,19 +1,8 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import api from '../../api/api';
+import { createSlice } from '@reduxjs/toolkit';
+import getAppointments from './thunk';
 
-export const getAppointments = createAsyncThunk(
-  'patient/getAppointments',
-  () => {
-    try {
-      return api.getAppointments();
-    } catch (error) {
-      return error;
-    }
-  },
-);
-
-const getAppointmentsSlice = createSlice({
-  name: 'getAppointments',
+const appointmentsSlice = createSlice({
+  name: 'appointments',
   initialState: {
     loading: false,
     appointments: [],
@@ -37,4 +26,4 @@ const getAppointmentsSlice = createSlice({
   },
 });
 
-export default getAppointmentsSlice.reducer;
+export default appointmentsSlice.reducer;

@@ -1,19 +1,21 @@
 import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import ButtonSubmit from '../../components/ButtonSubmit/ButtonSubmit';
 import Input from '../../components/Input/Input';
 import Form from '../../components/Form/Form';
 import { ReactComponent as ArrowIcon } from './img/angle-right-b.svg';
 import validationSchema from './validationSchema';
-import { login } from '../../redux/login/slice';
 import { isLoggedIn, error } from '../../redux/login/selectors';
+import login from '../../redux/login/thunk';
 
-const SignInForm = function ({ history }) {
+const SignInForm = function () {
   const dispatch = useDispatch();
 
   const isLoggedInStatus = useSelector(isLoggedIn);
   const errorMessage = useSelector(error);
+  const history = useHistory();
 
   useEffect(() => {
     if (isLoggedInStatus) {

@@ -15,23 +15,23 @@ const TableTime = function ({ formik, blocked }) {
   return (
     <StyledTableTime role="group" blocked={blocked}>
       {timeList.map(
-        (timeItem) => (
+        ({ value, label }) => (
 
           <RadiobuttonLabel
             blocked={blocked}
-            key={timeItem.value}
-            htmlFor={timeItem.value}
-            checked={timeItem.value === formik.values.time}
-            disabled={!time.find((item) => item.value === timeItem.value)}
+            key={value}
+            htmlFor={value}
+            checked={value === formik.values.time}
+            disabled={!time.find((item) => item.value === value)}
           >
             <Radiobutton
               type="radio"
-              id={timeItem.value}
+              id={value}
               name="time"
-              value={timeItem.value}
-              onChange={(event) => formik.handleChange(event)}
+              value={value}
+              onChange={formik.handleChange}
             />
-            {timeItem.label}
+            {label}
           </RadiobuttonLabel>
 
         ),

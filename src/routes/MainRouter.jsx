@@ -6,20 +6,20 @@ import RestorePassword from '../pages/RestorePassword/RestorePassword';
 import SignIn from '../pages/SignIn/SignIn';
 import SignUp from '../pages/SignUp/SignUp';
 import UserView from '../pages/UserView/UserView';
+import { isLoggedIn } from '../redux/login/selectors';
 
-const MainRouter = function ({ history }) {
-  const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
+const MainRouter = function () {
+  const isLoggedInStatus = useSelector(isLoggedIn);
   return (
     <Switch>
       <Route exact path="/">
-        {isLoggedIn ? <Redirect to="/user-view" /> : <Redirect to="/sign-up" />}
+        {isLoggedInStatus ? <Redirect to="/user-view" /> : <Redirect to="/sign-up" />}
       </Route>
       <Route path="/sign-in" component={SignIn} />
       <Route path="/sign-up" component={SignUp} />
       <Route path="/restore-password" component={RestorePassword} />
-      <Route path="/user-view/new-appointment" render={() => <NewAppointment history={history} />} />
+      <Route path="/user-view/new-appointment" component={NewAppointment} />
       <Route path="/user-view" component={UserView} />
-
     </Switch>
   );
 };
