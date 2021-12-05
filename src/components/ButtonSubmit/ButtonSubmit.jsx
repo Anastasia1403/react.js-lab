@@ -3,7 +3,7 @@ import StyledButton from './styled';
 
 const ButtonSubmit = function ({ margin, children }) {
   return (
-    <StyledButton margin={margin}>
+    <StyledButton margin={margin} data-testid="submit">
       {children}
     </StyledButton>
   );

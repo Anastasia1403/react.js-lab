@@ -1,10 +1,9 @@
 import React from 'react';
 import MainRouter from './routes/MainRouter';
 
-const App = function (history) {
+const App = function () {
   return (
-
-    <MainRouter history={history} />
+    <MainRouter />
   );
 };
 

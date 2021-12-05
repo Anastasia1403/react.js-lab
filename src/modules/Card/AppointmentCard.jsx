@@ -2,7 +2,6 @@ import React from 'react';
 import { ReactComponent as HeartIcon } from './img/heart.svg';
 import { ReactComponent as EditIcon } from './img/more-vertical.svg';
 import { ReactComponent as ClockIcon } from './img/clock-three.svg';
-// import { ReactComponent as ResolutionIcon } from './img/clipboard-blank.svg';
 import {
   Avatar,
   AvatarWrap,
@@ -20,7 +19,7 @@ import {
 const AppointmentCard = function ({ listItem }) {
   const { doctor, reason, visit_date: visitDate } = listItem;
   return (
-    <StyledCard>
+    <StyledCard data-testid="card">
       <CardHeader>
         <AvatarWrap>
           <Avatar src={doctor.photo} alt="avatar" />

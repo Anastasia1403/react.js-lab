@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Form = styled.form`
+const FormContainer = styled.div`
   align-self: center;
   display: flex;
   flex-direction: column;
@@ -11,4 +11,4 @@ const Form = styled.form`
   }
 `;
 
-export default Form;
+export default FormContainer;

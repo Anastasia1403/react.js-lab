@@ -9,10 +9,10 @@ const setTime = (selectedDate, hours) => {
 };
 
 // set all time of work
-const setTimeList = (startDayHour, endDayHour, selectedDate) => {
+const setTimeList = (selectedDate) => {
   const timeList = [];
-  let i = startDayHour;
-  for (; i < endDayHour; i += 1) {
+  let i = 5; // startDayHour;
+  for (; i < 18; i += 1) {
     timeList.push(setTime(selectedDate, i));
   }
   return timeList;

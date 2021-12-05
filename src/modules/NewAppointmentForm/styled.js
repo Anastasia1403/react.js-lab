@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { sharedStyleButton } from '../../components/ButtonSubmit/styled';
 
-export const StyledNewAppointmentForm = styled.form`
+export const StyledNewAppointmentForm = styled.div`
 width: 100%;
 display: grid;
 grid-template-columns: 1fr;
