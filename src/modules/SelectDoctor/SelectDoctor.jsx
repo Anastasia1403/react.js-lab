@@ -1,19 +1,16 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useFormikContext } from 'formik';
-import getDoctors from '../../redux/getDoctors/thunk';
-import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
-import CustomSelect from '../../components/Select/Select';
-import doctorsList from '../../redux/getDoctors/selectors';
-import doctorsSpecializations from '../../redux/getSpecializations/selectors';
-import { getSpecializations } from '../../redux/getSpecializations/thunk';
+import doctorsSpecializations from 'redux/getSpecializations/selectors';
+import getDoctors from 'redux/getDoctors/thunk';
+import doctorsList from 'redux/getDoctors/selectors';
+import { getSpecializations } from 'redux/getSpecializations/thunk';
+import { CustomSelect, ErrorMessage } from 'components';
 import { StyledLabel, StyledSelectDoctor, StyledTextarea } from './styled';
 
 const SelectDoctor = function () {
   const specializations = useSelector(doctorsSpecializations);
   const doctors = useSelector(doctorsList);
-
-  // const formik = useFormikContext();
   const {
     values, setFieldValue, errors, setFieldTouched, handleChange, handleBlur, touched,
   } = useFormikContext();
@@ -31,7 +28,7 @@ const SelectDoctor = function () {
   return (
     <StyledSelectDoctor>
 
-      <StyledLabel htmlFor="occupation" data-testid="occupationSelect">
+      <StyledLabel htmlFor="occupation">
         Occupation*
         <CustomSelect
           name="occupation"
@@ -43,7 +40,6 @@ const SelectDoctor = function () {
           touched={touched.occupation}
           options={specializations}
         />
-        {/* {specializations.map((item) => <div>{item.label}</div>)} */}
         {(touched.occupation && errors.occupation) && (
         <ErrorMessage>{errors.occupation}</ErrorMessage>)}
       </StyledLabel>
@@ -61,7 +57,6 @@ const SelectDoctor = function () {
           onBlur={() => setFieldTouched('doctor', true)}
           touched={touched.doctor}
         />
-        {/* {doctors.map((item) => <div>{item.label}</div>)} */}
 
         {(touched.doctor && errors.doctor) && (
         <ErrorMessage>{errors.doctor}</ErrorMessage>)}

@@ -6,7 +6,9 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "airbnb"
+        "airbnb",
+        "plugin:import/errors", 
+        "plugin:import/warnings"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -26,9 +28,16 @@
         "react/jsx-filename-extension": "off",
         "react/jsx-props-no-spreading": "off",
         "linebreak-style": "off",
-        "no-param-reassign": "off"
-
-
-
+        "no-param-reassign": "off",
+        "import/prefer-default-export": "off"
+        },
+       
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "moduleDirectory": ["node_modules", "src/"]
+            }
         }
+    }
+          
 }

@@ -2,13 +2,11 @@ import React, { useEffect } from 'react';
 import { Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import FormContainer from '../../components/FormContainer/FormContainer';
-import Input from '../../components/Input/Input';
-import ButtonSubmit from '../../components/ButtonSubmit/ButtonSubmit';
+import { error, status } from 'redux/registration/selectors';
+import registration from 'redux/registration/thunk';
+import { ButtonSubmit, FormContainer, Input } from 'components';
 import { ReactComponent as ArrowIcon } from './img/angle-right-b.svg';
 import validationSchema from './validationSchema';
-import { error, status } from '../../redux/registration/selectors';
-import registration from '../../redux/registration/thunk';
 
 const SignUpForm = function () {
   const errorMessage = useSelector(error);
@@ -19,6 +17,7 @@ const SignUpForm = function () {
 
   useEffect(() => {
     if (statusText === 'Created') {
+      /* eslint-disable no-alert */
       alert('You are registered successfully');
       history.push('/sign-in');
     }
@@ -95,7 +94,7 @@ const SignUpForm = function () {
               error={formik.errors.confirmPassword}
             />
             {errorMessage && <div>{errorMessage}</div>}
-            <ButtonSubmit type="submit" margin="8px 0 32px">
+            <ButtonSubmit type="submit">
               <span>Sign Up</span>
               <ArrowIcon alt="arrow" />
             </ButtonSubmit>

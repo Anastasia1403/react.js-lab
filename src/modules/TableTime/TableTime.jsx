@@ -1,7 +1,7 @@
 import { useFormikContext } from 'formik';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import freeTimeList from '../../redux/getFreeTime/selectors';
+import freeTimeList from 'redux/getFreeTime/selectors';
 import { Radiobutton, RadiobuttonLabel, StyledTableTime } from './styled';
 import setTimeList from './utils';
 

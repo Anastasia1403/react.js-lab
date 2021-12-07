@@ -1,5 +1,5 @@
 import React from 'react';
-import MainRouter from './routes/MainRouter';
+import { MainRouter } from 'routes';
 
 const App = function () {
   return (

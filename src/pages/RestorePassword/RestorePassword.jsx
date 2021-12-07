@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import RestorePasswordForm from '../../modules/RestorePasswordForm/RestorePasswordForm';
-import { EnterPanel, StartPage } from '../../modules/StartPage/StartPage';
+import RestorePasswordForm from 'modules/RestorePasswordForm/RestorePasswordForm';
+import { EnterPanel, StartPage } from 'modules/StartPage/StartPage';
 import { ReactComponent as BackArrowIcon } from './img/angle-left-b.svg';
 
 const BackButton = styled.button`

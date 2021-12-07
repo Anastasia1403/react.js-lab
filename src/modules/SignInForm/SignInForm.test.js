@@ -3,8 +3,8 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
+import * as login from 'redux/login/thunk';
 import SignInForm from './SignInForm';
-import * as login from '../../redux/login/thunk';
 
 describe('SignInForm', () => {
   const initialState = { login: { isLoggedIn: false, error: false } };

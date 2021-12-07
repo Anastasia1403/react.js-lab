@@ -1,4 +1,5 @@
 import { add, format, set } from 'date-fns';
+import { END_DAY_HOUR, START_DAY_HOUR } from './constants';
 
 const setTime = (selectedDate, hours) => {
   const newDate = set(selectedDate, {
@@ -11,8 +12,8 @@ const setTime = (selectedDate, hours) => {
 // set all time of work
 const setTimeList = (selectedDate) => {
   const timeList = [];
-  let i = 5; // startDayHour;
-  for (; i < 18; i += 1) {
+  let i = START_DAY_HOUR;
+  for (; i < END_DAY_HOUR; i += 1) {
     timeList.push(setTime(selectedDate, i));
   }
   return timeList;

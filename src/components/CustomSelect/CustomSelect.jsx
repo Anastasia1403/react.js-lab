@@ -6,8 +6,6 @@ const CustomSelect = function ({
   options, value, onChange, ...restProps
 }) {
   const defaultValue = (optionsArr, val) => (optionsArr ? options.find((option) => option.value === val) : '');
-  // eslint-disable-next-line
-  // debugger
   return (
     <Select
       {...restProps}

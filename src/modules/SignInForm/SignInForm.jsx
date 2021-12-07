@@ -2,13 +2,11 @@ import React, { useEffect } from 'react';
 import { Formik, Form } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import ButtonSubmit from '../../components/ButtonSubmit/ButtonSubmit';
-import Input from '../../components/Input/Input';
-import FormContainer from '../../components/FormContainer/FormContainer';
-import { ReactComponent as ArrowIcon } from './img/angle-right-b.svg';
+import { isLoggedIn, error } from 'redux/login/selectors';
+import login from 'redux/login/thunk';
+import { ButtonSubmit, FormContainer, Input } from 'components';
 import validationSchema from './validationSchema';
-import { isLoggedIn, error } from '../../redux/login/selectors';
-import login from '../../redux/login/thunk';
+import { ReactComponent as ArrowIcon } from './img/angle-right-b.svg';
 
 const SignInForm = function () {
   const dispatch = useDispatch();
@@ -62,16 +60,8 @@ const SignInForm = function () {
               error={formik.errors.password}
             />
             {error && <div>{errorMessage}</div>}
-            {/* <button
-        type="submit"
-        data-testid="submit"
-        onClick={formik
-          .handleSubmit}
-      >
-        Sign Up
 
-      </button> */}
-            <ButtonSubmit type="submit" margin="8px 0 32px">
+            <ButtonSubmit type="submit">
               <span>Sign In</span>
               <ArrowIcon alt="arrow" />
             </ButtonSubmit>

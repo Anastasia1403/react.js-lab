@@ -1,10 +1,8 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
-import ButtonSubmit from '../../components/ButtonSubmit/ButtonSubmit';
-import Input from '../../components/Input/Input';
+import { ButtonSubmit, FormContainer, Input } from 'components';
 import { ReactComponent as ArrowIcon } from './img/angle-right-b.svg';
 import validationSchema from './validationSchema';
-import FormContainer from '../../components/FormContainer/FormContainer';
 
 const RestorePasswordForm = function ({ resetPassword }) {
   const initialValues = {

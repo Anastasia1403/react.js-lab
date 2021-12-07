@@ -1,4 +1,6 @@
-import { render, waitFor } from '@testing-library/react';
+import {
+  screen, render, waitFor, fireEvent,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import configureStore from 'redux-mock-store';
@@ -18,7 +20,9 @@ describe('SignUpForm', () => {
   let button;
 
   beforeEach(() => {
-    const { getByPlaceholderText, getAllByPlaceholderText, getByTestId } = render(
+    const {
+      getByPlaceholderText, getAllByPlaceholderText, getByTestId,
+    } = render(
       <Provider store={store}>
         <SignUpForm />
         ,
@@ -37,6 +41,25 @@ describe('SignUpForm', () => {
     expect(emailInput).toBeInTheDocument();
     expect(passwordInput).toHaveLength(2);
     expect(button).toBeInTheDocument();
+  });
+
+  it('error message should show when confirm password is not equal to passoword and form does not submit', async () => {
+    const registrationMock = jest.fn();
+    jest.spyOn(registration, 'default').mockImplementation((values) => registrationMock(values));
+
+    userEvent.type(firstNameInput, 'John');
+    userEvent.type(lastNameInput, 'Smith');
+    userEvent.type(emailInput, 'aaa@mail.ru');
+    userEvent.type(passwordInput[0], '123456');
+    userEvent.type(passwordInput[1], '111111');
+    fireEvent.focusOut(passwordInput[1]);
+    userEvent.click(button);
+
+    await waitFor(() => {
+      expect(screen.getByTestId('error')).toBeInTheDocument();
+      expect(screen.getByTestId('error').textContent).toBe('Passwords must be equals');
+      expect(registrationMock).not.toHaveBeenCalled();
+    });
   });
 
   it('form should submit with correct values', async () => {

@@ -1,9 +1,11 @@
+import { CardList } from 'components';
+import LoadingBlock from 'components/LoadingBlock/LoadingBlock';
+import { PatientCard } from 'modules/Card';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import List from './styled';
-import PatientCard from '../Card/PatientCard';
-import { patientsList, loadingStatus } from '../../redux/getPatients/selectors';
-import { getPatients } from '../../redux/getPatients/thunk';
+import { loadingStatus } from 'redux/getAppointments/selectors';
+import { patientsList } from 'redux/getPatients/selectors';
+import { getPatients } from 'redux/getPatients/thunk';
 
 const PatientsList = function () {
   const patients = useSelector(patientsList);
@@ -15,15 +17,15 @@ const PatientsList = function () {
     dispatch(getPatients());
   }, []);
   return (
-    <List>
-      {loading ? <div>Loading...</div>
+    <CardList>
+      {loading ? <LoadingBlock />
         : patients
         && (patients.map((listItem) => (
           <PatientCard key={listItem.id} listItem={listItem} />
         ))
 
         )}
-    </List>
+    </CardList>
   );
 };
 

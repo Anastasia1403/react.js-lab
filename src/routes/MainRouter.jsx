@@ -1,12 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import NewAppointment from '../pages/NewAppointment/NewAppointment';
-import RestorePassword from '../pages/RestorePassword/RestorePassword';
-import SignIn from '../pages/SignIn/SignIn';
-import SignUp from '../pages/SignUp/SignUp';
-import UserView from '../pages/UserView/UserView';
-import { isLoggedIn } from '../redux/login/selectors';
+import NewAppointment from 'pages/NewAppointment/NewAppointment';
+import RestorePassword from 'pages/RestorePassword/RestorePassword';
+import SignIn from 'pages/SignIn/SignIn';
+import SignUp from 'pages/SignUp/SignUp';
+import UserView from 'pages/UserView/UserView';
+import { isLoggedIn } from 'redux/login/selectors';
 
 const MainRouter = function () {
   const isLoggedInStatus = useSelector(isLoggedIn);

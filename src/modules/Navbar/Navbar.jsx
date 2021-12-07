@@ -1,7 +1,7 @@
+import NavButton from 'modules/NavButton/NavButton';
 import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import styled from 'styled-components';
-import NavButton from '../NavButton/NavButton';
 
 const StyledNavbar = styled.nav`
   display: flex;

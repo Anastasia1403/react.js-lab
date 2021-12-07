@@ -2,15 +2,15 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Formik } from 'formik';
 import { useHistory } from 'react-router-dom';
-import StyledCalendar from '../StyledCalendar/StyledCalendar';
+import { error, status } from 'redux/addNewAppointment/selectors';
+import addNewAppointment from 'redux/addNewAppointment/thunk';
+import SelectDoctor from 'modules/SelectDoctor/SelectDoctor';
+import StyledCalendar from 'modules/StyledCalendar/StyledCalendar';
+import TableTime from 'modules/TableTime/TableTime';
+import validationSchema from './validationSchema';
 import {
   StyledNewAppointmentForm, Stage, ButtonSubmit,
 } from './styled';
-import TableTime from '../TableTime/TableTime';
-import validationSchema from './validationSchema';
-import addNewAppointment from '../../redux/addNewAppointment/thunk';
-import SelectDoctor from '../SelectDoctor/SelectDoctor';
-import { error, status } from '../../redux/addNewAppointment/selectors';
 
 const NewAppointmentForm = function () {
   const dispatch = useDispatch();
