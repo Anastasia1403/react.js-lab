@@ -8,6 +8,12 @@ const newAppointmentSlice = createSlice({
     status: [],
     error: '',
   },
+
+  reducers: {
+    nullifyStatus(state) {
+      state.status = '';
+    },
+  },
   extraReducers: {
     [addNewAppointment.pending]: (state) => {
       state.loading = true;
@@ -25,5 +31,5 @@ const newAppointmentSlice = createSlice({
 
   },
 });
-
+export const { nullifyStatus } = newAppointmentSlice.actions;
 export default newAppointmentSlice.reducer;

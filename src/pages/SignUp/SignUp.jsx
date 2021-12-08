@@ -1,16 +1,15 @@
 import React from 'react';
-import StyledLink from '../../components/StyledLink/StyledLink';
-import Title from '../../components/Title/Title';
-import BottomSection from '../../modules/BottomSection/BottomSection';
-import SignUpForm from '../../modules/SignUpForm/SignUpForm';
-import { EnterPanel, StartPage } from '../../modules/StartPage/StartPage';
+import BottomSection from 'modules/BottomSection/BottomSection';
+import SignUpForm from 'modules/SignUpForm/SignUpForm';
+import { EnterPanel, StartPage } from 'modules/StartPage/StartPage';
+import { StyledLink, Title } from 'components';
 
-const SignUp = function ({ history }) {
+const SignUp = function () {
   return (
     <StartPage>
       <EnterPanel>
         <Title>Sign Up</Title>
-        <SignUpForm history={history} />
+        <SignUpForm />
 
         <StyledLink to="/restore-password">
           Forgot Password?

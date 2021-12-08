@@ -5,7 +5,6 @@ export const sharedStyleButton = css`
   display: flex;
   align-items: center;
   gap: 12px;
-  margin: ${(props) => (props.margin ? props.margin : 0)};
   width: fit-content;
   padding: 12px 16px;
   vertical-align: middle;
@@ -29,6 +28,8 @@ export const sharedStyleButton = css`
 const StyledButton = styled.button`
 ${sharedStyleButton};
   height: 56px;
+  margin: 0 0 32px;
+
 `;
 
 export default StyledButton;

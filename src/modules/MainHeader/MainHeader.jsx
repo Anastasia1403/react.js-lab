@@ -1,6 +1,6 @@
+import UserInfo from 'modules/UserInfo/UserInfo';
 import React from 'react';
 import styled from 'styled-components';
-import UserInfo from '../UserInfo/UserInfo';
 import logo from './img/palm-clinic-logo.png';
 
 const StyledMainHeader = styled.header`

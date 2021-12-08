@@ -1,9 +1,9 @@
 import React from 'react';
 import StyledButton from './styled';
 
-const ButtonSubmit = function ({ margin, children }) {
+const ButtonSubmit = function ({ children }) {
   return (
-    <StyledButton margin={margin}>
+    <StyledButton data-testid="submit">
       {children}
     </StyledButton>
   );

@@ -1,17 +1,19 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import getDoctors from '../../redux/getDoctors/thunk';
-import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
-import CustomSelect from '../../components/Select/Select';
-import doctorsList from '../../redux/getDoctors/selectors';
-import doctorsSpecializations from '../../redux/getSpecializations/selectors';
-import { getSpecializations } from '../../redux/getSpecializations/thunk';
+import { useFormikContext } from 'formik';
+import doctorsSpecializations from 'redux/getSpecializations/selectors';
+import getDoctors from 'redux/getDoctors/thunk';
+import doctorsList from 'redux/getDoctors/selectors';
+import { getSpecializations } from 'redux/getSpecializations/thunk';
+import { CustomSelect, ErrorMessage } from 'components';
 import { StyledLabel, StyledSelectDoctor, StyledTextarea } from './styled';
 
-const SelectDoctor = function ({ formik }) {
+const SelectDoctor = function () {
   const specializations = useSelector(doctorsSpecializations);
   const doctors = useSelector(doctorsList);
-
+  const {
+    values, setFieldValue, errors, setFieldTouched, handleChange, handleBlur, touched,
+  } = useFormikContext();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,7 +21,7 @@ const SelectDoctor = function ({ formik }) {
   }, []);
 
   const onOccupationChange = (value) => {
-    formik.setFieldValue('occupation', value.value);
+    setFieldValue('occupation', value.value);
     dispatch(getDoctors(value.value));
   };
 
@@ -32,32 +34,32 @@ const SelectDoctor = function ({ formik }) {
           name="occupation"
           id="occupation"
           placeholder="Choose doctor`s occupation"
-          value={formik.values.occupation}
+          value={values.occupation}
           onChange={onOccupationChange}
-          onBlur={() => formik.setFieldTouched('occupation', true)}
-          touched={formik.touched.occupation}
+          onBlur={() => setFieldTouched('occupation', true)}
+          touched={touched.occupation}
           options={specializations}
         />
-
-        {(formik.touched.occupation && formik.errors.occupation) && (
-        <ErrorMessage>{formik.errors.occupation}</ErrorMessage>)}
+        {(touched.occupation && errors.occupation) && (
+        <ErrorMessage>{errors.occupation}</ErrorMessage>)}
       </StyledLabel>
 
-      <StyledLabel htmlFor="doctor-name">
+      <StyledLabel htmlFor="doctor-name" data-testid="doctorSelect">
         Doctor`s Name*
         <CustomSelect
+          isDisabled={!values.occupation}
           id="doctor-name"
           name="doctor"
           placeholder="Choose doctor"
-          value={formik.values.doctor}
-          onChange={(value) => formik.setFieldValue('doctor', value.value)}
+          value={values.doctor}
+          onChange={(value) => setFieldValue('doctor', value.value)}
           options={doctors}
-          onBlur={() => formik.setFieldTouched('doctor', true)}
-          touched={formik.touched.doctor}
-
+          onBlur={() => setFieldTouched('doctor', true)}
+          touched={touched.doctor}
         />
-        {(formik.touched.doctor && formik.errors.doctor) && (
-        <ErrorMessage>{formik.errors.doctor}</ErrorMessage>)}
+
+        {(touched.doctor && errors.doctor) && (
+        <ErrorMessage>{errors.doctor}</ErrorMessage>)}
       </StyledLabel>
 
       <StyledLabel htmlFor="reason">
@@ -66,14 +68,14 @@ const SelectDoctor = function ({ formik }) {
           id="reason"
           name="reason"
           placeholder="Write reason for the visit"
-          value={formik.values.reason}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          touched={formik.touched.reason}
-          error={formik.errors.reason}
+          value={values.reason}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          touched={touched.reason}
+          error={errors.reason}
         />
-        {(formik.touched.reason && formik.errors.reason) && (
-          <ErrorMessage>{formik.errors.reason}</ErrorMessage>)}
+        {(touched.reason && errors.reason) && (
+        <ErrorMessage>{errors.reason}</ErrorMessage>)}
       </StyledLabel>
 
       <StyledLabel htmlFor="note">
@@ -82,8 +84,8 @@ const SelectDoctor = function ({ formik }) {
           id="note"
           name="note"
           placeholder="Leave a note if needed"
-          value={formik.values.note}
-          onChange={formik.handleChange}
+          value={values.note}
+          onChange={handleChange}
         />
       </StyledLabel>
     </StyledSelectDoctor>

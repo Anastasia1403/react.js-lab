@@ -3,10 +3,10 @@ import {
   Route, useRouteMatch, Switch, Redirect,
 } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { userProfile } from 'redux/getProfile/selectors';
+import Navbar from 'modules/Navbar/Navbar';
+import TabSection from 'modules/TabSection/TabSection';
 import { userTabsInfo, doctorTabsInfo } from './tabsInfo';
-import { userProfile } from '../redux/getProfile/selectors';
-import Navbar from '../modules/Navbar/Navbar';
-import TabSection from '../modules/TabSection/TabSection';
 
 const InnerRouter = function () {
   const profile = useSelector(userProfile);

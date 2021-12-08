@@ -56,7 +56,7 @@ const Input = function ({
         />
         )}
       {(touched && error) && (
-        <ErrorMessage>{error}</ErrorMessage>
+        <ErrorMessage data-testid="error">{error}</ErrorMessage>
       )}
     </StyledInputWrapper>
   );

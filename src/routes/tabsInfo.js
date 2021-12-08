@@ -1,6 +1,6 @@
 import React from 'react';
-import AppointmentsList from '../modules/AppointmentsList/AppointmentsList';
-import PatientsList from '../modules/PatientsList/PatientsList';
+import { AppointmentsList } from 'modules/AppointmentsList';
+import { PatientsList } from 'modules/PatientsList';
 
 export const userTabsInfo = [
   {
