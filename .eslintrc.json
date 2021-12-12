@@ -1,27 +1,28 @@
 {
     "env": {
         "browser": true,
-        "es2021": true,
-        "jest/globals": true
+        "es2021": true
     },
     "extends": [
         "plugin:react/recommended",
         "airbnb",
-        "plugin:import/errors", 
-        "plugin:import/warnings"
+        "airbnb-typescript"
     ],
     "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
+        "project": "./tsconfig.json"
         },
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
+    "parser": "@typescript-eslint/parser",
+    // "parserOptions": {
+    //     "ecmaFeatures": {
+    //         "jsx": true
+    //     },
+    //     "ecmaVersion": 12,
+    //     "sourceType": "module"
+    // },
     "plugins": [
         "react",
-        "jest"
-    ],  
-
+        "@typescript-eslint"
+    ],
     "rules": {
         "func-names": "off",
         "react/prop-types": "off",
@@ -29,15 +30,8 @@
         "react/jsx-props-no-spreading": "off",
         "linebreak-style": "off",
         "no-param-reassign": "off",
-        "import/prefer-default-export": "off"
-        },
-       
-    "settings": {
-        "import/resolver": {
-            "node": {
-                "moduleDirectory": ["node_modules", "src/"]
-            }
-        }
+        "import/prefer-default-export": "off",
+        "react/require-default-props": "off",
+        "import/no-cycle": "off"
     }
-          
 }
