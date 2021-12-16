@@ -1,6 +1,6 @@
 import { UserInfo } from 'components/UserInfo';
-import { Role } from 'models/interfaces';
 import React from 'react';
+import { Role } from 'types/role';
 
 import logo from './img/palm-clinic-logo.png';
 import StyledMainHeader from './styled';

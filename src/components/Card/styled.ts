@@ -50,6 +50,14 @@ export const CardHeader = styled.header`
 
 export const EditButton = styled.button`
     background: transparent;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    &:hover,
+    &:active,
+    &:focus {
+    background-color: #F9FAFF;
+  }
 `;
 
 export const Headline = styled.div`

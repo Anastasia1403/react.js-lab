@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const ErrorMessage = styled.div`
-  margin-top: 16px;
+  margin-top: 5px;
   font-size: 13px;
   color: #F6657F;
   line-height: 1.2;  

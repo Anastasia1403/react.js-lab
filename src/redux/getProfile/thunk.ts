@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IUserProfile } from 'models/interfaces';
-import { instance, url } from '../../api/url';
-
+import { instance, url } from 'api/url';
 import authHeader from '../helper';
+import { IUserProfile } from './slice';
 
 const getProfile = createAsyncThunk(
   'auth/profile',

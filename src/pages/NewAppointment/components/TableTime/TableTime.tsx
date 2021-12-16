@@ -1,5 +1,5 @@
 import { useFormikContext } from 'formik';
-import { IFormNewAppointment } from 'models/interfaces';
+import { IFormNewAppointment } from 'pages/NewAppointment/interface';
 import React from 'react';
 import freeTimeList from 'redux/getFreeTime/selectors';
 import { useAppSelector } from 'redux/hooks/hooks';
@@ -28,7 +28,7 @@ const TableTime = function ({ blocked }: TableTimeProps) {
             key={label}
             htmlFor={label}
             checked={value === values.time}
-            disabled={!time.find((item: any) => item.value === value)}
+            disabled={!time.find((item) => item.value === value)}
           >
             <Radiobutton
               type="radio"

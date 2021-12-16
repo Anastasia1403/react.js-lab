@@ -1,11 +1,11 @@
 import { CardList, PatientCard } from 'components';
 import LoadingBlock from 'components/LoadingBlock/LoadingBlock';
-import { IAppointmentForDoctor } from 'models/interfaces';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadingStatus } from 'redux/getAppointments/selectors';
 import { patientsList } from 'redux/getPatients/selectors';
 import { getPatients } from 'redux/getPatients/thunk';
+import { IAppointmentForDoctor } from 'types/appointments';
 
 const PatientsList = function () {
   const patients = useSelector(patientsList);

@@ -1,7 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ISpecialization } from '../../models/interfaces';
 import { getSpecializations } from './thunk';
 
+export interface ISpecialization {
+  specialization_name: string,
+  id: string
+}
 interface IInitialState {
   loading: boolean,
   specializations: ISpecialization[] | [],
@@ -15,7 +18,7 @@ const initialState: IInitialState = {
 };
 
 const specializationsSlice = createSlice({
-  name: 'getSpecializations',
+  name: 'specializations',
   initialState,
   reducers: {},
   extraReducers: (builder) => {

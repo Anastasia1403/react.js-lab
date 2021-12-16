@@ -6,8 +6,9 @@ import getDoctors from 'redux/getDoctors/thunk';
 import doctorsList from 'redux/getDoctors/selectors';
 import { getSpecializations } from 'redux/getSpecializations/thunk';
 import { CustomSelect, ErrorMessage } from 'components';
-import { IFormNewAppointment, IOptions } from 'models/interfaces';
-import { DICT } from 'pages/NewAppointment/dictionary';
+import { LABELS, PLACEHOLDERS } from 'pages/NewAppointment/dictionary';
+import { IFormNewAppointment } from 'pages/NewAppointment/interface';
+import { IOptions } from 'types/appointments';
 import { StyledLabel, StyledSelectDoctor, StyledTextarea } from './styled';
 
 const SelectDoctor = function () {
@@ -30,11 +31,11 @@ const SelectDoctor = function () {
   return (
     <StyledSelectDoctor>
       <StyledLabel htmlFor="occupation">
-        {DICT.LABELS.OCCUPATION}
+        {LABELS.OCCUPATION}
         <CustomSelect
           name="occupation"
           id="occupation"
-          placeholder={DICT.PLACEHOLDERS.OCCUPATION}
+          placeholder={PLACEHOLDERS.OCCUPATION}
           value={values.occupation}
           onChange={onOccupationChange}
           onBlur={() => setFieldTouched('occupation', true)}
@@ -46,12 +47,12 @@ const SelectDoctor = function () {
       </StyledLabel>
 
       <StyledLabel htmlFor="doctor-name" data-testid="doctorSelect">
-        {DICT.LABELS.DOCTOR_NAME}
+        {LABELS.DOCTOR_NAME}
         <CustomSelect
           isDisabled={!values.occupation}
           id="doctor-name"
           name="doctor"
-          placeholder={DICT.PLACEHOLDERS.DOCTOR_NAME}
+          placeholder={PLACEHOLDERS.DOCTOR_NAME}
           value={values.doctor}
           onChange={(value) => setFieldValue('doctor', value.value)}
           options={doctors}
@@ -64,11 +65,11 @@ const SelectDoctor = function () {
       </StyledLabel>
 
       <StyledLabel htmlFor="reason">
-        {DICT.LABELS.REASON}
+        {LABELS.REASON}
         <StyledTextarea
           id="reason"
           name="reason"
-          placeholder={DICT.PLACEHOLDERS.REASON}
+          placeholder={PLACEHOLDERS.REASON}
           value={values.reason}
           onChange={handleChange}
           onBlur={handleBlur}
@@ -78,11 +79,11 @@ const SelectDoctor = function () {
       </StyledLabel>
 
       <StyledLabel htmlFor="note">
-        {DICT.LABELS.NOTE}
+        {LABELS.NOTE}
         <StyledTextarea
           id="note"
           name="note"
-          placeholder={DICT.PLACEHOLDERS.NOTE}
+          placeholder={PLACEHOLDERS.NOTE}
           value={values.note}
           onChange={handleChange}
         />

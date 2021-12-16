@@ -1,4 +1,4 @@
-import { IOptions } from '../models/interfaces';
+import { IOptions } from 'types/appointments';
 
 const createOptionsArrayForSelect = (
   optionsArr: object[],

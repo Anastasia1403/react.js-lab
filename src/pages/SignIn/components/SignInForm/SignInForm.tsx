@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Formik } from 'formik';
 import { useHistory } from 'react-router-dom';
-import { isLoggedIn, error } from 'redux/login/selectors';
+import { isLoggedIn } from 'redux/login/selectors';
 import login from 'redux/login/thunk';
 import { ButtonSubmit, FormContainer, Input } from 'components';
 import { useAppDispatch, useAppSelector } from 'redux/hooks/hooks';
@@ -18,7 +18,7 @@ const SignInForm = function () {
   const dispatch = useAppDispatch();
 
   const isLoggedInStatus = useAppSelector(isLoggedIn);
-  const errorMessage = useAppSelector(error);
+  // const errorMessage = useAppSelector(error);
   const history = useHistory();
 
   useEffect(() => {
@@ -64,7 +64,6 @@ const SignInForm = function () {
             value={formik.values.password}
             error={formik.errors.password}
           />
-          {errorMessage && <div>{errorMessage}</div>}
 
           <ButtonSubmit type="submit">
             <span>Sign In</span>

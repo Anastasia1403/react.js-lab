@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IAppointmentForDoctor } from 'models/interfaces';
+import { IAppointmentForDoctor } from 'types/appointments';
 import { getPatients } from './thunk';
 
 interface IInitialState {

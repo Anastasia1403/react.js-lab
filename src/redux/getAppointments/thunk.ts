@@ -1,7 +1,7 @@
-import { IAppointmentForPatient } from 'models/interfaces';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { instance, url } from 'api/url';
 import authHeader from 'redux/helper';
+import { IAppointmentForPatient } from 'types/appointments';
 
 interface Response {
   appointments: IAppointmentForPatient[],

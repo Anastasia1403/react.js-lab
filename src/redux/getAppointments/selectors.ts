@@ -1,5 +1,5 @@
-import { IAppointmentForPatient } from 'models/interfaces';
 import { RootState } from 'redux/store';
+import { IAppointmentForPatient } from 'types/appointments';
 import formatDate from 'utils/formatDate';
 
 export const appointmentsList = (state: RootState) => state.appointments.appointments

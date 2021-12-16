@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Formik } from 'formik';
 import { useHistory } from 'react-router-dom';
-import { error, status } from 'redux/registration/selectors';
+import { status } from 'redux/registration/selectors';
 import registration from 'redux/registration/thunk';
 import { ButtonSubmit, FormContainer, Input } from 'components';
 import { useAppDispatch, useAppSelector } from 'redux/hooks/hooks';
@@ -9,8 +9,15 @@ import { AUTH_PATH } from 'routes/constants';
 import ArrowIcon from './img/angle-right-b.svg';
 import validationSchema from './validationSchema';
 
+interface IInitialValues {
+  firstName: string,
+  lastName: string,
+  email: string,
+  password: string,
+  confirmPassword: string,
+}
+
 const SignUpForm = function () {
-  const errorMessage = useAppSelector(error);
   const statusText = useAppSelector(status);
   const history = useHistory();
 
@@ -18,20 +25,18 @@ const SignUpForm = function () {
 
   useEffect(() => {
     if (statusText === 'Created') {
-      /* eslint-disable no-alert */
-      alert('You are registered successfully');
       history.push(AUTH_PATH.SIGN_IN);
     }
   }, [statusText]);
 
-  const initialValues = {
+  const initialValues: IInitialValues = {
     firstName: '',
     lastName: '',
     email: '',
     password: '',
     confirmPassword: '',
   };
-  const handleSubmit = (values: any) => {
+  const handleSubmit = (values: IInitialValues) => {
     const userData = {
       userName: values.email,
       password: values.password,
@@ -93,7 +98,6 @@ const SignUpForm = function () {
             value={formik.values.confirmPassword}
             error={formik.errors.confirmPassword}
           />
-          {errorMessage && <div>{errorMessage}</div>}
           <ButtonSubmit type="submit">
             <span>Sign Up</span>
             <img alt="arrow" src={ArrowIcon} />

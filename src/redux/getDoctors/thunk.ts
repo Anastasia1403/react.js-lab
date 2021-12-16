@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IDoctor } from 'models/interfaces';
-import { instance } from '../../api/url';
+import { instance } from 'api/url';
+import { IDoctor } from './slice';
 
 const getDoctors = createAsyncThunk(
   'doctors/getDoctors',

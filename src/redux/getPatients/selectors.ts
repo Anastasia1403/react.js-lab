@@ -1,6 +1,6 @@
-import { IAppointmentForDoctor } from 'models/interfaces';
 import { RootState } from 'redux/store';
-import formatDate from '../../utils/formatDate';
+import { IAppointmentForDoctor } from 'types/appointments';
+import formatDate from 'utils/formatDate';
 
 export const patientsList = (state: RootState) => state.patients.patients
   .map((item: IAppointmentForDoctor) => {
