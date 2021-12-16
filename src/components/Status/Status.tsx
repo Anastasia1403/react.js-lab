@@ -1,8 +1,8 @@
-import { IStatus } from 'models/interfaces';
 import React, { useMemo } from 'react';
+import { StatusType } from 'types/appointments';
 import { StatusIndicator, StatusText } from './styled';
 
-const Status = function ({ status }:IStatus) {
+const Status = function ({ status }: { status: StatusType }) {
   const statusText = useMemo(() => {
     switch (status) {
       case 'canceled': {

@@ -1,4 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import registrationReducer from './registration/slice';
 import loginReducer from './login/slice';
 import profileReducer from './getProfile/slice';
@@ -8,22 +10,37 @@ import specializationsReducer from './getSpecializations/slice';
 import doctorsReducer from './getDoctors/slice';
 import freeTimeReducer from './getFreeTime/slice';
 import patientsReducer from './getPatients/slice';
+import notificationReducer from './showNotification/slice';
 
-const store = configureStore({
-  reducer: {
-    registration: registrationReducer,
-    login: loginReducer,
-    profile: profileReducer,
+const loginPersistConfig = {
+  key: 'login',
+  storage,
+};
 
-    appointments: appointmentsReducer,
-    appointment: newAppointmentReducer,
+const profilePersistConfig = {
+  key: 'profile',
+  storage,
+};
 
-    patients: patientsReducer,
-    specializations: specializationsReducer,
-    doctors: doctorsReducer,
-    time: freeTimeReducer,
-  },
-});
+const rootReducer = {
+  registration: registrationReducer,
+  login: persistReducer(loginPersistConfig, loginReducer),
+  profile: persistReducer(profilePersistConfig, profileReducer),
+
+  appointments: appointmentsReducer,
+  appointment: newAppointmentReducer,
+
+  patients: patientsReducer,
+  specializations: specializationsReducer,
+  doctors: doctorsReducer,
+  time: freeTimeReducer,
+
+  notification: notificationReducer,
+};
+
+const store = configureStore({ reducer: rootReducer });
+
+export const persistor = persistStore(store);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

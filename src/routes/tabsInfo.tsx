@@ -9,7 +9,8 @@ export interface TabInfo {
   title: string,
   path: string,
   component: object,
-  exact?: boolean
+  exact?: boolean,
+  default?: boolean
 }
 
 export const userTabsInfo: Array<TabInfo> = [
@@ -19,7 +20,7 @@ export const userTabsInfo: Array<TabInfo> = [
     path: USER_PATH.PROFILE,
     component: <LoadingBlock />,
     exact: false,
-
+    default: false,
   },
   {
     tab: 'Appointments',
@@ -27,7 +28,7 @@ export const userTabsInfo: Array<TabInfo> = [
     path: USER_PATH.APPOINTMENTS,
     component: <AppointmentsList />,
     exact: false,
-
+    default: true,
   },
   {
     tab: 'Resolutions',
@@ -35,7 +36,7 @@ export const userTabsInfo: Array<TabInfo> = [
     path: USER_PATH.RESOLUTIONS,
     component: <LoadingBlock />,
     exact: false,
-
+    default: false,
   },
 ];
 
@@ -46,7 +47,7 @@ export const doctorTabsInfo = [
     path: USER_PATH.PATIENTS,
     component: <PatientsList />,
     exact: false,
-
+    default: true,
   },
   {
     tab: 'Resolutions',
@@ -54,6 +55,6 @@ export const doctorTabsInfo = [
     path: USER_PATH.RESOLUTIONS,
     component: <LoadingBlock />,
     exact: false,
-
+    default: false,
   },
 ];

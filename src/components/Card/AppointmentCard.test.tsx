@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { IAppointmentForPatient } from 'models/interfaces';
+import { IAppointmentForPatient } from 'types/appointments';
 import AppointmentCard from './AppointmentCard';
 
 describe('Appointment Card', () => {

@@ -4,11 +4,12 @@ import { useHistory } from 'react-router-dom';
 import { error, status } from 'redux/addNewAppointment/selectors';
 import addNewAppointment from 'redux/addNewAppointment/thunk';
 import { TableTime } from 'pages/NewAppointment/components/TableTime';
-import { IFormNewAppointment, INewAppointment } from 'models/interfaces';
 import { StyledCalendar } from 'pages/NewAppointment/components/StyledCalendar';
 import { SelectDoctor } from 'pages/NewAppointment/components/SelectDoctor';
 import { useAppDispatch, useAppSelector } from 'redux/hooks/hooks';
-import { DICT } from 'pages/NewAppointment/dictionary';
+import { STAGE } from 'pages/NewAppointment/dictionary';
+import { IFormNewAppointment } from 'pages/NewAppointment/interface';
+import { INewAppointment } from 'types/newAppointment';
 import validationSchema from './validationSchema';
 import {
   StyledNewAppointmentForm, Stage, ButtonSubmit,
@@ -24,7 +25,7 @@ const NewAppointmentForm = function () {
     if (statusText === 'Created') history.push('/user-view/appointments');
   }, [statusText]);
 
-  const handleSubmit = (values: any): void => {
+  const handleSubmit = (values: IFormNewAppointment): void => {
     const formattedValues: INewAppointment = {
       date: values.time,
       reason: values.reason,
@@ -54,13 +55,13 @@ const NewAppointmentForm = function () {
         <Form data-testid="form">
           <StyledNewAppointmentForm>
             <section>
-              <Stage>{DICT.STAGE.ONE}</Stage>
+              <Stage>{STAGE.ONE}</Stage>
 
               <SelectDoctor />
             </section>
 
             <section>
-              <Stage>{DICT.STAGE.TWO}</Stage>
+              <Stage>{STAGE.TWO}</Stage>
 
               <StyledCalendar
                 blocked={!(formik.values.doctor && formik.values.occupation)}
@@ -70,7 +71,7 @@ const NewAppointmentForm = function () {
             </section>
 
             <section>
-              <Stage>{DICT.STAGE.THREE}</Stage>
+              <Stage>{STAGE.THREE}</Stage>
 
               <TableTime
                 blocked={!(formik.values.doctor && formik.values.occupation)}

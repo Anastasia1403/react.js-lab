@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { isLoggedIn } from 'redux/login/selectors';
 import { useAppSelector } from 'redux/hooks/hooks';
+import NotFound from 'pages/NotFound/NotFound';
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
 import { AUTH_PATH, USER_PATH } from './constants';
@@ -33,6 +34,7 @@ const MainRouter = function () {
           {page.component}
         </PrivateRoute>
       ))}
+      <Route><NotFound /></Route>
     </Switch>
   );
 };

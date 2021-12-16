@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ISpecialization } from 'models/interfaces';
 import { instance, url } from 'api/url';
+import { ISpecialization } from './slice';
 
 export const getSpecializations = createAsyncThunk(
   'doctors/getSpecializations',

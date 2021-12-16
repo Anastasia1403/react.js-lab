@@ -1,13 +1,13 @@
-import { Role } from 'models/interfaces';
 import React from 'react';
+import { Role } from 'types/role';
 import {
   AvatarWrap, Avatar, Info, Name, RoleName, User,
 } from './styled';
 
 interface UserInfoProps {
   name: string,
-  userRole: Role | undefined,
-  avatar: string | undefined
+  userRole?: Role,
+  avatar?: string
 }
 const UserInfo = function ({ name, userRole, avatar }: UserInfoProps) {
   return (

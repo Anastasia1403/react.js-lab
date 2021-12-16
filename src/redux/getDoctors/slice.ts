@@ -1,6 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IDoctor } from 'models/interfaces';
 import getDoctors from './thunk';
+
+export interface IDoctor {
+  first_name: string,
+  last_name: string,
+  id: string
+}
 
 interface IInitialState {
   loading: boolean,

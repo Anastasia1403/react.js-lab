@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import format from 'date-fns/format';
 import { useFormikContext } from 'formik';
 import getFreeTime from 'redux/getFreeTime/thunk';
-import { IFormNewAppointment } from 'models/interfaces';
+import { IFormNewAppointment } from 'pages/NewAppointment/interface';
 import { ReactComponent as ArrowNextIcon } from './img/angle-right-b.svg';
 import { ReactComponent as ArrowPrevIcon } from './img/angle-left-b.svg';
 

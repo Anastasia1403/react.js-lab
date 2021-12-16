@@ -2,10 +2,9 @@ import React from 'react';
 import StyledButton from './styled';
 
 interface ButtonSubmitProps {
-  children: React.ReactNode;
-  type?:'button' | 'submit' | 'reset' | undefined
+  type?:'button' | 'submit' | 'reset'
 }
-const ButtonSubmit = function ({ children, type }: ButtonSubmitProps) {
+const ButtonSubmit:React.FC<ButtonSubmitProps> = function ({ children, type }) {
   return (
     <StyledButton data-testid="submit" type={type}>
       {children}

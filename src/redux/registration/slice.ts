@@ -7,17 +7,7 @@ const registrationSlice = createSlice({
     status: '',
     error: '',
   },
-  reducers: {
-    // registrationSuccess(state, action: PayloadAction<string>) {
-    //   state.status = action.payload;
-    //   state.error = '';
-
-    // },
-    // registrationError(state, action: PayloadAction<string>) {
-    //   state.status = '';
-    //   state.error = action.payload;
-    // }
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(registration.fulfilled.type, (state, action: PayloadAction<string>) => {
@@ -29,5 +19,4 @@ const registrationSlice = createSlice({
       });
   },
 });
-// export const { registrationSuccess, registrationError } = registrationSlice.actions;
 export default registrationSlice.reducer;

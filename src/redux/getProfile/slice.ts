@@ -1,6 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IUserProfile } from 'models/interfaces';
+import { Role } from 'types/role';
 import getProfile from './thunk';
+
+export interface IUserProfile {
+  id: string,
+  first_name: string,
+  last_name: string,
+  photo: string,
+  role_name: Role
+}
 
 interface InitialState {
   loading: boolean,

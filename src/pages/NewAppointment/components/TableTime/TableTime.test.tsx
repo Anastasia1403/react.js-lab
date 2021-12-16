@@ -7,17 +7,48 @@ import { Provider } from 'react-redux';
 import TableTime from './TableTime';
 
 describe('Appointment List', () => {
-  let mockHandleChange: (e: React.ChangeEvent<any>) => string;
+  let mockHandleChange: (e: string) => void;
   beforeEach(() => {
     const useFormikContextMock = jest.spyOn(formik, 'useFormikContext');
-    mockHandleChange = jest.fn();
+    mockHandleChange = jest.fn((value) => (value));
     useFormikContextMock.mockReturnValue({
       values: {
         date: '2021-12-30T00:00:00.000Z',
         time: '',
         doctor: '',
       },
-      handleChange: (event: React.ChangeEvent<any>): string => mockHandleChange(event.target.value),
+      handleChange: (event: React.ChangeEvent<any>): void => mockHandleChange(event.target.value),
+      touched: true,
+      isSubmitting: false,
+      isValidating: false,
+      errors: false,
+      submitCount: 0,
+      setStatus: jest.fn(),
+      setErrors: jest.fn(),
+      setSubmitting: jest.fn(),
+      setTouched: jest.fn(),
+      setValues: jest.fn(),
+      setFieldValue: jest.fn(),
+      setFieldError: jest.fn(),
+      setFieldTouched: jest.fn(),
+      validateForm: jest.fn(),
+      validateField: jest.fn(),
+      resetForm: jest.fn(),
+      submitForm: jest.fn(),
+      setFormikState: jest.fn(),
+      handleSubmit: jest.fn(),
+      handleReset: jest.fn(),
+      handleBlur: jest.fn(),
+      getFieldProps: jest.fn(),
+      getFieldMeta: jest.fn(),
+      getFieldHelpers: jest.fn(),
+      dirty: false,
+      isValid: true,
+      initialValues: {},
+      initialErrors: {},
+      initialTouched: {},
+      registerField: jest.fn(),
+      unregisterField: jest.fn(),
     });
   });
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { IAppointmentForPatient } from 'models/interfaces';
+import { IAppointmentForPatient } from 'types/appointments';
 import { ReactComponent as HeartIcon } from './img/heart.svg';
 import { ReactComponent as EditIcon } from './img/more-vertical.svg';
 import { ReactComponent as ClockIcon } from './img/clock-three.svg';
