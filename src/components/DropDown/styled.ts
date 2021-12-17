@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { DropDownProps } from './DropDown';
 
-export const StyledDropDown = styled.div<DropDownProps>`
+export const StyledDropDown = styled.ul<Pick<DropDownProps, 'isVisible'>>`
  display: ${(props) => (props.isVisible ? 'flex' : 'none')};
  flex-direction: column;
  padding: 4px;
@@ -13,5 +13,18 @@ export const StyledDropDown = styled.div<DropDownProps>`
 background-color: #fff;
 z-index: 2;
 width: 272px;
+`;
 
+export const DropDownItem = styled.li`
+    background-color: transparent;
+    height: 40px;
+    padding: 0 20px;
+    border-radius: 6px;
+    text-align: start;
+    line-height: 40px;
+    vertical-align: middle;
+    &:hover, &:active, &:focus {
+    background-color: #F9FAFF;
+
+}
 `;

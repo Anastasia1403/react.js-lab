@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { instance } from '../../api/url';
+import { instance, url } from 'api/url';
+import { ResponseError } from 'redux/types';
 
 interface Props {
   doctorId: string,
@@ -9,10 +10,14 @@ const getFreeTime = createAsyncThunk(
   'getFreeTime',
   async ({ doctorId, date }: Props, { rejectWithValue }) => {
     try {
-      return await instance.get<string[]>(`/appointments/time/free?date=${date}&doctorID=${doctorId}`)
+      return await instance.get<string[]>(
+        url.appointmentFreeTime(),
+        { params: { date, doctorID: doctorId } },
+      )
         .then((response) => response.data);
     } catch (error: any) {
-      return rejectWithValue(error.response.data);
+      const result = (error as ResponseError).response.data;
+      return rejectWithValue(result);
     }
   },
 );

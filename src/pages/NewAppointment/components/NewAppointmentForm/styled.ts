@@ -17,7 +17,7 @@ gap: 104px;
 }
 `;
 
-export const Stage = styled.h3`
+export const StageTitle = styled.h3`
 color: #A1ABC9;
 font-size: 17px;
 margin-bottom: 40px;

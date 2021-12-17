@@ -7,12 +7,12 @@ import { TableTime } from 'pages/NewAppointment/components/TableTime';
 import { StyledCalendar } from 'pages/NewAppointment/components/StyledCalendar';
 import { SelectDoctor } from 'pages/NewAppointment/components/SelectDoctor';
 import { useAppDispatch, useAppSelector } from 'redux/hooks/hooks';
-import { STAGE } from 'pages/NewAppointment/dictionary';
+import { Stage } from 'pages/NewAppointment/dictionary';
 import { IFormNewAppointment } from 'pages/NewAppointment/interface';
 import { INewAppointment } from 'types/newAppointment';
 import validationSchema from './validationSchema';
 import {
-  StyledNewAppointmentForm, Stage, ButtonSubmit,
+  StyledNewAppointmentForm, StageTitle, ButtonSubmit,
 } from './styled';
 
 const NewAppointmentForm = function () {
@@ -55,13 +55,13 @@ const NewAppointmentForm = function () {
         <Form data-testid="form">
           <StyledNewAppointmentForm>
             <section>
-              <Stage>{STAGE.ONE}</Stage>
+              <StageTitle>{Stage.ONE}</StageTitle>
 
               <SelectDoctor />
             </section>
 
             <section>
-              <Stage>{STAGE.TWO}</Stage>
+              <StageTitle>{Stage.TWO}</StageTitle>
 
               <StyledCalendar
                 blocked={!(formik.values.doctor && formik.values.occupation)}
@@ -71,7 +71,7 @@ const NewAppointmentForm = function () {
             </section>
 
             <section>
-              <Stage>{STAGE.THREE}</Stage>
+              <StageTitle>{Stage.THREE}</StageTitle>
 
               <TableTime
                 blocked={!(formik.values.doctor && formik.values.occupation)}
