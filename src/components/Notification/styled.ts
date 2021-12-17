@@ -12,7 +12,7 @@ border-radius: 8px;
 display: ${(props) => (props.isVisible ? 'flex' : 'none')};
 gap: 16px;
 color: #fff;
-transition-duration: 0.5s;
+transition: all 1s;
  `;
 
 export const NotificationContent = styled.div`

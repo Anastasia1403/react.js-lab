@@ -1,5 +1,5 @@
 import React from 'react';
-import Select from 'react-select';
+import Select, { SingleValue } from 'react-select';
 import customStyles from './styled';
 
 type OptionsType = {
@@ -10,7 +10,7 @@ type OptionsType = {
 type CustomSelectProps = {
   options: OptionsType[],
   value: string,
-  onChange: (value: OptionsType) => void,
+  onChange: (newValue: SingleValue<string | OptionsType>) => void,
   onBlur: (value: React.FocusEvent<HTMLInputElement>) => void,
   isDisabled?: boolean,
   id: string,
@@ -28,9 +28,7 @@ const CustomSelect: React.FC<CustomSelectProps> = function ({
       {...restProps}
       value={defaultValue(options, value)}
   // eslint-disable-next-line
-      onChange={(value: any) => {
-        onChange(value);
-      }}
+      onChange={onChange}
       styles={customStyles}
       isSearchable
       options={options}

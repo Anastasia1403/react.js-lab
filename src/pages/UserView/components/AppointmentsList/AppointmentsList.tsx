@@ -6,7 +6,7 @@ import { status } from 'redux/addNewAppointment/selectors';
 import { nullifyStatus } from 'redux/addNewAppointment/slice';
 import { AppointmentCard, CardList } from 'components';
 import { useAppDispatch, useAppSelector } from 'redux/hooks/hooks';
-import { USER_VIEW_DICT } from 'pages/UserView/dictionary';
+import { userViewDict } from 'pages/UserView/dictionary';
 import EmptyBlock from 'components/EmptyBlock/EmptyBlock';
 import { IAppointmentForPatient } from 'types/appointments';
 
@@ -39,27 +39,10 @@ const AppointmentsList = function () {
   }
   return (
     <EmptyBlock
-      text1={USER_VIEW_DICT.EMPTY.APPOINTMENTS_1}
-      text2={USER_VIEW_DICT.EMPTY.APPOINTMENTS_2}
+      text1={userViewDict.empty.appointments_1}
+      text2={userViewDict.empty.appointments_2}
     />
   );
 };
-
-// <CardList>
-//   {loading ? <LoadingBlock />
-//     : appointments
-//       ? appointments.map((listItem: IAppointmentForPatient) => (
-//         <AppointmentCard
-//           key={listItem.id}
-//           {...listItem}
-//         />
-//       ))
-//       : (
-//         <EmptyBlock
-//           text1={USER_VIEW_DICT.EMPTY.APPOINTMENTS_1}
-//           text2={USER_VIEW_DICT.EMPTY.APPOINTMENTS_2}
-//         />
-//       )}
-// </CardList>
 
 export default AppointmentsList;
