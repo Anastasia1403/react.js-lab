@@ -18,6 +18,7 @@ const newAppointmentSlice = createSlice({
   reducers: {
     nullifyStatus(state) {
       state.status = '';
+      state.error = '';
     },
   },
   extraReducers: (builder) => {
