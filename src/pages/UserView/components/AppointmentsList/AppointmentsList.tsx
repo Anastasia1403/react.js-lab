@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import getAppointments from 'redux/getAppointments/thunk';
 import { appointmentsList, loadingStatus } from 'redux/getAppointments/selectors';
-import { LoadingBlock } from 'components/LoadingBlock';
+import {
+  LoadingBlock, AppointmentCard, CardList, EmptyBlock,
+} from 'components';
 import { status } from 'redux/addNewAppointment/selectors';
 import { nullifyStatus } from 'redux/addNewAppointment/slice';
-import { AppointmentCard, CardList } from 'components';
 import { useAppDispatch, useAppSelector } from 'redux/hooks/hooks';
 import { userViewDict } from 'pages/UserView/dictionary';
-import EmptyBlock from 'components/EmptyBlock/EmptyBlock';
 import { IAppointmentForPatient } from 'types/appointments';
 
 const AppointmentsList = function () {

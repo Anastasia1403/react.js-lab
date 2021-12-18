@@ -10,3 +10,4 @@ export * from './CardList';
 export * from './StyledUserView';
 export * from './MainHeader';
 export * from './Card';
+export * from './EmptyBlock';
