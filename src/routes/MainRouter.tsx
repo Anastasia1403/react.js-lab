@@ -1,15 +1,16 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { isLoggedIn } from 'redux/login/selectors';
 import { useAppSelector } from 'redux/hooks/hooks';
 import NotFound from 'pages/NotFound/NotFound';
+import { isLoggedInSelector } from 'redux/auth/selectors';
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
 import { AUTH_PATH, USER_PATH } from './constants';
 import { privateRoutes, publicRoutes } from './routes';
 
 const MainRouter = function () {
-  const isLoggedInStatus = useAppSelector(isLoggedIn);
+  const isLoggedInStatus = useAppSelector(isLoggedInSelector);
+
   return (
     <Switch>
       {/* @ts-ignore */}
@@ -22,7 +23,7 @@ const MainRouter = function () {
           key={page.path}
           isLoggedInStatus={isLoggedInStatus}
         >
-          {page.component}
+          {page.comp}
         </PublicRoute>
       ))}
       {privateRoutes.map((page) => (
@@ -31,7 +32,7 @@ const MainRouter = function () {
           isLoggedInStatus={isLoggedInStatus}
           key={page.path}
         >
-          {page.component}
+          {page.comp}
         </PrivateRoute>
       ))}
       <Route><NotFound /></Route>

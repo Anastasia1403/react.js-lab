@@ -1,7 +1,7 @@
 import Notification from 'components/Notification/Notification';
 import React from 'react';
 import { useAppSelector } from 'redux/hooks/hooks';
-import { isVisible, text, type } from 'redux/showNotification/selectors';
+import { isVisible, text, type } from 'redux/notifications/selectors';
 import { MainRouter } from 'routes';
 
 const App = function () {

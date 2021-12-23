@@ -10,17 +10,17 @@ export const publicRoutes = [
   {
     exact: false,
     path: AUTH_PATH.SIGN_IN,
-    component: <SignIn />,
+    comp: <SignIn />,
   },
   {
     exact: false,
     path: AUTH_PATH.SIGN_UP,
-    component: <SignUp />,
+    comp: <SignUp />,
   },
   {
     exact: false,
     path: AUTH_PATH.RESTORE_PASSWORD,
-    component: <RestorePassword />,
+    comp: <RestorePassword />,
   },
 ];
 
@@ -28,11 +28,11 @@ export const privateRoutes = [
   {
     exact: false,
     path: USER_PATH.CREATE_APPOINTMENT,
-    component: <NewAppointment />,
+    comp: <NewAppointment />,
   },
   {
     exact: false,
     path: USER_PATH.MAIN,
-    component: <UserView />,
+    comp: <UserView />,
   },
 ];

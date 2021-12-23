@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { IDropDownItem } from 'components/Card/types';
 import { DropDownProps } from './DropDown';
 
 export const StyledDropDown = styled.ul<Pick<DropDownProps, 'isVisible'>>`
@@ -15,8 +16,11 @@ z-index: 2;
 width: 272px;
 `;
 
-export const DropDownItem = styled.li`
+export const DropDownItem = styled.li<Pick<IDropDownItem, 'isActive'>>`
+pointer-events: ${(props) => (props.isActive ? 'auto' : 'none')};
+color: ${(props) => (props.isActive ? 'inherit' : '#a1abc9')};
     background-color: transparent;
+    cursor: pointer;
     height: 40px;
     padding: 0 20px;
     border-radius: 6px;

@@ -31,5 +31,27 @@ ${sharedStyleButton};
   margin: 0 0 32px;
 
 `;
+export const ModalStyledButton = styled.button`
+${sharedStyleButton};
+  height: 48px;
+  font-size: 15px;
+`;
+
+export const ModalCancelStyledButton = styled.button`
+${sharedStyleButton};
+  height: 48px;
+  color: #A1ABC9;
+  background-color: #fff;
+  border: 1px solid #DCE0EC;
+  font-size: 15px;
+
+
+  &:hover,
+  &:active,
+  &:focus {
+    background-color: #F9FAFF;
+  }
+
+`;
 
 export default StyledButton;

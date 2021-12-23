@@ -7,7 +7,7 @@ import StyledMainHeader from './styled';
 
 interface User {
   name: string,
-  userRole: Role | undefined,
+  userRole: Role,
   avatar: string | undefined
 }
 

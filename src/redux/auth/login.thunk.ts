@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { hideNotification, showNotification } from 'redux/showNotification/slice';
+import { hideNotification, showNotification } from 'redux/notifications/slice';
 import { ResponseError } from 'redux/types';
-import { instance, url } from '../../api/url';
+import { instance, url } from 'api/url';
 
 export interface IUserLogin {
   userName: string,
@@ -19,7 +19,7 @@ const login = createAsyncThunk(
         });
     } catch (error: any) {
       const result = (error as ResponseError).response.data;
-      thunkAPI.dispatch(showNotification({ type: 'error', text: result, isVisible: true }));
+      thunkAPI.dispatch(showNotification({ type: 'error', text: result }));
       setTimeout(() => {
         thunkAPI.dispatch(hideNotification());
       }, 5000);

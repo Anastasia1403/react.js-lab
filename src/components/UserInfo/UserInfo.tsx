@@ -6,7 +6,7 @@ import {
 
 interface UserInfoProps {
   name: string,
-  userRole?: Role,
+  userRole: Role,
   avatar?: string
 }
 const UserInfo = function ({ name, userRole, avatar }: UserInfoProps) {

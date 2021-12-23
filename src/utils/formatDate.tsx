@@ -6,4 +6,6 @@ const formatDate = (date: Date | string): string => {
   return `${formattedDate} - ${endTime}`;
 };
 
+export const formatDateForResolution = (date: Date): string => format(new Date(date), 'MM/dd/yy');
+
 export default formatDate;

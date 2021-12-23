@@ -4,29 +4,28 @@ import React, { useState } from 'react';
 import {
   Route, Switch, Redirect,
 } from 'react-router-dom';
-import { userProfile } from 'redux/getProfile/selectors';
 import { useAppSelector } from 'redux/hooks/hooks';
-import { isLoggedIn } from 'redux/login/selectors';
+import { isLoggedInSelector, profileSelector } from 'redux/auth/selectors';
 import { Role } from 'types/role';
 import { USER_PATH } from './constants';
 import PrivateRoute from './PrivateRoute';
-import { userTabsInfo, doctorTabsInfo, TabInfo } from './tabsInfo';
+import { patientTabsInfo, doctorTabsInfo, TabInfo } from './tabsInfo';
 
-const getTabInfo = (role_name: Role | undefined): any => {
+const getTabInfo = (role_name: Role): any => {
   switch (role_name) {
     case 'Doctor': {
       return doctorTabsInfo;
     }
     case 'Patient': {
-      return userTabsInfo;
+      return patientTabsInfo;
     }
     default: return null;
   }
 };
 const InnerRouter = function () {
-  const profile = useAppSelector(userProfile);
-  const isLoggedInStatus = useAppSelector(isLoggedIn);
-  const tabsInfo = getTabInfo(profile?.role_name);
+  const profile = useAppSelector(profileSelector);
+  const isLoggedInStatus = useAppSelector(isLoggedInSelector);
+  const tabsInfo = profile ? getTabInfo(profile.role_name) : null;
   const defaultTab = tabsInfo.find((item: TabInfo) => item.default === true);
   const [activeTab, setActiveTab] = useState(defaultTab.tab);
   return (

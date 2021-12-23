@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { Formik } from 'formik';
 import { useHistory } from 'react-router-dom';
-import { isLoggedIn } from 'redux/login/selectors';
-import login from 'redux/login/thunk';
+import login from 'redux/auth/login.thunk';
 import { ButtonSubmit, FormContainer, Input } from 'components';
 import { useAppDispatch, useAppSelector } from 'redux/hooks/hooks';
 import { USER_PATH } from 'routes/constants';
+import { isLoggedInSelector } from 'redux/auth/selectors';
 import validationSchema from './validationSchema';
 import ArrowIcon from './img/angle-right-b.svg';
 
@@ -17,12 +17,11 @@ interface IInitialValues {
 const SignInForm = function () {
   const dispatch = useAppDispatch();
 
-  const isLoggedInStatus = useAppSelector(isLoggedIn);
-  // const errorMessage = useAppSelector(error);
+  const isLoggedInStatus = useAppSelector(isLoggedInSelector);
   const history = useHistory();
 
   useEffect(() => {
-    if (isLoggedInStatus) {
+    if (isLoggedInStatus && localStorage.getItem('tokenData')) {
       history.push(USER_PATH.MAIN);
     }
   }, [isLoggedInStatus]);

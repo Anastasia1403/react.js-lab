@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { instance, url } from 'api/url';
-import { hideNotification, showNotification } from 'redux/showNotification/slice';
+import { hideNotification, showNotification } from 'redux/notifications/slice';
 import { ResponseError } from 'redux/types';
 
 export interface IUser {
@@ -16,7 +16,7 @@ const registration = createAsyncThunk(
     try {
       return await instance.post(url.registration(), userData)
         .then((response): string => {
-          thunkAPI.dispatch(showNotification({ type: 'success', text: 'You are successfully registered', isVisible: true }));
+          thunkAPI.dispatch(showNotification({ type: 'success', text: 'You are successfully registered' }));
           setTimeout(() => {
             thunkAPI.dispatch(hideNotification());
           }, 5000);
@@ -24,7 +24,7 @@ const registration = createAsyncThunk(
         });
     } catch (error: any) {
       const result = (error as ResponseError).response.data;
-      thunkAPI.dispatch(showNotification({ type: 'error', text: error.response.data, isVisible: true }));
+      thunkAPI.dispatch(showNotification({ type: 'error', text: error.response.data }));
       setTimeout(() => {
         thunkAPI.dispatch(hideNotification());
       }, 5000);

@@ -2,23 +2,24 @@ import React from 'react';
 import { LoadingBlock } from 'components';
 import { AppointmentsList } from 'pages/UserView/components/AppointmentsList';
 import { PatientsList } from 'pages/UserView/components/PatientsList';
+import Resolutions from 'pages/UserView/components/Resolutions/Resolutions';
 import { USER_PATH } from './constants';
 
 export interface TabInfo {
   tab: string,
   title: string,
   path: string,
-  component: object,
+  comp: object,
   exact?: boolean,
   default?: boolean
 }
 
-export const userTabsInfo: Array<TabInfo> = [
+export const patientTabsInfo: Array<TabInfo> = [
   {
     tab: 'Profile',
     title: 'My Profile',
     path: USER_PATH.PROFILE,
-    component: <LoadingBlock />,
+    comp: <LoadingBlock />,
     exact: false,
     default: false,
   },
@@ -26,7 +27,7 @@ export const userTabsInfo: Array<TabInfo> = [
     tab: 'Appointments',
     title: 'My Appointments',
     path: USER_PATH.APPOINTMENTS,
-    component: <AppointmentsList />,
+    comp: <AppointmentsList />,
     exact: false,
     default: true,
   },
@@ -34,7 +35,7 @@ export const userTabsInfo: Array<TabInfo> = [
     tab: 'Resolutions',
     title: 'My Resolutions',
     path: USER_PATH.RESOLUTIONS,
-    component: <LoadingBlock />,
+    comp: <Resolutions />,
     exact: false,
     default: false,
   },
@@ -45,7 +46,7 @@ export const doctorTabsInfo = [
     tab: 'Patients',
     title: 'My Patients',
     path: USER_PATH.PATIENTS,
-    component: <PatientsList />,
+    comp: <PatientsList />,
     exact: false,
     default: true,
   },
@@ -53,7 +54,7 @@ export const doctorTabsInfo = [
     tab: 'Resolutions',
     title: 'My Resolutions',
     path: USER_PATH.RESOLUTIONS,
-    component: <LoadingBlock />,
+    comp: <Resolutions />,
     exact: false,
     default: false,
   },

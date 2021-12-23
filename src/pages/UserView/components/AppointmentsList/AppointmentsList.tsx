@@ -1,25 +1,27 @@
 import React, { useEffect } from 'react';
-import getAppointments from 'redux/getAppointments/thunk';
-import { appointmentsList, loadingStatus } from 'redux/getAppointments/selectors';
+import { appointmentsList, loadingStatus } from 'redux/appointments/selectors';
 import {
   LoadingBlock, AppointmentCard, CardList, EmptyBlock,
 } from 'components';
-import { status } from 'redux/addNewAppointment/selectors';
-import { nullifyStatus } from 'redux/addNewAppointment/slice';
 import { useAppDispatch, useAppSelector } from 'redux/hooks/hooks';
 import { userViewDict } from 'pages/UserView/dictionary';
-import { IAppointmentForPatient } from 'types/appointments';
+import { Appointment, IAppointmentForPatient } from 'types/appointments';
+import { loadAppointments } from 'redux/appointments/loadAppointments.thunk';
+import { userRoleSelector } from 'redux/auth/selectors';
 
 const AppointmentsList = function () {
   const appointments = useAppSelector(appointmentsList);
   const loading = useAppSelector(loadingStatus);
-  const statusOfMakingNewAppointment = useAppSelector(status);
+  const role = useAppSelector(userRoleSelector);
 
   const dispatch = useAppDispatch();
 
+  function isForPatient(apps: Appointment[]): apps is IAppointmentForPatient[] {
+    return (apps as IAppointmentForPatient[]) !== undefined;
+  }
+
   useEffect(() => {
-    dispatch(getAppointments());
-    if (statusOfMakingNewAppointment === 'Created') dispatch(nullifyStatus());
+    if (role) dispatch(loadAppointments(role));
   }, []);
 
   if (loading) {
@@ -28,12 +30,12 @@ const AppointmentsList = function () {
   if (appointments.length > 0) {
     return (
       <CardList>
-        {appointments.map((listItem: IAppointmentForPatient) => (
+        { isForPatient(appointments) ? appointments.map((listItem: IAppointmentForPatient) => (
           <AppointmentCard
             key={listItem.id}
             {...listItem}
           />
-        ))}
+        )) : null}
       </CardList>
     );
   }

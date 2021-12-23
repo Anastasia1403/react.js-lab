@@ -1,22 +1,40 @@
 import {
-  EmptyBlock, CardList, PatientCard, LoadingBlock,
+  EmptyBlock, CardList, LoadingBlock,
 } from 'components';
+import PatientCardContainer from 'components/Card/PatientCardContainer';
 import { userViewDict } from 'pages/UserView/dictionary';
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { loadingStatus } from 'redux/getAppointments/selectors';
-import { patientsList } from 'redux/getPatients/selectors';
-import { getPatients } from 'redux/getPatients/thunk';
-import { IAppointmentForDoctor } from 'types/appointments';
+import { appointmentsList, loadingStatus } from 'redux/appointments/selectors';
+import { loadAppointments } from 'redux/appointments/loadAppointments.thunk';
+import { useAppDispatch, useAppSelector } from 'redux/hooks/hooks';
+import { resolutionsSelector } from 'redux/resolutions/selectors';
+import { loadResolutions } from 'redux/resolutions/loadResolutions.thunk';
+import { Appointment, IAppointmentForDoctor } from 'types/appointments';
+import { Resolution } from 'types/resolutions';
+import { userRoleSelector } from 'redux/auth/selectors';
+
+const findResolution = (app_id: string, resolutionArray: Resolution<string>[]) => {
+  const res = resolutionArray.find((item) => item.appointment_id === app_id);
+  return res || null;
+};
 
 const PatientsList = function () {
-  const patients = useSelector(patientsList);
-  const loading = useSelector(loadingStatus);
+  const patients = useAppSelector(appointmentsList);
+  const loading = useAppSelector(loadingStatus);
+  const resolutions = useAppSelector(resolutionsSelector);
+  const role = useAppSelector(userRoleSelector);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+
+  function isForDoctor(apps: Appointment[]): apps is IAppointmentForDoctor[] {
+    return (apps as IAppointmentForDoctor[]) !== undefined;
+  }
 
   useEffect(() => {
-    dispatch(getPatients());
+    if (role) {
+      dispatch(loadAppointments(role));
+      dispatch(loadResolutions(role));
+    }
   }, []);
 
   if (loading) {
@@ -25,10 +43,12 @@ const PatientsList = function () {
   if (patients.length > 0) {
     return (
       <CardList>
-        {patients.map((listItem: IAppointmentForDoctor) => (
-          <PatientCard
+        {isForDoctor(patients) && patients.map((listItem: IAppointmentForDoctor) => (
+          <PatientCardContainer
+            resolution={resolutions ? findResolution(listItem.id, resolutions) : null}
             key={listItem.id}
-            {...listItem}
+            listItem={listItem}
+            role={role}
           />
         ))}
       </CardList>

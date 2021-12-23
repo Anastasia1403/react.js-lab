@@ -1,18 +1,37 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { USER_PATH } from 'routes/constants';
+import React, { useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { AUTH_PATH, USER_PATH } from 'routes/constants';
+import { useAppDispatch, useAppSelector } from 'redux/hooks/hooks';
+import { errorProfileSelector } from 'redux/auth/selectors';
+import { appointmentErrorSelector } from 'redux/appointments/selectors';
+import { resolutionErrorSelector } from 'redux/resolutions/selectors';
+import { logout } from 'redux/auth/slice';
+import PlusIcon from './img/plus.svg';
 import {
   StyledTabSection, Title, StyledSettingIcon, Button,
 } from './styled';
-import PlusIcon from './img/plus.svg';
 
 interface TabSectionProps {
   title: string,
   tab: string,
-  component: object,
+  comp: object,
 }
 
-const TabSection = function ({ title, tab, component }: TabSectionProps) {
+const TabSection = function ({ title, tab, comp }: TabSectionProps) {
+  const errorProfile = useAppSelector(errorProfileSelector);
+  const appointmentError = useAppSelector(appointmentErrorSelector);
+  const resolutionError = useAppSelector(resolutionErrorSelector);
+
+  const history = useHistory();
+  const dispatch = useAppDispatch();
+
+  useEffect((): void => {
+    if (errorProfile || appointmentError || resolutionError) {
+      dispatch(logout());
+      history.push(AUTH_PATH.SIGN_IN);
+    }
+  }, [errorProfile, appointmentError, resolutionError]);
+
   return (
     <StyledTabSection>
       <Title>
@@ -31,7 +50,7 @@ const TabSection = function ({ title, tab, component }: TabSectionProps) {
         )}
       </Title>
 
-      {component}
+      {comp}
 
     </StyledTabSection>
   );

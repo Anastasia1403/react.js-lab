@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import DropDown from 'components/DropDown/DropDown';
+import React from 'react';
 import { IAppointmentForDoctor } from 'types/appointments';
 import { ReactComponent as EditIcon } from './img/more-vertical.svg';
 import { ReactComponent as ClockIcon } from './img/clock-three.svg';
@@ -18,18 +17,20 @@ import {
   Time,
 } from './styled';
 import Status from '../Status/Status';
-import { patientCardDropDown } from './dropDownInfo';
 
-const PatientCard = function (listItem: IAppointmentForDoctor) {
-  const { patient, status, visit_date: visitDate } = listItem;
-  const [isDropDownVisible, setIsDropDownVisible] = useState(false);
+interface Props {
+  listItem: IAppointmentForDoctor,
+  resolution: string | null,
+  onDropDownChangeVisible: ()=>void
+}
 
-  const onChangeVisible = () => {
-    setIsDropDownVisible(!isDropDownVisible);
-  };
+const PatientCard = function ({ listItem, resolution, onDropDownChangeVisible }: Props) {
+  const {
+    patient, status, visit_date: visitDate,
+  } = listItem;
+
   return (
     <StyledCard>
-      <DropDown isVisible={isDropDownVisible} content={patientCardDropDown} />
       <CardHeader>
         <AvatarWrap>
           <Avatar src={patient.photo} alt="avatar" />
@@ -44,7 +45,7 @@ const PatientCard = function (listItem: IAppointmentForDoctor) {
           </Subtitle>
 
         </Headline>
-        <EditButton onClick={onChangeVisible}>
+        <EditButton onClick={onDropDownChangeVisible}>
           <EditIcon />
         </EditButton>
 
@@ -58,12 +59,14 @@ const PatientCard = function (listItem: IAppointmentForDoctor) {
           <Time>{visitDate}</Time>
         </InfoItem>
 
+        {resolution && (
         <InfoItem>
           <IconWrapper>
             <ResolutionIcon />
           </IconWrapper>
-
+          <div>{resolution}</div>
         </InfoItem>
+        )}
 
       </Info>
     </StyledCard>

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { Formik } from 'formik';
 import { useHistory } from 'react-router-dom';
-import { status } from 'redux/registration/selectors';
-import registration from 'redux/registration/thunk';
+import registration from 'redux/auth/registration.thunk';
 import { ButtonSubmit, FormContainer, Input } from 'components';
 import { useAppDispatch, useAppSelector } from 'redux/hooks/hooks';
 import { AUTH_PATH } from 'routes/constants';
+import { registrationStatusSelector } from 'redux/auth/selectors';
 import ArrowIcon from './img/angle-right-b.svg';
 import validationSchema from './validationSchema';
 
@@ -18,7 +18,7 @@ interface IInitialValues {
 }
 
 const SignUpForm = function () {
-  const statusText = useAppSelector(status);
+  const statusText = useAppSelector(registrationStatusSelector);
   const history = useHistory();
 
   const dispatch = useAppDispatch();

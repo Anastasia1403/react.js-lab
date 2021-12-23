@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const StyledCard = styled.li`
+export const Container = styled.li`
+  position: relative;
+  `;
+
+export const StyledCard = styled.div`
   position: relative;
   list-style: none;
   border-radius: 12px;
@@ -18,6 +22,7 @@ export const StyledCard = styled.li`
 export const Avatar = styled.img`
 width: 100%;
 object-fit: cover;
+border-radius: 50%;
 `;
 
 export const AvatarWrap = styled.div`

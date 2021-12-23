@@ -3,11 +3,11 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
-import * as login from 'redux/login/thunk';
+import * as login from 'redux/auth/login.thunk';
 import SignInForm from './SignInForm';
 
 describe('SignInForm', () => {
-  const initialState = { login: { isLoggedIn: false, error: false } };
+  const initialState = { auth: { isLoggedIn: false, error: false } };
   const mockStore = configureStore();
   const store = mockStore(initialState);
   let passwordInput: any;

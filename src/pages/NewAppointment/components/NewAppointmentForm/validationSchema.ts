@@ -1,7 +1,5 @@
 import * as Yup from 'yup';
 
-// const today = new Date();
-
 const validationSchema = Yup.object().shape({
   date: Yup.date()
     .required('Choose date of visit'),

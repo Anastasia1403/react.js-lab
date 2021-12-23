@@ -7,13 +7,18 @@ export const instance = axios.create({
 export const url = {
   registration: () => '/auth/registration',
   login: () => '/auth/login',
-  getProfile: () => '/auth/profile',
+  profile: () => '/auth/profile',
   getSpecializations: () => '/specializations',
-  getAppointments: () => '/appointments/patient/me',
+  getAppointmentsForPatient: () => '/appointments/patient/me',
   addNewAppointment: () => '/appointments',
-  getPatients: () => '/appointments/doctor/me',
+  getAppointmentsForDoctor: () => '/appointments/doctor/me',
   appointmentFreeTime: () => 'appointments/time/free',
   getDoctorsBySpecialization: (specId) => `/doctors/specialization/${specId}`,
-  deleteAppointment: (id) => `/appointments${id}`,
+  resolutionForDoctor: () => '/resolutions/doctor/me',
+  resolutionForPatient: () => '/resolutions/patient/me',
+  createNewResolution: () => '/resolutions',
+  editResolution: (id) => `resolutions/${id}`,
+
+  deleteAppointment: (id) => `/appointments/${id}`,
 
 };

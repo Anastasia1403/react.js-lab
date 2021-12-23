@@ -9,7 +9,7 @@ import NewAppointmentForm from './NewAppointmentForm';
 
 describe('NewAppointmentForm', () => {
   const initialState = {
-    appointment: { status: '', error: '' },
+    appointments: { creationStatus: '', creationError: '' },
     specializations: {
       specializations: [{
         id: '11',

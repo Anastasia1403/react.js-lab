@@ -4,11 +4,11 @@ import { ResponseError } from 'redux/types';
 import authHeader from '../helper';
 import { IUserProfile } from './slice';
 
-const getProfile = createAsyncThunk(
+const loadProfile = createAsyncThunk(
   'auth/profile',
   async (_, { rejectWithValue }) => {
     try {
-      return await instance.get<IUserProfile>(url.getProfile(), { headers: authHeader() })
+      return await instance.get<IUserProfile>(url.profile(), { headers: authHeader() })
         .then((response) => response.data);
     } catch (error: any) {
       const result = (error as ResponseError).response.data;
@@ -17,4 +17,4 @@ const getProfile = createAsyncThunk(
   },
 );
 
-export default getProfile;
+export default loadProfile;

@@ -19,7 +19,6 @@ import {
 
 const AppointmentCard = function (listItem: IAppointmentForPatient) {
   const { doctor, reason, visit_date: visitDate } = listItem;
-  // const visitDate = listItem.visit_date;
   return (
     <StyledCard data-testid="card">
       <CardHeader>

@@ -1,7 +1,6 @@
 import React from 'react';
-// import { useDispatch } from 'react-redux';
 import { useAppDispatch } from 'redux/hooks/hooks';
-import { hideNotification } from 'redux/showNotification/slice';
+import { hideNotification } from 'redux/notifications/slice';
 import {
   CloseButton,
   NotificationContent, NotificationText, NotificationTitle, StyledNotification,
@@ -18,12 +17,6 @@ export interface NotificationProps {
 
 const Notification = function ({ type, text, isVisible }: NotificationProps) {
   const dispatch = useAppDispatch();
-  // const [display, setDisplay] = useState(false);
-  // const toggler = () => {
-  //   setTimeout(() => setDisplay(!display), 3000);
-  // };
-  // // useDispatch
-  // if (display) toggler();
   return (
     <StyledNotification type={type} isVisible={isVisible}>
       {type === 'success' ? <SuccessIcon /> : <AlertIcon />}

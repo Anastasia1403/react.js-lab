@@ -1,17 +1,21 @@
-import { Item } from 'components/Card/dropDownInfo';
+import { IDropDownItem } from 'components/Card/types';
 import React from 'react';
 import { DropDownItem, StyledDropDown } from './styled';
 
 export interface DropDownProps {
-  content: Item[],
-  isVisible: boolean
+  content: IDropDownItem[],
+  isVisible: boolean,
+
 }
 
-const DropDown = function ({ content, isVisible }: DropDownProps) {
+const DropDown = function ({
+  content, isVisible,
+}: DropDownProps) {
   return (
     <StyledDropDown isVisible={isVisible}>
       {content.map((item) => (
         <DropDownItem
+          isActive={item.isActive}
           key={item.name}
           onClick={item.callback}
         >
@@ -19,6 +23,7 @@ const DropDown = function ({ content, isVisible }: DropDownProps) {
         </DropDownItem>
       ))}
     </StyledDropDown>
+
   );
 };
 

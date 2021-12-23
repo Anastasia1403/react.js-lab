@@ -1,41 +1,34 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import registrationReducer from './registration/slice';
-import loginReducer from './login/slice';
-import profileReducer from './getProfile/slice';
-import appointmentsReducer from './getAppointments/slice';
-import newAppointmentReducer from './addNewAppointment/slice';
+import authReducer from './auth/slice';
+import appointmentsReducer from './appointments/slice';
 import specializationsReducer from './getSpecializations/slice';
 import doctorsReducer from './getDoctors/slice';
 import freeTimeReducer from './getFreeTime/slice';
-import patientsReducer from './getPatients/slice';
-import notificationReducer from './showNotification/slice';
+import notificationReducer from './notifications/slice';
+import resolutionsReducer from './resolutions/slice';
 
-const loginPersistConfig = {
-  key: 'login',
+const authPersistConfig = {
+  key: 'auth',
   storage,
 };
 
-const profilePersistConfig = {
-  key: 'profile',
-  storage,
-};
-
-const rootReducer = {
-  registration: registrationReducer,
-  login: persistReducer(loginPersistConfig, loginReducer),
-  profile: persistReducer(profilePersistConfig, profileReducer),
-
+const combinedReducer = combineReducers({
+  auth: persistReducer(authPersistConfig, authReducer),
   appointments: appointmentsReducer,
-  appointment: newAppointmentReducer,
-
-  patients: patientsReducer,
   specializations: specializationsReducer,
   doctors: doctorsReducer,
   time: freeTimeReducer,
-
   notification: notificationReducer,
+  resolutions: resolutionsReducer,
+});
+
+const rootReducer = (state: any, action: any) => {
+  if (action.type === 'auth/logout') {
+    state = undefined;
+  }
+  return combinedReducer(state, action);
 };
 
 const store = configureStore({ reducer: rootReducer });

@@ -35,6 +35,7 @@ export interface Patient {
   photo: string
 }
 
+export type Appointment = IAppointmentForDoctor | IAppointmentForPatient;
 export type StatusType = 'canceled' | 'confirmed' | 'waiting';
 
 export interface IOptions {

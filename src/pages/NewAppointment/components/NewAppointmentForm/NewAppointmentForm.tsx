@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { Form, Formik } from 'formik';
 import { useHistory } from 'react-router-dom';
-import { error, status } from 'redux/addNewAppointment/selectors';
-import addNewAppointment from 'redux/addNewAppointment/thunk';
+import { createAppointment } from 'redux/appointments/createAppointment.thunk';
 import { TableTime } from 'pages/NewAppointment/components/TableTime';
 import { StyledCalendar } from 'pages/NewAppointment/components/StyledCalendar';
 import { SelectDoctor } from 'pages/NewAppointment/components/SelectDoctor';
@@ -10,6 +9,9 @@ import { useAppDispatch, useAppSelector } from 'redux/hooks/hooks';
 import { Stage } from 'pages/NewAppointment/dictionary';
 import { IFormNewAppointment } from 'pages/NewAppointment/interface';
 import { INewAppointment } from 'types/newAppointment';
+import { USER_PATH } from 'routes/constants';
+import { creationErrorSelector, creationStatusSelector } from 'redux/appointments/selectors';
+import { nullifyCreateStatus } from 'redux/appointments/slice';
 import validationSchema from './validationSchema';
 import {
   StyledNewAppointmentForm, StageTitle, ButtonSubmit,
@@ -17,13 +19,16 @@ import {
 
 const NewAppointmentForm = function () {
   const dispatch = useAppDispatch();
-  const statusText = useAppSelector(status);
-  const errorMessage = useAppSelector(error);
+  const creationStatus = useAppSelector(creationStatusSelector);
+  const creationErrorMessage = useAppSelector(creationErrorSelector);
   const history = useHistory();
 
   useEffect(() => {
-    if (statusText === 'Created') history.push('/user-view/appointments');
-  }, [statusText]);
+    if (creationStatus) {
+      history.push(USER_PATH.APPOINTMENTS);
+      dispatch(nullifyCreateStatus());
+    }
+  }, [creationStatus]);
 
   const handleSubmit = (values: IFormNewAppointment): void => {
     const formattedValues: INewAppointment = {
@@ -32,7 +37,7 @@ const NewAppointmentForm = function () {
       note: values.note,
       doctorID: values.doctor,
     };
-    dispatch(addNewAppointment(formattedValues));
+    dispatch(createAppointment(formattedValues));
   };
 
   const initialValues: IFormNewAppointment = {
@@ -77,7 +82,7 @@ const NewAppointmentForm = function () {
                 blocked={!(formik.values.doctor && formik.values.occupation)}
               />
             </section>
-            {errorMessage && <div>{errorMessage}</div>}
+            {creationErrorMessage && <div>{creationErrorMessage}</div>}
             <ButtonSubmit type="submit" disabled={!formik.isValid}>Submit</ButtonSubmit>
           </StyledNewAppointmentForm>
         </Form>

@@ -15,7 +15,7 @@ const notificationSlice = createSlice({
   name: 'notification',
   initialState,
   reducers: {
-    showNotification(state, action: PayloadAction<IInitialState>) {
+    showNotification(state, action: PayloadAction<Omit<IInitialState, 'isVisible'>>) {
       state.isVisible = true;
       state.type = action.payload.type;
       state.text = action.payload.text;

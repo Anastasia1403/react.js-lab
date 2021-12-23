@@ -66,8 +66,11 @@ describe('Appointment List', () => {
     const initialState = {
       appointments: {
         appointments: [],
+        creationStatus: '',
       },
-      appointment: { status: '' },
+      auth: {
+        profile: {},
+      },
     };
 
     const store = mockStore(initialState);
@@ -83,8 +86,11 @@ describe('Appointment List', () => {
     const initialState = {
       appointments: {
         appointments: appointmentsList,
+        creationStatus: '',
       },
-      appointment: { status: '' },
+      auth: {
+        profile: {},
+      },
     };
     const store = mockStore(initialState);
     render(

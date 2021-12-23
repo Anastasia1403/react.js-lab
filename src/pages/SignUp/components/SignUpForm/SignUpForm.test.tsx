@@ -5,11 +5,11 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
-import * as registration from 'redux/registration/thunk';
+import * as registration from 'redux/auth/registration.thunk';
 import SignUpForm from './SignUpForm';
 
 describe('SignUpForm', () => {
-  const initialState = { registration: { error: false } };
+  const initialState = { auth: { error: false } };
   const mockStore = configureStore();
   const store = mockStore(initialState);
 
