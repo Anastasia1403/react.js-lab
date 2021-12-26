@@ -3,9 +3,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authReducer from './auth/slice';
 import appointmentsReducer from './appointments/slice';
-import specializationsReducer from './getSpecializations/slice';
-import doctorsReducer from './getDoctors/slice';
-import freeTimeReducer from './getFreeTime/slice';
+import doctorsReducer from './doctors/slice';
 import notificationReducer from './notifications/slice';
 import resolutionsReducer from './resolutions/slice';
 
@@ -17,9 +15,7 @@ const authPersistConfig = {
 const combinedReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
   appointments: appointmentsReducer,
-  specializations: specializationsReducer,
   doctors: doctorsReducer,
-  time: freeTimeReducer,
   notification: notificationReducer,
   resolutions: resolutionsReducer,
 });
@@ -31,7 +27,12 @@ const rootReducer = (state: any, action: any) => {
   return combinedReducer(state, action);
 };
 
-const store = configureStore({ reducer: rootReducer });
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: false,
+  }),
+});
 
 export const persistor = persistStore(store);
 

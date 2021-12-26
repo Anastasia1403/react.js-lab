@@ -1,7 +1,7 @@
 import { useFormikContext } from 'formik';
 import { IFormNewAppointment } from 'pages/NewAppointment/interface';
 import React from 'react';
-import freeTimeList from 'redux/getFreeTime/selectors';
+import { freeTimeListSelector } from 'redux/doctors/selectors';
 import { useAppSelector } from 'redux/hooks/hooks';
 import { Radiobutton, RadiobuttonLabel, StyledTableTime } from './styled';
 import setTimeList from './utils';
@@ -11,7 +11,7 @@ interface TableTimeProps {
 }
 
 const TableTime = function ({ blocked }: TableTimeProps) {
-  const time = useAppSelector(freeTimeList);
+  const time = useAppSelector(freeTimeListSelector);
 
   const { values, handleChange } = useFormikContext<IFormNewAppointment>();
 

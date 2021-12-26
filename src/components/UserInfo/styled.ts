@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 
 export const User = styled.div`
   display: flex;
@@ -20,7 +21,7 @@ export const Name = styled.div`
 `;
 export const RoleName = styled.div`
   font-size: 13px;
-  color: #a1abc9;
+  color: ${theme.colors.mediumGrey};
 `;
 
 export const Avatar = styled.img`
@@ -41,7 +42,7 @@ export const AvatarWrap = styled.div`
     width: 11px;
     height: 11px;
     border-radius: 50%;
-    background-color: #34c197;
-    border: 3px solid #e4ebff;
+    background-color: ${theme.colors.green};
+    border: 3px solid ${theme.colors.skyGrey};
   }
 `;

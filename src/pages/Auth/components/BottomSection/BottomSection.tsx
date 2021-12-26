@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 
 const BottomSection = styled.section`
   position: absolute;
@@ -6,7 +7,7 @@ const BottomSection = styled.section`
   flex-direction: column;
   bottom: 44px;
   left: 10vw;
-  color: #a1abc9;
+  color: ${theme.colors.mediumGrey};
 
   @media screen and (min-width: 560px) {
     bottom: 26px;

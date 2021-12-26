@@ -22,21 +22,11 @@ export const createAppointment = createAsyncThunk(
       )
         .then((response) => {
           notification(thunkAPI.dispatch, 'success', 'Appointment is created');
-          // thunkAPI.dispatch(showNotification(
-          // { type: 'success', text: 'Appointment is created' }));
-          // setTimeout(() => {
-          //   thunkAPI.dispatch(hideNotification());
-          // }, 5000);
           return response.statusText;
         });
     } catch (error: any) {
       const result = (error as ResponseError).response.data;
       notification(thunkAPI.dispatch, 'error', result);
-
-      // thunkAPI.dispatch(showNotification({ type: 'error', text: result }));
-      // setTimeout(() => {
-      //   thunkAPI.dispatch(hideNotification());
-      // }, 5000);
       return thunkAPI.rejectWithValue(result);
     }
   },

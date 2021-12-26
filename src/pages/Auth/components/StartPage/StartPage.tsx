@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 import bg from './img/bg.png';
 
 export const StartPage = styled.div`
@@ -28,7 +29,7 @@ export const EnterPanel = styled.main`
     align-items: start;
     justify-content: start;
     padding: 32px 10vw 100px;
-    background-color: #f9faff;
+    background-color: ${theme.colors.lightGrey};
     border-radius: 42px 42px 0 0;
 
   @media screen and (min-width: 560px) {

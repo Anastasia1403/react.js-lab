@@ -1,5 +1,6 @@
 import { Field } from 'formik';
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 import { ModalProps } from './ModalWindow';
 
 export const Background = styled.div<Pick<ModalProps, 'isOpen'>>`
@@ -15,24 +16,13 @@ z-index: 2;
 `;
 
 export const StyledModal = styled.div`
-background-color: #fff;
+background-color: ${theme.colors.white};
 width: 500px;
-/* height: 500px; */
 position: absolute;
 top: calc(50% - 250px);
 left: calc(50% - 250px);
 z-index: 3;
 border-radius: 6px;
-/* &:before {
-    position: absolute;
-    border-top: 1px solid #DCE0EC;
-    background-color: #F9FAFF;
-    height: 160px;
-    width: 100%;
-    content: '';
-    bottom: 0;
-    left: 0;
-    } */
 
 `;
 
@@ -55,7 +45,7 @@ font-weight: 600;
 
 export const StyledTextarea = styled(Field)`
 margin-top: 16px;
-border: 1px solid #DCE0EC;
+border: 1px solid ${theme.colors.solidGrey};
 height: 160px;
 width: 100%;
 resize: none;
@@ -76,7 +66,7 @@ overflow-y: auto;
 `;
 
 export const StyledLabel = styled.label`
-color: #A1ABC9;
+color: ${theme.colors.mediumGrey};
 font-size: 13px;
 `;
 
@@ -84,8 +74,8 @@ export const ModalFooter = styled.footer`
 display: flex;
 justify-content: space-between;
 padding: 32px 40px;
-border-top: 1px solid #DCE0EC;
-background-color: #F9FAFF;
+border-top: 1px solid ${theme.colors.solidGrey};
+background-color: ${theme.colors.lightGrey};
 width: 100%;
 border-radius: 0 0 6px 6px;
 

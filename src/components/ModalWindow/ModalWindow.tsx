@@ -1,7 +1,7 @@
 import { ModalCancelStyledButton, ModalStyledButton } from 'components/ButtonSubmit/styled';
 import { Form, Formik } from 'formik';
 import React from 'react';
-import { Resolution } from 'types/resolutions';
+import { IChangedResolution, Resolution } from 'types/resolutions';
 import {
   Background, ModalBody, ModalFooter, ModalTitle, Name, StyledLabel, StyledModal, StyledTextarea,
 } from './styled';
@@ -22,7 +22,7 @@ export interface ModalProps {
 const ModalWindow = function ({
   isOpen, onModalClose, title, name, appointmentID, modalCallback, resolution,
 }:ModalProps) {
-  const initialValues = {
+  const initialValues: IChangedResolution = {
     resolution: (title === 'Edit a Resolution' && resolution) ? resolution.resolution : '',
     appointmentID,
     resolutionID: (title === 'Edit a Resolution' && resolution) ? resolution.id : '',

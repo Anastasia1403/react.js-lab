@@ -10,7 +10,19 @@ import NewAppointmentForm from './NewAppointmentForm';
 describe('NewAppointmentForm', () => {
   const initialState = {
     appointments: { creationStatus: '', creationError: '' },
-    specializations: {
+    doctors: {
+      doctorsName: [
+        {
+          first_name: 'Valentin',
+          last_name: 'Anashkevich',
+          id: '1',
+        },
+        {
+          first_name: 'John',
+          last_name: 'Doe',
+          id: '2',
+        },
+      ],
       specializations: [{
         id: '11',
         specialization_name: 'surgeon',
@@ -23,22 +35,8 @@ describe('NewAppointmentForm', () => {
         id: '33',
         specialization_name: 'ophthalmologist',
       }],
+      time: [],
     },
-    doctors: {
-      doctors: [
-        {
-          first_name: 'Valentin',
-          last_name: 'Anashkevich',
-          id: '1',
-        },
-        {
-          first_name: 'John',
-          last_name: 'Doe',
-          id: '2',
-        },
-      ],
-    },
-    time: { time: [] },
   };
   const mockStore = configureStore();
   const store = mockStore(initialState);

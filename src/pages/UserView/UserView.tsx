@@ -21,7 +21,7 @@ const UserView = function () {
   const history = useHistory();
   const dispatch = useAppDispatch();
 
-  useEffect((): void => {
+  useEffect(() => {
     if (errorProfile || appointmentError || resolutionError) {
       dispatch(logout());
       localStorage.clear();
@@ -29,7 +29,7 @@ const UserView = function () {
     }
   }, [errorProfile, appointmentError, resolutionError]);
 
-  useEffect((): void => {
+  useEffect(() => {
     if (!profile) {
       dispatch(loadProfile());
     }

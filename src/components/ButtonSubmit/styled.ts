@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { theme } from 'styles/theme';
 
 export const sharedStyleButton = css`
   position: relative;
@@ -9,8 +10,8 @@ export const sharedStyleButton = css`
   padding: 12px 16px;
   vertical-align: middle;
   border-radius: 8px;
-  background-color: #7297ff;
-  color: #ffffff;
+  background-color: ${theme.colors.blue};
+  color: ${theme.colors.white};
   transition: 0.2s;
   font-size: 15px;
 
@@ -40,16 +41,16 @@ ${sharedStyleButton};
 export const ModalCancelStyledButton = styled.button`
 ${sharedStyleButton};
   height: 48px;
-  color: #A1ABC9;
-  background-color: #fff;
-  border: 1px solid #DCE0EC;
+  color: ${theme.colors.mediumGrey};
+  background-color: ${theme.colors.white};
+  border: 1px solid ${theme.colors.solidGrey};
   font-size: 15px;
 
 
   &:hover,
   &:active,
   &:focus {
-    background-color: #F9FAFF;
+    background-color: ${theme.colors.lightGrey};
   }
 
 `;

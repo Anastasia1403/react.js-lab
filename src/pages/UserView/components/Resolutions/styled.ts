@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 
 interface WidthProps {
   width: string
@@ -28,10 +29,10 @@ display: block;
 `;
 
 export const TableRow = styled.tr`
-background-color: #fff;
+background-color: ${theme.colors.white};
 height: 64px;
 border-radius: 4px;
-border-bottom: 4px solid #F9FAFF;
+border-bottom: 4px solid ${theme.colors.lightGrey};
 `;
 
 export const TableData = styled.td`
@@ -40,7 +41,7 @@ padding: 20px 16px;
 
 export const TableHeader = styled.th<WidthProps>`
 width: ${(props) => props.width};
- color: #A1ABC9; 
+ color: ${theme.colors.mediumGrey};
  text-align: left;
  padding: 20px 16px;
 

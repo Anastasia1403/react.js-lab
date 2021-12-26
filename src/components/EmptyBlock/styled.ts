@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 import med from './img/medical-history.svg';
 
 export const StyledEmptyBlock = styled.div`
@@ -15,7 +16,7 @@ background: url(${med}) center / 100%  no-repeat;
 `;
 
 export const EmptyBlockText = styled.div`
-color: #A1ABC9;
+color: ${theme.colors.mediumGrey};
 font-size: 15px;
 text-align: center;
 

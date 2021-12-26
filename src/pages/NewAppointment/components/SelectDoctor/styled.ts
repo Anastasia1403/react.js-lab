@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 
 export const StyledTextarea = styled.textarea`
 width: 100%;
 height: 56px;
-border: 1px solid #DCE0EC;
+border: 1px solid ${theme.colors.solidGrey};
 border-radius: 8px;
 padding: 16px 24px;
 overflow-y: hidden;
@@ -14,7 +15,7 @@ margin-top: 16px;
 export const StyledLabel = styled.label`
 font-size: 13px;
 font-weight: 500px;
-color: #000;
+color: ${theme.colors.black};
 `;
 
 export const StyledSelectDoctor = styled.div`

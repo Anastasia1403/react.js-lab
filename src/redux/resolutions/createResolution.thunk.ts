@@ -4,13 +4,14 @@ import { loadAppointments } from 'redux/appointments/loadAppointments.thunk';
 import authHeader from 'redux/helper';
 import { hideNotification, showNotification } from 'redux/notifications/slice';
 import { ResponseError } from 'redux/types';
-import { INewResolution } from 'types/resolutions';
+import { IChangedResolution } from 'types/resolutions';
+
 import { Role } from 'types/role';
 import { loadResolutions } from './loadResolutions.thunk';
 
 export const createResolution = createAsyncThunk(
   'resolutions/create',
-  async (resolutionData: INewResolution, thunkAPI) => {
+  async (resolutionData: Omit<IChangedResolution, 'resolutionID'>, thunkAPI) => {
     try {
       return await instance.post(
         url.createNewResolution(),

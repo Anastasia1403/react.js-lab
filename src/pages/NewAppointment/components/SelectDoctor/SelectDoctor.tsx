@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useFormikContext } from 'formik';
-import doctorsSpecializations from 'redux/getSpecializations/selectors';
-import getDoctors from 'redux/getDoctors/thunk';
-import doctorsList from 'redux/getDoctors/selectors';
-import { getSpecializations } from 'redux/getSpecializations/thunk';
 import { CustomSelect, ErrorMessage } from 'components';
 import { Labels, Placeholders } from 'pages/NewAppointment/dictionary';
 import { IFormNewAppointment } from 'pages/NewAppointment/interface';
-// import { IOptions } from 'types/appointments';
 import { SingleValue } from 'react-select';
+import { useAppSelector } from 'redux/hooks/hooks';
+import { doctorsListSelector, doctorsSpecializationsSelector } from 'redux/doctors/selectors';
+import loadSpecializations from 'redux/doctors/loadSpecializations.thunk';
+import loadDoctorsName from 'redux/doctors/loadDoctorsName.thunk';
 import { StyledLabel, StyledSelectDoctor, StyledTextarea } from './styled';
 
 type OptionsType = {
@@ -18,24 +17,24 @@ type OptionsType = {
 };
 
 const SelectDoctor = function () {
-  const specializations = useSelector(doctorsSpecializations);
-  const doctors = useSelector(doctorsList);
+  const specializations = useAppSelector(doctorsSpecializationsSelector);
+  const doctors = useAppSelector(doctorsListSelector);
   const {
     values, setFieldValue, errors, setFieldTouched, handleChange, handleBlur, touched,
   } = useFormikContext<IFormNewAppointment>();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getSpecializations());
+    dispatch(loadSpecializations());
   }, []);
 
   const onOccupationChange = (value: SingleValue<string | OptionsType>): void => {
     if (typeof value === 'string') {
       setFieldValue('occupation', value);
-      dispatch(getDoctors(value));
+      dispatch(loadDoctorsName(value));
     } else if (value) {
       setFieldValue('occupation', value.value);
-      dispatch(getDoctors(value.value));
+      dispatch(loadDoctorsName(value.value));
     }
   };
 

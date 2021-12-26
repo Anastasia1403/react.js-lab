@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { sharedStyledLink } from '../../components/StyledLink/StyledLink';
+import { theme } from 'styles/theme';
+import { sharedStyledLink } from 'components/StyledLink/StyledLink';
 
 export const StyledMain = styled.main`
 border-radius: 16px 16px 0px 0px;
-background-color: #f9faff;
+background-color: ${theme.colors.lightGrey};
 padding: 40px 24px 0;
 display: flex;
 flex-direction: column;
@@ -22,7 +23,7 @@ font-size: 17px;
 `;
 
 export const Step = styled.p`
-color: #A1ABC9;
+color: ${theme.colors.mediumGrey};
 font-size: 17px;
 margin-bottom: 40px;
 `;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 
 interface IRadiobuttonLabel {
   disabled?: boolean,
@@ -21,14 +22,14 @@ padding: 8px 16px;
 cursor: pointer;
 pointer-events: ${(props) => (props.disabled || props.blocked ? 'none' : 'auto')};
 font-weight: 600;
-background-color: ${(props) => (props.disabled ? '#DCE0EC' : '#fff')};
+background-color: ${(props) => (props.disabled ? theme.colors.solidGrey : theme.colors.white)};
 border: ${(props) => {
-    if (props.disabled) return '1px solid #DCE0EC';
-    return props.checked ? '1px solid #7297FF' : '1px solid #FFF';
+    if (props.disabled) return `1px solid ${theme.colors.solidGrey};`;
+    return props.checked ? `1px solid ${theme.colors.blue}` : `1px solid ${theme.colors.white}`;
   }};
 color: ${(props) => {
-    if (props.disabled) return '#F9FAFF';
-    return props.checked ? '#7297FF' : '#202225';
+    if (props.disabled) return theme.colors.lightGrey;
+    return props.checked ? theme.colors.blue : theme.colors.black;
   }};
 `;
 

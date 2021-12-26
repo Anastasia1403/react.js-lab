@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 
 export const BackButton = styled.button`
   background: transparent;
@@ -8,7 +9,7 @@ export const BackButton = styled.button`
 
 export const Text = styled.div`
   margin-bottom: 40px;
-  color: #A1ABC9;
+  color: ${theme.colors.mediumGrey};
 `;
 
 export const Title = styled.h1`

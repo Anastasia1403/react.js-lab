@@ -3,6 +3,7 @@ import { TabSection } from 'pages/UserView/components/TabSection';
 import React, { useState } from 'react';
 import {
   Route, Switch, Redirect,
+  useHistory,
 } from 'react-router-dom';
 import { useAppSelector } from 'redux/hooks/hooks';
 import { isLoggedInSelector, profileSelector } from 'redux/auth/selectors';
@@ -26,16 +27,22 @@ const InnerRouter = function () {
   const profile = useAppSelector(profileSelector);
   const isLoggedInStatus = useAppSelector(isLoggedInSelector);
   const tabsInfo = profile ? getTabInfo(profile.role_name) : null;
-  const defaultTab = tabsInfo.find((item: TabInfo) => item.default === true);
-  const [activeTab, setActiveTab] = useState(defaultTab.tab);
+  const history = useHistory();
+
+  const findCurrentTab = () => {
+    const currentTab = tabsInfo.find((item: TabInfo) => item.path === history.location.pathname);
+    const defaultTab = tabsInfo.find((item: TabInfo) => item.default === true);
+    return currentTab || defaultTab;
+  };
+
+  const currentTab = findCurrentTab();
+  const [activeTab, setActiveTab] = useState(currentTab.tab);
+
   return (
     <>
       <Navbar tabsInfo={tabsInfo} activeTab={activeTab} setActiveTab={setActiveTab} />
       <Switch>
-        {/* @ts-ignore */}
-        <Route exact path={USER_PATH.MAIN}>
-          <Redirect to={defaultTab.path} />
-        </Route>
+        <Redirect from={USER_PATH.MAIN} to={currentTab.path} exact />
         {tabsInfo.map((item: TabInfo) => (
           <PrivateRoute
             key={item.path}
@@ -47,6 +54,7 @@ const InnerRouter = function () {
             />
           </PrivateRoute>
         ))}
+        <Route><Redirect to={currentTab.path} /></Route>
 
       </Switch>
 

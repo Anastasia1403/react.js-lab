@@ -4,15 +4,16 @@ import { loadAppointments } from 'redux/appointments/loadAppointments.thunk';
 import authHeader from 'redux/helper';
 import { hideNotification, showNotification } from 'redux/notifications/slice';
 import { ResponseError } from 'redux/types';
+import { IChangedResolution } from 'types/resolutions';
 import { Role } from 'types/role';
 import { loadResolutions } from './loadResolutions.thunk';
 
 export const editResolution = createAsyncThunk(
   'resolutions/edit',
-  async ({ resolution, id }: any, thunkAPI) => {
+  async ({ resolution, resolutionID }: Omit<IChangedResolution, 'appointmentID'>, thunkAPI) => {
     try {
       return await instance.patch(
-        url.editResolution(id),
+        url.editResolution(resolutionID),
         { resolution },
         { headers: authHeader() },
       )

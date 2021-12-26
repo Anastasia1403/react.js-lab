@@ -30,30 +30,35 @@ const Resolutions = function () {
   if (resolutions && resolutions.length > 0) {
     return (
       <StyledTable>
-        <TableRow>
-          <TableHeader width="15%">First Name</TableHeader>
-          <TableHeader width="15%">Last Name</TableHeader>
-          <TableHeader width="34%">Resolution</TableHeader>
-          <TableHeader width="12%">Visit Date</TableHeader>
-          <TableHeader width="12%">Next Visit</TableHeader>
-          <TableHeader width="12%">Actions</TableHeader>
-        </TableRow>
-        { resolutions.map((item: Resolution<string>) => (
-          <TableRow key={item.id}>
-            <TableData>
-              {isForPatient(item) ? item.doctor.first_name
-                : item.patient.first_name}
-            </TableData>
-            <TableData>
-              {isForPatient(item) ? item.doctor.last_name
-                : item.patient.last_name}
-            </TableData>
-            <TableData>{item.resolution}</TableData>
-            <TableData>{item.visit_date}</TableData>
-            <TableData>{item.next_appointment_date}</TableData>
-            <TableData>111</TableData>
+        <thead>
+          <TableRow>
+            <TableHeader width="15%">First Name</TableHeader>
+            <TableHeader width="15%">Last Name</TableHeader>
+            <TableHeader width="34%">Resolution</TableHeader>
+            <TableHeader width="12%">Visit Date</TableHeader>
+            <TableHeader width="12%">Next Visit</TableHeader>
+            <TableHeader width="12%">Actions</TableHeader>
           </TableRow>
-        ))}
+        </thead>
+        <tbody>
+          { resolutions.map((item: Resolution<string>) => (
+            <TableRow key={item.id}>
+              <TableData>
+                {isForPatient(item) ? item.doctor.first_name
+                  : item.patient.first_name}
+              </TableData>
+              <TableData>
+                {isForPatient(item) ? item.doctor.last_name
+                  : item.patient.last_name}
+              </TableData>
+              <TableData>{item.resolution}</TableData>
+              <TableData>{item.visit_date}</TableData>
+              <TableData>{item.next_appointment_date}</TableData>
+              <TableData>   </TableData>
+            </TableRow>
+          ))}
+        </tbody>
+
       </StyledTable>
     );
   } return <EmptyBlock text1={userViewDict.empty.resolutions} />;

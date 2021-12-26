@@ -1,4 +1,6 @@
+import { theme } from 'styles/theme';
 import styled from 'styled-components';
+import DropDown from 'components/DropDown/DropDown';
 
 export const Container = styled.li`
   position: relative;
@@ -8,7 +10,7 @@ export const StyledCard = styled.div`
   position: relative;
   list-style: none;
   border-radius: 12px;
-  background-color: #fff;
+  background-color: ${theme.colors.white};
   padding: 16px 16px 24px 16px;  
   min-width: 270px;
   height: fit-content;
@@ -43,7 +45,7 @@ export const CardHeader = styled.header`
     bottom: 0;
     content: "";
     height: 1px;
-    background-color: #dce0ec;
+    background-color: ${theme.colors.solidGrey};
     width: calc(100% + 32px);
     left: -16px;
     @media screen and (min-width: 900px) {
@@ -61,7 +63,7 @@ export const EditButton = styled.button`
     &:hover,
     &:active,
     &:focus {
-    background-color: #F9FAFF;
+    background-color: ${theme.colors.lightGrey};
   }
 `;
 
@@ -72,7 +74,7 @@ export const Subtitle = styled.div`
     display: flex;
     gap: 8px;
     align-items: center;
-    color: #a1abc9;
+    color: ${theme.colors.mediumGrey};
 font-size: 13px;
 `;
 
@@ -97,3 +99,8 @@ export const IconWrapper = styled.div`
 width: 24px;
 height: 24px;
 `;
+
+export const PatientCardDropDown = styled(DropDown)`
+ top: 72px;
+ right: 16px;
+ `;

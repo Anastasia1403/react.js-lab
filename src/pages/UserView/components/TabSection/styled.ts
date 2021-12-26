@@ -1,5 +1,7 @@
 import { sharedStyleButton } from 'components';
+import DropDown from 'components/DropDown/DropDown';
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 import med from './img/medical-history.svg';
 import { ReactComponent as SettingIcon } from './img/settings.svg';
 
@@ -18,6 +20,7 @@ export const Title = styled.h1`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 `;
 
 export const List = styled.ul`
@@ -67,7 +70,7 @@ export const StyledSettingIcon = styled(SettingIcon)`
   }`;
 
 export const ListEmptyBlock = styled.div`
-  color: #a1abc9;
+  color: ${theme.colors.mediumGrey};
   background: url(${med}) center / 120px no-repeat;
   text-align: center;
   height: 200px;
@@ -79,9 +82,21 @@ export const ListEmptyBlock = styled.div`
 export const Button = styled.button`
   ${sharedStyleButton}
   display: none;
-  @media screen and (min-width: 900px) {
+  @media screen and (min-width: 800px) {
   display: flex;
   height: 48px;
+    }
+`;
 
+export const MobileButton = styled.button`
+background-color: transparent;
+display: block;
+  @media screen and (min-width: 800px) {
+  display: none;
   }
 `;
+
+export const MobileDropDown = styled(DropDown)`
+ top: 40px;
+ right: 0;
+ `;

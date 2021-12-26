@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 
 const StyledUserMain = styled.main`
 border-radius: 16px 16px 0px 0px;
-background-color: #f9faff;
+background-color: ${theme.colors.lightGrey};
 padding: 40px 24px 0;
 height: calc(100vh - 72px);
 display: flex;

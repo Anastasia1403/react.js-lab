@@ -5,14 +5,16 @@ import { DropDownItem, StyledDropDown } from './styled';
 export interface DropDownProps {
   content: IDropDownItem[],
   isVisible: boolean,
+  className?: string
 
 }
 
 const DropDown = function ({
-  content, isVisible,
+  content, isVisible, className,
 }: DropDownProps) {
   return (
-    <StyledDropDown isVisible={isVisible}>
+
+    <StyledDropDown isVisible={isVisible} className={className}>
       {content.map((item) => (
         <DropDownItem
           isActive={item.isActive}

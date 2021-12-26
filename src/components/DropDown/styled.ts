@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { IDropDownItem } from 'components/Card/types';
+import { theme } from 'styles/theme';
 import { DropDownProps } from './DropDown';
 
 export const StyledDropDown = styled.ul<Pick<DropDownProps, 'isVisible'>>`
@@ -7,18 +8,16 @@ export const StyledDropDown = styled.ul<Pick<DropDownProps, 'isVisible'>>`
  flex-direction: column;
  padding: 4px;
  position: absolute;
- top: 72px;
- right: 16px;
  border-radius: 8px;
  filter: drop-shadow(0px 4px 40px rgba(118, 136, 187, 0.16));
-background-color: #fff;
+background-color: ${theme.colors.white};
 z-index: 2;
 width: 272px;
 `;
 
 export const DropDownItem = styled.li<Pick<IDropDownItem, 'isActive'>>`
 pointer-events: ${(props) => (props.isActive ? 'auto' : 'none')};
-color: ${(props) => (props.isActive ? 'inherit' : '#a1abc9')};
+color: ${(props) => (props.isActive ? 'inherit' : theme.colors.mediumGrey)};
     background-color: transparent;
     cursor: pointer;
     height: 40px;
@@ -28,7 +27,7 @@ color: ${(props) => (props.isActive ? 'inherit' : '#a1abc9')};
     line-height: 40px;
     vertical-align: middle;
     &:hover, &:active, &:focus {
-    background-color: #F9FAFF;
+    background-color: ${theme.colors.lightGrey};
 
 }
 `;

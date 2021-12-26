@@ -5,7 +5,7 @@ import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import format from 'date-fns/format';
 import { useFormikContext } from 'formik';
-import getFreeTime from 'redux/getFreeTime/thunk';
+import loadFreeTime from 'redux/doctors/loadFreeTime.thunk';
 import { IFormNewAppointment } from 'pages/NewAppointment/interface';
 import { ReactComponent as ArrowNextIcon } from './img/angle-right-b.svg';
 import { ReactComponent as ArrowPrevIcon } from './img/angle-left-b.svg';
@@ -26,7 +26,7 @@ const StyledCalendar = function ({
   const onDataChange = (date: Date) => {
     const formatDate = format(date, "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
     setFieldValue('date', formatDate);
-    dispatch(getFreeTime({ doctorId: values.doctor, date: formatDate }));
+    dispatch(loadFreeTime({ doctorId: values.doctor, date: formatDate }));
   };
   return (
     <Calendar

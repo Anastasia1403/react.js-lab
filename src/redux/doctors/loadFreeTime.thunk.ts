@@ -6,8 +6,8 @@ interface Props {
   doctorId: string,
   date: string
 }
-const getFreeTime = createAsyncThunk(
-  'getFreeTime',
+const loadFreeTime = createAsyncThunk(
+  'doctors/loadFreeTime',
   async ({ doctorId, date }: Props, { rejectWithValue }) => {
     try {
       return await instance.get<string[]>(
@@ -22,4 +22,4 @@ const getFreeTime = createAsyncThunk(
   },
 );
 
-export default getFreeTime;
+export default loadFreeTime;

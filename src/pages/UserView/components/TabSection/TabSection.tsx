@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { AUTH_PATH, USER_PATH } from 'routes/constants';
 import { useAppDispatch, useAppSelector } from 'redux/hooks/hooks';
@@ -6,9 +6,10 @@ import { errorProfileSelector } from 'redux/auth/selectors';
 import { appointmentErrorSelector } from 'redux/appointments/selectors';
 import { resolutionErrorSelector } from 'redux/resolutions/selectors';
 import { logout } from 'redux/auth/slice';
+import { IDropDownItem } from 'components/Card/types';
 import PlusIcon from './img/plus.svg';
 import {
-  StyledTabSection, Title, StyledSettingIcon, Button,
+  StyledTabSection, Title, StyledSettingIcon, Button, MobileButton, MobileDropDown,
 } from './styled';
 
 interface TabSectionProps {
@@ -16,7 +17,6 @@ interface TabSectionProps {
   tab: string,
   comp: object,
 }
-
 const TabSection = function ({ title, tab, comp }: TabSectionProps) {
   const errorProfile = useAppSelector(errorProfileSelector);
   const appointmentError = useAppSelector(appointmentErrorSelector);
@@ -32,21 +32,39 @@ const TabSection = function ({ title, tab, comp }: TabSectionProps) {
     }
   }, [errorProfile, appointmentError, resolutionError]);
 
+  const [isDropDownVisible, setIsDropDownVisible] = useState(false);
+  const onDropDownChangeVisible = () => {
+    setIsDropDownVisible(!isDropDownVisible);
+  };
+
+  const DropDownInfo: IDropDownItem[] = [
+    {
+      name: 'Create an Appointment',
+      isActive: true,
+      callback: () => {
+        history.push(USER_PATH.CREATE_APPOINTMENT);
+      },
+
+    },
+  ];
+
   return (
     <StyledTabSection>
       <Title>
         {title}
         {tab === 'Appointments' && (
-          <div>
+          <>
             <Link to={USER_PATH.CREATE_APPOINTMENT}>
               <Button>
                 <img src={PlusIcon} alt="plus" />
                 <span>Create an appointment</span>
               </Button>
             </Link>
-
-            <StyledSettingIcon />
-          </div>
+            <MobileButton type="button" onClick={onDropDownChangeVisible}>
+              <StyledSettingIcon />
+            </MobileButton>
+            <MobileDropDown content={DropDownInfo} isVisible={isDropDownVisible} />
+          </>
         )}
       </Title>
 

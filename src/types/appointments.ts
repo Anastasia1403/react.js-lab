@@ -1,3 +1,5 @@
+import { Doctor, Patient } from './users';
+
 export interface IAppointmentForPatient {
   id: string,
   reason: string,
@@ -9,14 +11,6 @@ export interface IAppointmentForPatient {
   doctor: Doctor,
 }
 
-export interface Doctor {
-  last_name: string,
-  first_name: string,
-  id: string,
-  photo: string,
-  specialization_name: string
-}
-
 export interface IAppointmentForDoctor {
   id: string,
   reason: string,
@@ -26,13 +20,6 @@ export interface IAppointmentForDoctor {
   visit_date: string,
   status: StatusType,
   patient: Patient,
-}
-
-export interface Patient {
-  last_name: string,
-  first_name: string,
-  id: string,
-  photo: string
 }
 
 export type Appointment = IAppointmentForDoctor | IAppointmentForPatient;

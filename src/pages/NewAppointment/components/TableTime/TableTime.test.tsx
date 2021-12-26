@@ -55,7 +55,7 @@ describe('Appointment List', () => {
   it('should all checkbox are disabled when no availible time', () => {
     const mockStore = configureStore();
     const initialState = {
-      time: {
+      doctors: {
         time: [],
       },
     };
@@ -71,7 +71,7 @@ describe('Appointment List', () => {
   });
   it('should pick availible time', () => {
     const initialState = {
-      time: {
+      doctors: {
         time: ['2021-12-30T12:00:00.000Z'],
       },
     };
@@ -85,8 +85,6 @@ describe('Appointment List', () => {
         ,
       </Provider>,
     );
-    screen.debug();
-
     const time = screen.getByText(/3:00 pm/i);
 
     userEvent.click(time);

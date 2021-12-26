@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 import { NotificationProps } from './Notification';
 
 export const StyledNotification = styled.div<Omit<NotificationProps, 'text'>>`
@@ -7,16 +8,15 @@ bottom: 32px;
 left: 32px;
 max-width: 457px;
 padding: 24px 24px 32px;
-background-color: ${(props) => (props.type === 'error' ? '#FF2567' : '#34C197')};
+background-color: ${(props) => (props.type === 'error' ? theme.colors.red : theme.colors.green)};
 border-radius: 8px;
 display: ${(props) => (props.isVisible ? 'flex' : 'none')};
 gap: 16px;
-color: #fff;
-transition: all 1s;
+color: ${theme.colors.white};
  `;
 
 export const NotificationContent = styled.div`
-color: #fff;
+color: ${theme.colors.white};
 `;
 
 export const NotificationTitle = styled.p`

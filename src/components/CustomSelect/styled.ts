@@ -1,3 +1,5 @@
+import { theme } from 'styles/theme';
+
 const customStyles = {
   container: (provided: any) => ({
     ...provided,
@@ -8,13 +10,13 @@ const customStyles = {
     height: 56,
 
     ':hover': {
-      border: '1px solid #7297FF',
+      border: `1px solid ${theme.colors.blue}`,
     },
     ':active': {
-      border: '1px solid #7297FF',
+      border: `1px solid ${theme.colors.blue}`,
     },
     ':focus': {
-      border: '1px solid #7297FF',
+      border: `1px solid ${theme.colors.blue}`,
     },
   }),
   indicatorSeparator: () => ({
@@ -50,16 +52,16 @@ const customStyles = {
     borderRadius: 4,
     fontSize: 15,
     paddingLeft: 20,
-    color: '#202225',
+    color: theme.colors.black,
     margin: 0,
     ':hover': {
-      backgroundColor: '#F9FAFF',
+      backgroundColor: theme.colors.lightGrey,
     },
     ':active': {
-      backgroundColor: '#F9FAFF',
+      backgroundColor: theme.colors.lightGrey,
     },
     ':focus': {
-      backgroundColor: '#F9FAFF',
+      backgroundColor: theme.colors.lightGrey,
     },
   }),
   valueContainer: (provided: any) => ({

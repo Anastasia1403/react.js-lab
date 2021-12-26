@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 
 const StyledUserView = styled.div`
-  background-color: #e4ebff;
+  background-color: ${theme.colors.skyGrey};
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;

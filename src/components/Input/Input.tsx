@@ -7,7 +7,7 @@ import {
   IconWrapper,
   StyledInput,
   StyledInputWrapper,
-} from './InputStyle';
+} from './styled';
 import inputSettings from './InputSettings';
 
 interface InputProps {

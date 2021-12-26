@@ -1,22 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { instance, url } from 'api/url';
 import { ResponseError } from 'redux/types';
-import { IDoctor } from './slice';
+import { ISpecialization } from './slice';
 
-const getDoctors = createAsyncThunk(
-  'doctors/getDoctors',
-  (specId: string, { rejectWithValue }) => {
+export const loadSpecializations = createAsyncThunk(
+  'doctors/loadSpecializations',
+  async (_, { rejectWithValue }) => {
     try {
-      return instance.get<IDoctor[]>(url.getDoctorsBySpecialization(specId))
+      return await instance.get<ISpecialization[]>(url.getSpecializations())
         .then((response) => (
           response.data
         ));
     } catch (error: any) {
       const result = (error as ResponseError).response.data;
-
       return rejectWithValue(result);
     }
   },
 );
-
-export default getDoctors;
+export default loadSpecializations;

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { sharedStyleButton } from 'components/ButtonSubmit/styled';
+import { theme } from 'styles/theme';
 
 export const StyledNewAppointmentForm = styled.div`
 width: 100%;
@@ -18,7 +19,7 @@ gap: 104px;
 `;
 
 export const StageTitle = styled.h3`
-color: #A1ABC9;
+color: ${theme.colors.mediumGrey};
 font-size: 17px;
 margin-bottom: 40px;
 `;
@@ -28,7 +29,7 @@ export const ButtonSubmit = styled.button`
   justify-self: end;
   align-self: flex-end;
   &:disabled {
-    background: #DCE0EC;
+    background: ${theme.colors.solidGrey};
   }
   
   @media screen and (min-width: 1500px) {

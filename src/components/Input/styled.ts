@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 
 interface StyledInputProps {
   name: string,
@@ -14,14 +15,14 @@ export const StyledInput = styled.input<StyledInputProps>`
   height: 40px;
   padding: ${(props) => ((props.name === 'password' || props.name === 'confirmPassword') ? '8px 48px' : '8px 8px 8px 48px')};
   border-radius: 8px;
-  border: ${(props) => (props.error && props.touched ? '1px solid #F6657F' : '1px solid #dce0ec')};
-  color: #202225;
+  border: ${(props) => (props.error && props.touched ? `1px solid ${theme.colors.brightPink}` : `1px solid ${theme.colors.solidGrey}`)};
+  color: ${theme.colors.black};
   font-size: 15px;
   width: 100%;
 
   &:focus,
   &:active {
-    border: 1px solid var(#7297FF);
+    border: 1px solid  ${theme.colors.blue};
   }
   @media screen and (min-width: 560px) {
     height: 56px;
@@ -37,8 +38,7 @@ export const IconWrapper = styled.div`
     width: 24px;
     height: 24px;
 
-    @media screen and (min-width: 560px) {
-    
+    @media screen and (min-width: 560px) {    
         top: 16px;
     }
 `;
@@ -46,11 +46,16 @@ export const IconWrapper = styled.div`
 export const ErrorMessage = styled.div`
   margin-top: 16px;
   font-size: 13px;
-  color: #F6657F;
-  line-height: 1.2;  
+  color: ${theme.colors.brightPink};
+  line-height: 1.2; 
+  position: absolute;
+  bottom: -16px;
+  left: 0;
   
   @media screen and (min-width: 560px) {
   margin-top: 8px;
+  bottom: -23px;
+
 
   }
   `;

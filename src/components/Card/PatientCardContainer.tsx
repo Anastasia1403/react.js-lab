@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
-import DropDown from 'components/DropDown/DropDown';
 import ModalWindow from 'components/ModalWindow/ModalWindow';
 import ReactDOM from 'react-dom';
 import { useAppDispatch } from 'redux/hooks/hooks';
 import { deleteAppointment, loadAppointments } from 'redux/appointments/loadAppointments.thunk';
 import { createResolution } from 'redux/resolutions/createResolution.thunk';
-// import { AsyncThunk } from '@reduxjs/toolkit';
-// import { INewResolution } from 'types/resolutions';
 import { editResolution } from 'redux/resolutions/editResolution.thunk';
+import { IChangedResolution } from 'types/resolutions';
 import { CardProps, IDropDownItem } from './types';
 import { PatientCard } from '.';
-import { Container } from './styled';
+import { Container, PatientCardDropDown } from './styled';
 
 const root = document.getElementById('root')!;
 
@@ -30,6 +28,7 @@ const PatientCardContainer = function ({ listItem, resolution, role }: CardProps
     isOpen: false,
     name: '',
     title: '',
+    // eslint-disable-next-line no-console
     modalCallback: (values: any) => console.log(values),
   });
   const onModalOpen = (
@@ -48,15 +47,13 @@ const PatientCardContainer = function ({ listItem, resolution, role }: CardProps
     });
   };
 
-  const handleEditResolution = (values: any) => {
-    const val = { id: values.resolutionID, resolution: values.resolution };
+  const handleEditResolution = (values: IChangedResolution) => {
+    const val = { resolutionID: values.resolutionID, resolution: values.resolution };
     dispatch(editResolution(val));
     onModalClose();
   };
 
-  const handleCreateResolution = (values: any) => {
-    // eslint-disable-next-line
-            // debugger
+  const handleCreateResolution = (values: IChangedResolution) => {
     const val = { appointmentID: values.appointmentID, resolution: values.resolution };
     dispatch(createResolution(val));
     onModalClose();
@@ -69,7 +66,6 @@ const PatientCardContainer = function ({ listItem, resolution, role }: CardProps
         onModalOpen(patientName, 'Create a Resolution', handleCreateResolution);
         onDropDownChangeVisible();
       },
-
     },
     {
       name: 'Edit a Resolution',
@@ -95,10 +91,9 @@ const PatientCardContainer = function ({ listItem, resolution, role }: CardProps
       <PatientCard
         listItem={listItem}
         resolution={resolution ? resolution.resolution : null}
-        // role={role}
         onDropDownChangeVisible={onDropDownChangeVisible}
       />
-      <DropDown
+      <PatientCardDropDown
         isVisible={isDropDownVisible}
         content={patientCardDropDownInfo}
       />
