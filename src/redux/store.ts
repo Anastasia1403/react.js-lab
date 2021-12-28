@@ -12,21 +12,13 @@ const authPersistConfig = {
   storage,
 };
 
-const combinedReducer = combineReducers({
+const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authReducer),
   appointments: appointmentsReducer,
   doctors: doctorsReducer,
   notification: notificationReducer,
   resolutions: resolutionsReducer,
 });
-
-const rootReducer = (state: any, action: any) => {
-  if (action.type === 'auth/logout') {
-    state = undefined;
-  }
-  return combinedReducer(state, action);
-};
-
 const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({

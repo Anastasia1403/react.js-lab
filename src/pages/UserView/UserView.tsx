@@ -9,6 +9,8 @@ import { resolutionErrorSelector } from 'redux/resolutions/selectors';
 import { logout } from 'redux/auth/slice';
 import { errorProfileSelector, profileLoadingSelector, profileSelector } from 'redux/auth/selectors';
 import loadProfile from 'redux/auth/loadProfile.thunk';
+import { resetResolutions } from 'redux/resolutions/slice';
+import { resetAppointments } from 'redux/appointments/slice';
 import StyledUserMain from './styled';
 
 const UserView = function () {
@@ -24,7 +26,8 @@ const UserView = function () {
   useEffect(() => {
     if (errorProfile || appointmentError || resolutionError) {
       dispatch(logout());
-      localStorage.clear();
+      dispatch(resetResolutions());
+      dispatch(resetAppointments());
       history.push(AUTH_PATH.SIGN_IN);
     }
   }, [errorProfile, appointmentError, resolutionError]);

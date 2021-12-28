@@ -10,7 +10,7 @@ import { Stage } from 'pages/NewAppointment/dictionary';
 import { IFormNewAppointment } from 'pages/NewAppointment/interface';
 import { INewAppointment } from 'types/newAppointment';
 import { USER_PATH } from 'routes/constants';
-import { creationErrorSelector, creationStatusSelector } from 'redux/appointments/selectors';
+import { creationStatusSelector } from 'redux/appointments/selectors';
 import { nullifyCreateStatus } from 'redux/appointments/slice';
 import validationSchema from './validationSchema';
 import {
@@ -20,11 +20,10 @@ import {
 const NewAppointmentForm = function () {
   const dispatch = useAppDispatch();
   const creationStatus = useAppSelector(creationStatusSelector);
-  const creationErrorMessage = useAppSelector(creationErrorSelector);
   const history = useHistory();
 
   useEffect(() => {
-    if (creationStatus) {
+    if (creationStatus === 'Created') {
       history.push(USER_PATH.APPOINTMENTS);
       dispatch(nullifyCreateStatus());
     }
@@ -82,7 +81,6 @@ const NewAppointmentForm = function () {
                 blocked={!(formik.values.doctor && formik.values.occupation)}
               />
             </section>
-            {creationErrorMessage && <div>{creationErrorMessage}</div>}
             <ButtonSubmit type="submit" disabled={!formik.isValid}>Submit</ButtonSubmit>
           </StyledNewAppointmentForm>
         </Form>

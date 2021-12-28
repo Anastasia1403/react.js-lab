@@ -25,7 +25,7 @@ export const createAppointment = createAsyncThunk(
           return response.statusText;
         });
     } catch (error: any) {
-      const result = (error as ResponseError).response.data;
+      const result = error.response ? (error as ResponseError).response.data : error.message;
       notification(thunkAPI.dispatch, 'error', result);
       return thunkAPI.rejectWithValue(result);
     }

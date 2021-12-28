@@ -3,7 +3,7 @@ import { theme } from 'styles/theme';
 import { NotificationProps } from './Notification';
 
 export const StyledNotification = styled.div<Omit<NotificationProps, 'text'>>`
-position: absolute;
+position: fixed;
 bottom: 32px;
 left: 32px;
 max-width: 457px;

@@ -26,6 +26,10 @@ const appointmentsSlice = createSlice({
       state.creationStatus = '';
       state.creationError = '';
     },
+    resetAppointments(state) {
+      state.appointments = [];
+      state.error = '';
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -47,18 +51,15 @@ const appointmentsSlice = createSlice({
         state.error = action.payload;
       })
       .addCase(createAppointment.fulfilled.type, (state, action: PayloadAction<string>) => {
-        // eslint-disable-next-line
-         debugger
-
         state.creationStatus = action.payload;
         state.creationError = '';
       })
       .addCase(createAppointment.rejected.type, (state, action: PayloadAction<any>) => {
-        state.creationStatus = '';
+        state.creationStatus = 'error';
         state.creationError = action.payload;
       });
   },
 });
 
-export const { nullifyCreateStatus } = appointmentsSlice.actions;
+export const { nullifyCreateStatus, resetAppointments } = appointmentsSlice.actions;
 export default appointmentsSlice.reducer;

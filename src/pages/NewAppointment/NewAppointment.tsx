@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { NewAppointmentForm } from 'pages/NewAppointment/components/NewAppointmentForm';
-import getProfile from 'redux/auth/loadProfile.thunk';
 import { MainHeader, StyledUserView, Title } from 'components';
 import { useAppDispatch, useAppSelector } from 'redux/hooks/hooks';
 import { USER_PATH } from 'routes/constants';
 import { profileSelector } from 'redux/auth/selectors';
+import loadProfile from 'redux/auth/loadProfile.thunk';
 import { ReactComponent as ArrowIcon } from './img/angle-right-b.svg';
 import {
   Step, StyledLink, StyledMain, StyledNav,
@@ -16,7 +16,7 @@ const NewAppointment = function () {
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (!profile) {
-      dispatch(getProfile());
+      dispatch(loadProfile());
     }
   }, []);
   return (

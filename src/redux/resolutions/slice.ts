@@ -15,7 +15,12 @@ const initialState: IInitialState = {
 const resolutionsSlice = createSlice({
   name: 'resolutions',
   initialState,
-  reducers: {},
+  reducers: {
+    resetResolutions(state) {
+      state.resolutions = [];
+      state.error = '';
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loadResolutions.pending.type, (state) => {
@@ -36,5 +41,7 @@ const resolutionsSlice = createSlice({
       });
   },
 });
+
+export const { resetResolutions } = resolutionsSlice.actions;
 
 export default resolutionsSlice.reducer;
